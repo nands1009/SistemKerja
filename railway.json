@@ -1,8 +1,0 @@
-{
-  "build": {
-    "builder": "herokuish"
-  },
-  "deploy": {
-    "startCommand": "heroku-php-apache2 public/"
-  }
-}
