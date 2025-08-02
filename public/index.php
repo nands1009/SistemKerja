@@ -1,14 +1,14 @@
 <?php
 
-// Mengatur zona waktu ke Asia/Jakarta
+// Set timezone
 date_default_timezone_set('Asia/Jakarta');
 
-// Menampilkan error untuk debugging
+// Enable debugging
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Cek versi PHP minimum
+// Minimum PHP version
 $minPhpVersion = '8.1';
 if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
     header('HTTP/1.1 503 Service Unavailable.', true, 503);
@@ -16,18 +16,21 @@ if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
     exit(1);
 }
 
-// Path ke Paths.php
-$pathsPath = realpath(FCPATH . '../app/Config/Paths.php');
+// Define FCPATH (root of public/)
+define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
+
+// Path to Paths.php
+$pathsPath = realpath(__DIR__ . '/../app/Config/Paths.php');
 if (!is_file($pathsPath)) {
     header('HTTP/1.1 503 Service Unavailable.', true, 503);
-    echo 'Paths.php not found: ' . htmlspecialchars($pathsPath);
+    echo 'Paths.php not found at: ' . htmlspecialchars($pathsPath);
     exit(1);
 }
 
-// Composer Autoloader
-require_once realpath(FCPATH . '../vendor/autoload.php');
+// Composer autoloader
+require_once realpath(__DIR__ . '/../vendor/autoload.php');
 
-// Load konfigurasi path
+// Load Paths
 require_once $pathsPath;
 $paths = new Config\Paths();
 
