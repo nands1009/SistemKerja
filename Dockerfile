@@ -9,6 +9,15 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 # Enable mod_rewrite untuk CI4
 RUN a2enmod rewrite
 
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Copy composer files first
+COPY composer.json composer.lock* ./
+
+# Install dependencies (if composer.json exists)
+RUN if [ -f composer.json ]; then composer install --no-dev --optimize-autoloader --no-interaction; fi
+
 # Copy aplikasi
 COPY . /var/www/html/
 
@@ -23,6 +32,11 @@ RUN echo '<Directory /var/www/html/public>' >> /etc/apache2/apache2.conf \
     && echo '    AllowOverride All' >> /etc/apache2/apache2.conf \
     && echo '    Require all granted' >> /etc/apache2/apache2.conf \
     && echo '</Directory>' >> /etc/apache2/apache2.conf
+
+# Enable PHP error reporting untuk debugging
+RUN echo "log_errors = On" >> /usr/local/etc/php/php.ini \
+    && echo "error_log = /var/log/php_errors.log" >> /usr/local/etc/php/php.ini \
+    && echo "display_errors = Off" >> /usr/local/etc/php/php.ini
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html
