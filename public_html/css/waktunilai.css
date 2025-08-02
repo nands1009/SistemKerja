@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+
+}
+
+#navbar {
+    background-color: #4CAF50;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    color: rgb(246, 0, 0);
+}
+
+button {
+    background-color: #4CAF50;
+    color: rgb(248, 79, 79);
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#content {
+    position: absolute;
+    top: 3%;
+    width: 100%;
+    left: 32%;
+    padding: 20px;
+    background-color: white;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+input[type="datetime-local"] {
+    width: 100%;
+    padding: 10px 1px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.button-container button:hover {
+    background-color: #0056b3;
+}
+
+.notification {
+    display: none;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+}

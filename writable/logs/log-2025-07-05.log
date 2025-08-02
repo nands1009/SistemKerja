@@ -1,0 +1,5 @@
+DEBUG - 2025-07-05 20:52:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-07-05 20:52:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-05 20:52:33 --> Jawaban ditemukan: Anda akan menerima notifikasi begitu laporan Anda disetujui. Selain itu, Anda juga dapat memeriksa status laporan di menu 'Riwayat Laporan Kerja' untuk melihat status setiap laporan yang telah Anda buat.
+INFO - 2025-07-05 20:52:58 --> Jawaban ditemukan: Laporan Anda masih dalam status 'Pending' karena manajer sedang melakukan pengecekan sebelum memberikan approval. Harap bersabar selama proses tersebut berlangsung.
+INFO - 2025-07-05 20:53:13 --> Jawaban ditemukan: Ya, laporan yang ditolak oleh manajer bisa diedit. Anda dapat melakukan perubahan yang diperlukan dan mengirimkannya kembali untuk disetujui.

@@ -1,0 +1,1850 @@
+DEBUG - 2025-04-26 17:13:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 17:13:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 17:13:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:13:51 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:13:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:13:52 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:13:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:13:54 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:14:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 17:14:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 17:14:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 17:14:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:14:14 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:19:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:19:58 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:20:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:20:41 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:21:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:21:24 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:21:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:21:27 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:23:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:23:27 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:23:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 17:23:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:23:30 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:23:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:23:43 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:26:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:26:57 --> ErrorException: Undefined variable $user
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 114.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(114): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $user', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 114)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:27:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:27:22 --> ErrorException: Undefined variable $user
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 115.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(115): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $user', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 115)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:31:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:31:41 --> ErrorException: Undefined variable $conn
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 114.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(114): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $conn', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 114)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:31:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:31:42 --> ErrorException: Undefined variable $conn
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 114.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(114): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $conn', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 114)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:33:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:33:39 --> ErrorException: Undefined variable $qry
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 122.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(122): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $qry', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 122)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:34:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:34:17 --> ErrorException: Undefined array key "nama_user"
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 123.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(123): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_user"', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 123)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:34:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:34:27 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:34:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 17:34:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:34:33 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:35:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:35:30 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:43:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:43:49 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:44:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:44:44 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:44:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:44:45 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:44:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:44:46 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:44:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:44:57 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:45:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:45:52 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:45:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:45:54 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:46:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:46:13 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:46:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:46:14 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:46:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:46:15 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:46:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:46:58 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:46:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:46:59 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:47:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:47:15 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:47:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:47:15 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:47:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:47:47 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:47:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:47:49 --> ErrorException: Array to string conversion
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 118.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 118)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:49:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:49:33 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= users.user_id = laporan_kerja.user_id' at line 2
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 117.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(117): mysqli_query(Object(mysqli), 'SELECT * FROM users, laporan_kerja
+                     WHERE = users.user_id = laporan_kerja.user_id')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:49:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:49:43 --> mysqli_sql_exception: Unknown column 'users.user_id' in 'where clause'
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 117.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(117): mysqli_query(Object(mysqli), 'SELECT * FROM users, laporan_kerja
+                     WHERE users.user_id = laporan_kerja.user_id')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:49:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:49:44 --> mysqli_sql_exception: Unknown column 'users.user_id' in 'where clause'
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 117.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(117): mysqli_query(Object(mysqli), 'SELECT * FROM users, laporan_kerja
+                     WHERE users.user_id = laporan_kerja.user_id')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:50:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:50:27 --> mysqli_sql_exception: Unknown column 'users.user_id' in 'where clause'
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 117.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(117): mysqli_query(Object(mysqli), 'SELECT * FROM users, laporan_kerja
+                    WHERE users.user_id = laporan_kerja.user_id')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:50:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 17:50:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:50:33 --> mysqli_sql_exception: Unknown column 'users.user_id' in 'where clause'
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 117.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(117): mysqli_query(Object(mysqli), 'SELECT * FROM users, laporan_kerja
+                    WHERE users.user_id = laporan_kerja.user_id')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:50:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:50:42 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:51:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:51:45 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:51:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:51:48 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 17:53:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 17:53:04 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:00:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 18:01:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 18:03:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 18:05:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 18:05:18 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:05:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 18:05:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 18:05:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 18:09:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 18:09:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 18:09:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 18:11:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 18:13:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 18:13:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 18:13:19 --> ErrorException: Undefined array key "username"
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 129.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(129): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "username"', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 129)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:13:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 18:13:49 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:28:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 18:28:41 --> ErrorException: Undefined array key "username"
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 129.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(129): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "username"', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 129)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:28:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 18:28:49 --> ErrorException: Undefined array key "divisi"
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 130.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(130): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "divisi"', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 130)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:28:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 18:28:58 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:29:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 18:29:34 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', laporan_kerja.user_id' at line 2
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 117.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(117): mysqli_query(Object(mysqli), 'SELECT * FROM users, laporan_kerja
+                    WHERE id = users.id , laporan_kerja.user_id')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:38:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 18:38:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 18:38:52 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', laporan_kerja.user_id' at line 2
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 117.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(117): mysqli_query(Object(mysqli), 'SELECT * FROM users, laporan_kerja
+                    WHERE id = users.id , laporan_kerja.user_id')
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(58): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:39:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 18:39:06 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:40:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 18:40:53 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:44:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 18:44:34 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:51:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-26 18:51:02 --> mysqli_sql_exception: Unknown column 'pegawai.user_id' in 'field list' in C:\laragon\www\kinerja.percobaan\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\kinerja.percobaan\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `laporan...', 0)
+#1 C:\laragon\www\kinerja.percobaan\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan...')
+#2 C:\laragon\www\kinerja.percobaan\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan...')
+#3 C:\laragon\www\kinerja.percobaan\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan...', Array, false)
+#4 C:\laragon\www\kinerja.percobaan\app\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\kinerja.percobaan\app\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+#6 C:\laragon\www\kinerja.percobaan\system\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+#7 C:\laragon\www\kinerja.percobaan\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+#8 C:\laragon\www\kinerja.percobaan\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\kinerja.percobaan\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\kinerja.percobaan\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\laragon\www\kinerja.percobaan\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\laragon\www\kinerja.percobaan\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#13 {main}
+CRITICAL - 2025-04-26 18:51:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'pegawai.user_id' in 'field list'
+[Method: GET, Route: laporan_kerja/riwayat]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan_kerja`.*, `pegawai`.`user_id`, `pegawai`.`role_id`
+FROM `laporan_kerja`
+JOIN `pegawai` ON `pegawai`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `pegawai`.`user_id` = :pegawai.user_id:
+AND `pegawai`.`role_id` = :pegawai.role_id:', [...], false)
+ 2 APPPATH\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+CRITICAL - 2025-04-26 18:51:02 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'pegawai.user_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan_kerja`.*, `pegawai`.`user_id`, `pegawai`.`role_id`
+FROM `laporan_kerja`
+JOIN `pegawai` ON `pegawai`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `pegawai`.`user_id` = \'32\'
+AND `pegawai`.`role_id` = \'pegawai\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan_kerja`.*, `pegawai`.`user_id`, `pegawai`.`role_id`
+FROM `laporan_kerja`
+JOIN `pegawai` ON `pegawai`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `pegawai`.`user_id` = \'32\'
+AND `pegawai`.`role_id` = \'pegawai\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan_kerja`.*, `pegawai`.`user_id`, `pegawai`.`role_id`
+FROM `laporan_kerja`
+JOIN `pegawai` ON `pegawai`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `pegawai`.`user_id` = :pegawai.user_id:
+AND `pegawai`.`role_id` = :pegawai.role_id:', [...], false)
+ 4 APPPATH\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+CRITICAL - 2025-04-26 18:51:02 --> [Caused by] mysqli_sql_exception: Unknown column 'pegawai.user_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `laporan_kerja`.*, `pegawai`.`user_id`, `pegawai`.`role_id`
+FROM `laporan_kerja`
+JOIN `pegawai` ON `pegawai`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `pegawai`.`user_id` = \'32\'
+AND `pegawai`.`role_id` = \'pegawai\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan_kerja`.*, `pegawai`.`user_id`, `pegawai`.`role_id`
+FROM `laporan_kerja`
+JOIN `pegawai` ON `pegawai`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `pegawai`.`user_id` = \'32\'
+AND `pegawai`.`role_id` = \'pegawai\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan_kerja`.*, `pegawai`.`user_id`, `pegawai`.`role_id`
+FROM `laporan_kerja`
+JOIN `pegawai` ON `pegawai`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `pegawai`.`user_id` = \'32\'
+AND `pegawai`.`role_id` = \'pegawai\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan_kerja`.*, `pegawai`.`user_id`, `pegawai`.`role_id`
+FROM `laporan_kerja`
+JOIN `pegawai` ON `pegawai`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `pegawai`.`user_id` = :pegawai.user_id:
+AND `pegawai`.`role_id` = :pegawai.role_id:', [...], false)
+ 5 APPPATH\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:55:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-26 18:55:57 --> mysqli_sql_exception: Unknown column 'users.user_id' in 'field list' in C:\laragon\www\kinerja.percobaan\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\kinerja.percobaan\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `laporan...', 0)
+#1 C:\laragon\www\kinerja.percobaan\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan...')
+#2 C:\laragon\www\kinerja.percobaan\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan...')
+#3 C:\laragon\www\kinerja.percobaan\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan...', Array, false)
+#4 C:\laragon\www\kinerja.percobaan\app\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\kinerja.percobaan\app\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+#6 C:\laragon\www\kinerja.percobaan\system\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+#7 C:\laragon\www\kinerja.percobaan\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+#8 C:\laragon\www\kinerja.percobaan\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\kinerja.percobaan\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\kinerja.percobaan\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\laragon\www\kinerja.percobaan\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\laragon\www\kinerja.percobaan\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#13 {main}
+CRITICAL - 2025-04-26 18:55:57 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'users.user_id' in 'field list'
+[Method: GET, Route: laporan_kerja/riwayat]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `users`.`user_id` = :users.user_id:
+AND `users`.`role_id` = :users.role_id:', [...], false)
+ 2 APPPATH\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+CRITICAL - 2025-04-26 18:55:57 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'users.user_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `users`.`user_id` = \'32\'
+AND `users`.`role_id` = \'pegawai\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `users`.`user_id` = \'32\'
+AND `users`.`role_id` = \'pegawai\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `users`.`user_id` = :users.user_id:
+AND `users`.`role_id` = :users.role_id:', [...], false)
+ 4 APPPATH\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+CRITICAL - 2025-04-26 18:55:57 --> [Caused by] mysqli_sql_exception: Unknown column 'users.user_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `users`.`user_id` = \'32\'
+AND `users`.`role_id` = \'pegawai\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `users`.`user_id` = \'32\'
+AND `users`.`role_id` = \'pegawai\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `users`.`user_id` = \'32\'
+AND `users`.`role_id` = \'pegawai\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`pegawai_id`
+WHERE `users`.`user_id` = :users.user_id:
+AND `users`.`role_id` = :users.role_id:', [...], false)
+ 5 APPPATH\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:56:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-26 18:56:09 --> mysqli_sql_exception: Unknown column 'users.user_id' in 'field list' in C:\laragon\www\kinerja.percobaan\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\kinerja.percobaan\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `laporan...', 0)
+#1 C:\laragon\www\kinerja.percobaan\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan...')
+#2 C:\laragon\www\kinerja.percobaan\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan...')
+#3 C:\laragon\www\kinerja.percobaan\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan...', Array, false)
+#4 C:\laragon\www\kinerja.percobaan\app\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\kinerja.percobaan\app\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+#6 C:\laragon\www\kinerja.percobaan\system\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+#7 C:\laragon\www\kinerja.percobaan\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+#8 C:\laragon\www\kinerja.percobaan\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\kinerja.percobaan\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\kinerja.percobaan\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\laragon\www\kinerja.percobaan\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\laragon\www\kinerja.percobaan\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#13 {main}
+CRITICAL - 2025-04-26 18:56:09 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'users.user_id' in 'field list'
+[Method: GET, Route: laporan_kerja/riwayat]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`user_id` = :users.user_id:
+AND `users`.`role_id` = :users.role_id:', [...], false)
+ 2 APPPATH\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+CRITICAL - 2025-04-26 18:56:09 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'users.user_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`user_id` = \'32\'
+AND `users`.`role_id` = \'pegawai\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`user_id` = \'32\'
+AND `users`.`role_id` = \'pegawai\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`user_id` = :users.user_id:
+AND `users`.`role_id` = :users.role_id:', [...], false)
+ 4 APPPATH\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+CRITICAL - 2025-04-26 18:56:09 --> [Caused by] mysqli_sql_exception: Unknown column 'users.user_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`user_id` = \'32\'
+AND `users`.`role_id` = \'pegawai\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`user_id` = \'32\'
+AND `users`.`role_id` = \'pegawai\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`user_id` = \'32\'
+AND `users`.`role_id` = \'pegawai\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan_kerja`.*, `users`.`user_id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`user_id` = :users.user_id:
+AND `users`.`role_id` = :users.role_id:', [...], false)
+ 5 APPPATH\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:57:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-04-26 18:57:47 --> mysqli_sql_exception: Unknown column 'users.role_id' in 'field list' in C:\laragon\www\kinerja.percobaan\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\laragon\www\kinerja.percobaan\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `laporan...', 0)
+#1 C:\laragon\www\kinerja.percobaan\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan...')
+#2 C:\laragon\www\kinerja.percobaan\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan...')
+#3 C:\laragon\www\kinerja.percobaan\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan...', Array, false)
+#4 C:\laragon\www\kinerja.percobaan\app\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\kinerja.percobaan\app\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+#6 C:\laragon\www\kinerja.percobaan\system\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+#7 C:\laragon\www\kinerja.percobaan\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+#8 C:\laragon\www\kinerja.percobaan\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\laragon\www\kinerja.percobaan\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 C:\laragon\www\kinerja.percobaan\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\laragon\www\kinerja.percobaan\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 C:\laragon\www\kinerja.percobaan\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#13 {main}
+CRITICAL - 2025-04-26 18:57:47 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'users.role_id' in 'field list'
+[Method: GET, Route: laporan_kerja/riwayat]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan_kerja`.*, `users`.`id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`id` = :users.id:
+AND `users`.`role` = :users.role:', [...], false)
+ 2 APPPATH\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+CRITICAL - 2025-04-26 18:57:47 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'users.role_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan_kerja`.*, `users`.`id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`id` = \'32\'
+AND `users`.`role` = \'pegawai\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan_kerja`.*, `users`.`id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`id` = \'32\'
+AND `users`.`role` = \'pegawai\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan_kerja`.*, `users`.`id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`id` = :users.id:
+AND `users`.`role` = :users.role:', [...], false)
+ 4 APPPATH\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+CRITICAL - 2025-04-26 18:57:47 --> [Caused by] mysqli_sql_exception: Unknown column 'users.role_id' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `laporan_kerja`.*, `users`.`id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`id` = \'32\'
+AND `users`.`role` = \'pegawai\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `laporan_kerja`.*, `users`.`id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`id` = \'32\'
+AND `users`.`role` = \'pegawai\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `laporan_kerja`.*, `users`.`id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`id` = \'32\'
+AND `users`.`role` = \'pegawai\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `laporan_kerja`.*, `users`.`id`, `users`.`role_id`
+FROM `laporan_kerja`
+JOIN `users` ON `users`.`id` = `laporan_kerja`.`user_id`
+WHERE `users`.`id` = :users.id:
+AND `users`.`role` = :users.role:', [...], false)
+ 5 APPPATH\Models\LaporanKerjaModel.php(69): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\LaporanKerja.php(55): App\Models\LaporanKerjaModel->getLaporanByUser('32', 'pegawai')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 18:58:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 18:58:01 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 19:02:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 19:02:17 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: laporan_kerja/download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('laporan_kerja/download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('laporan_kerja/download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 19:04:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:14:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:16:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:21:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:24:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:26:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:27:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:27:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:27:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:29:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:31:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:31:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:33:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:33:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:33:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:33:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:35:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:37:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:37:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:37:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:37:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:40:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 19:41:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:06:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:07:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:11:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:11:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:11:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:11:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:12:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:12:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:12:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:13:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:13:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:13:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:14:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:14:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:14:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:14:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:14:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:14:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:14:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:20:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:20:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:21:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 20:21:58 --> ErrorException: Undefined array key "username"
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 116.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(116): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "username"', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 116)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(60): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 20:22:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 20:22:24 --> ErrorException: Undefined array key "judul"
+[Method: GET, Route: laporan_kerja/riwayat]
+in APPPATH\Views\laporan_kerja\riwayat.php on line 117.
+ 1 APPPATH\Views\laporan_kerja\riwayat.php(117): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "judul"', 'C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php', 117)
+ 2 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\laporan_kerja\\riwayat.php')
+ 3 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(475): CodeIgniter\View\View->render('laporan_kerja/riwayat', null, true)
+ 5 APPPATH\Views\dashboard\layouts\rwyt_laporankerja.php(4): CodeIgniter\View\View->include('laporan_kerja/riwayat')
+ 6 SYSTEMPATH\View\View.php(224): include('C:\\laragon\\www\\kinerja.percobaan\\app\\Views\\dashboard\\layouts\\rwyt_laporankerja.php')
+ 7 SYSTEMPATH\View\View.php(227): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('dashboard/layouts/rwyt_laporankerja', [], true)
+ 9 APPPATH\Controllers\LaporanKerja.php(60): view('dashboard/layouts/rwyt_laporankerja', [...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerja->riwayat()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerja))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+16 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 20:23:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:23:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:24:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:25:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:30:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:50:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 20:50:28 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 20:51:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 20:51:21 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 20:51:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 20:51:27 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 20:56:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:56:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:57:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:57:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 20:57:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 20:57:10 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 21:10:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:10:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:10:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:10:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:10:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:10:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:13:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:13:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:13:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:13:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:14:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:14:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:14:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:14:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 21:14:37 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 21:17:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:17:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 21:17:07 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "download (16).jpeg"
+[Method: GET, Route: download%20%2816%29.jpeg]
+in SYSTEMPATH\Router\Router.php on line 739.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('download (16).jpeg')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('download (16).jpeg')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 21:17:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:17:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:17:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:17:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:17:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:17:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:18:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:18:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:18:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:18:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:19:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:23:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:23:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:24:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:24:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:24:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:26:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:29:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:29:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:30:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:30:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:30:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:31:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:31:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:32:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:32:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:34:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:34:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:35:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:35:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:35:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:35:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:37:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:37:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:39:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:39:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:39:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:39:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:39:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:39:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:39:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:39:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:41:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:41:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:41:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:41:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:43:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 21:43:05 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "rencana_kerja/edi.php"
+[Method: GET, Route: rencana_kerja/edit/16]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('rencana_kerja/edi.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('rencana_kerja/edi', [], true)
+ 3 APPPATH\Controllers\RencanaKerja.php(73): view('rencana_kerja/edi', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RencanaKerja->edit('16')
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RencanaKerja))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 21:44:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:45:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:45:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:45:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:45:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:45:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:49:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:49:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:50:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:50:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:50:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:51:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:51:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:51:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:51:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:52:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:52:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:54:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:54:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:54:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:54:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:55:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:55:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:55:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:55:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:58:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:58:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:58:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:58:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:58:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:58:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:58:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:58:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 21:59:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:00:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:00:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:00:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:00:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:00:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:00:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:00:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:00:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:00:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:00:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:00:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:01:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:06:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 22:06:24 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "rencana_kerja/edit/.php"
+[Method: GET, Route: rencana_kerja/edit/17]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('rencana_kerja/edit/.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('rencana_kerja/edit/', [], true)
+ 3 APPPATH\Controllers\RencanaKerja.php(73): view('rencana_kerja/edit/', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RencanaKerja->edit('17')
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RencanaKerja))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 22:06:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 22:06:25 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "rencana_kerja/edit/.php"
+[Method: GET, Route: rencana_kerja/edit/17]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('rencana_kerja/edit/.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('rencana_kerja/edit/', [], true)
+ 3 APPPATH\Controllers\RencanaKerja.php(73): view('rencana_kerja/edit/', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\RencanaKerja->edit('17')
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RencanaKerja))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 22:07:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:10:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:10:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:10:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:10:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:11:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:11:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:11:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:13:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:13:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:14:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:15:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:15:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:16:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:18:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:18:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:18:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:18:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:20:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:21:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:21:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:22:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:22:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:22:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:23:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:23:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:23:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:23:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:25:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:25:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:25:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:25:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:26:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:26:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:26:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:26:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:27:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:27:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:27:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:29:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:30:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:30:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:30:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:30:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:30:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:31:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:32:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:32:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:33:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:33:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:34:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:34:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:34:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:34:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:35:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:35:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:35:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:35:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:35:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:35:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:35:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:35:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:36:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:36:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:36:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:36:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:36:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:36:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:37:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:37:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:37:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:37:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:38:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:38:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:39:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:39:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:39:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:39:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:39:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:43:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:43:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:43:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:43:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:44:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:44:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:45:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:45:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:46:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:50:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:51:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:51:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:51:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:51:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:51:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:51:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 22:58:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:06:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:06:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:06:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:06:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:07:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:07:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:07:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:07:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:07:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:08:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:08:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:08:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:09:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:09:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:10:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:10:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:10:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:10:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:10:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:11:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:11:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:28:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:28:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:29:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:29:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:30:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:30:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:34:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:34:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:35:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:35:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:36:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:36:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:39:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:39:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:40:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:41:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:41:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:43:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:43:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:45:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:45:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:45:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:45:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:45:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:46:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:46:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:48:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:48:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:51:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:51:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:52:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:52:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:52:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:54:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:54:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:55:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:55:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:55:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:55:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:55:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:55:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:55:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:55:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:55:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:56:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:56:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:56:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:56:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:56:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:56:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:57:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:57:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:57:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-04-26 23:57:20 --> ArgumentCountError: Too few arguments to function App\Models\LaporanKerjaModel::getLaporanByUser(), 1 passed in C:\laragon\www\kinerja.percobaan\app\Controllers\LaporanKerjaManager.php on line 56 and exactly 2 expected
+[Method: GET, Route: laporan_kerja_manager/riwayat]
+in APPPATH\Models\LaporanKerjaModel.php on line 62.
+ 1 APPPATH\Controllers\LaporanKerjaManager.php(56): App\Models\LaporanKerjaModel->getLaporanByUser('51')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\LaporanKerjaManager->riwayat()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanKerjaManager))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-04-26 23:57:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:57:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:57:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:58:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:58:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:58:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:58:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:58:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:58:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:59:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:59:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-04-26 23:59:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

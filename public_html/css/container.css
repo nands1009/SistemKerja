@@ -1,0 +1,96 @@
+/* Reset some default styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Layout container */
+#wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-wrap: wrap; /* Ensure the layout wraps on small screens */
+}
+
+/* Sidebar Styling */
+.navbar-default.navbar-side {
+    width: 250px; /* Fixed width for sidebar */
+    background-color: #d62c2f; /* Red color */
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh; /* Ensure full height */
+    z-index: 1000;
+    overflow-y: auto; /* Allows scrolling within the sidebar */
+}
+
+/* Sidebar menu links */
+.navbar-default.navbar-side ul {
+    padding: 0;
+    list-style: none;
+}
+
+.navbar-default.navbar-side li {
+    padding: 10px;
+    border-bottom: 1px solid #444;
+}
+
+.navbar-default.navbar-side li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* On hover, change background color */
+.navbar-default.navbar-side li a:hover {
+    background-color: #444;
+}
+
+/* Page content area */
+#page-wrapper {
+    margin-left: 250px; /* Offset content to avoid overlap with the sidebar */
+    padding: 20px;
+    width: 100%;
+    background-color: #e1eaf3; /* Light background color for content area */
+}
+
+/* Navbar Styling */
+.navbar-default {
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-default .navbar-brand img {
+    max-height: 40px;
+}
+
+/* User profile dropdown menu */
+.navbar-top-links {
+    float: right;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    /* Sidebar will take full width on mobile */
+    .navbar-default.navbar-side {
+        position: static;
+        width: 100%;
+    }
+
+    /* Content area adjusts margin on smaller screens */
+    #page-wrapper {
+        margin-left: 0;
+    }
+
+    /* Adjust navbar links for smaller screens */
+    .navbar-top-links {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+}

@@ -1,0 +1,33 @@
+CRITICAL - 2025-05-15 00:34:55 --> Error: Class "App\Libraries\NaiveBayesClassifier" not found
+[Method: GET, Route: chatbot/getLatestAnswer]
+in APPPATH\Controllers\ChatbotController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\ChatbotController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+CRITICAL - 2025-05-15 00:35:55 --> Error: Class "App\Libraries\NaiveBayesClassifier" not found
+[Method: GET, Route: chatbot/getLatestAnswer]
+in APPPATH\Controllers\ChatbotController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\ChatbotController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+CRITICAL - 2025-05-15 00:36:55 --> Error: Class "App\Libraries\NaiveBayesClassifier" not found
+[Method: GET, Route: chatbot/getLatestAnswer]
+in APPPATH\Controllers\ChatbotController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(903): App\Controllers\ChatbotController->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\kinerja.percobaan\\public\\index.php')
+DEBUG - 2025-05-15 11:08:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-15 11:08:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-15 11:08:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

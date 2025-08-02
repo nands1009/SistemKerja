@@ -1,0 +1,119 @@
+question,answer,tag
+"Selamat Pagi","Selamat pagi juga! Ada yang bisa dibantu?","Salam"
+"Selamat Siang","Selamat siang juga! Ada yang bisa dibantu?","Salam"
+"Selamat Sore","Selamat Sore juga! Ada yang bisa dibantu?","Salam"
+"Selamat Malam","Selamat malam juga! Ada yang bisa dibantu?","Salam"
+"Saya tidak menemukan laporan kerja yang sudah saya buat sebelumnya, bagaimana solusinya agar saya dapat menemukan laporan kerja?","Silakan pilih menu 'Riwayat Laporan Kerja', di sana Anda akan menemukan seluruh laporan kerja yang telah Anda buat sebelumnya. Pastikan untuk memeriksa tanggal dan waktu pembuatan laporan kerja agar lebih mudah menemukannya.",laporan_kerja
+Kenapa laporan kerja saya masih dalam status 'Pending'?,"Laporan Anda masih dalam status 'Pending' karena manajer sedang melakukan pengecekan sebelum memberikan approval. Harap bersabar selama proses tersebut berlangsung.",laporan_kerja
+Bagaimana cara mengetahui apakah laporan kerja saya sudah diapprove?,"Anda akan menerima notifikasi begitu laporan Anda disetujui. Selain itu, Anda juga dapat memeriksa status laporan di menu 'Riwayat Laporan Kerja' untuk melihat status setiap laporan yang telah Anda buat.",laporan_kerja
+Apakah saya bisa mengedit laporan setelah mendapatkan approval?,"Setelah laporan disetujui, laporan tersebut bersifat final dan tidak bisa diedit lagi. Pastikan laporan Anda sudah lengkap dan benar sebelum disetujui.",laporan_kerja
+Apakah saya bisa mengedit laporan setelah ditolak?,"Ya, laporan yang ditolak oleh manajer bisa diedit. Anda dapat melakukan perubahan yang diperlukan dan mengirimkannya kembali untuk disetujui.",laporan_kerja
+Bagaimana cara pegawai mengajukan laporan kerja harian?,"Pegawai dapat mengisi formulir laporan kerja harian dan mengirimkannya ke manajer untuk ditinjau.",laporan_kerja
+Bagaimana cara mengajukan revisi terhadap laporan yang sudah diapprove?,"Untuk mengajukan revisi, Anda bisa membuat laporan baru dengan menambahkan kata ‘Revisi’ pada judul laporan kerja. Dengan begitu, laporan yang direvisi akan jelas teridentifikasi.",laporan_kerja
+Bagaimana cara membuat laporan kerja harian?,"Pegawai dapat mengakses formulir laporan kerja, mengisi rincian tugas, jam kerja, serta kendala yang dihadapi.",laporan_kerja
+Informasi apa saja yang harus dimasukkan dalam laporan kerja?,"Nama pegawai, tanggal, rincian pekerjaan, hasil pekerjaan, kendala yang dihadapi, serta solusi yang diterapkan.",laporan_kerja
+Bagaimana pegawai mengirim laporan kerja kepada manajer?,"Setelah mengisi laporan, pegawai dapat mengklik tombol 'Kirim' untuk ditinjau",laporan_kerja
+Apakah pegawai dapat mengakses semua laporan kerja yang ada di sistem?,"Tidak, pegawai hanya dapat mengakses laporan kerja miliknya sendiri.",laporan_kerja
+Apa yang terjadi jika laporan kerja ditolak oleh manajer?,"Pegawai akan mendapatkan notifikasi beserta alasan penolakan dan dapat merevisi laporan sesuai feedback dari manajer.",laporan_kerja
+Apakah pegawai dapat mengedit laporan yang telah dikirim ke manajer?,"Tidak, pegawai hanya dapat mengedit laporan yang ditolak oleh manajer.",laporan_kerja
+Bagaimana pegawai mengetahui status laporan kerja yang telah dikirim?,"Sistem akan mengirimkan notifikasi apakah laporan telah disetujui, ditolak, atau masih dalam tinjauan",laporan_kerja
+Apakah pegawai bisa melihat riwayat laporan kerja mereka?,"Ya, pegawai bisa mengakses halaman riwayat untuk melihat laporan yang telah dibuat.",laporan_kerja
+Apakah pegawai bisa mengedit laporan kerja yang sudah dikirimkan?,"Jika laporan belum disetujui atau ditolak, pegawai bisa mengeditnya sebelum dikirim ulang.",laporan_kerja
+Bagaimana pegawai dapat menghapus laporan kerja?,"Laporan hanya dapat dihapus jika belum dikirim ke manajer.",laporan_kerja
+Apa yang dapat dilakukan direksi terkait riwayat laporan kerja?,"Direksi dapat melihat riwayat laporan kerja dari seluruh pegawai.",laporan_kerja
+Apakah admin dapat melihat laporan kerja pegawai?,"Ya, admin dapat melihat semua laporan kerja pegawai.",laporan_kerja
+Bagaimana cara pegawai membuat laporan kerja harian?,"Pegawai dapat membuat laporan kerja harian melalui form laporan kerja di sistem.",laporan_kerja
+Dapatkah pegawai mengirim laporan yang telah dibuat ke manajer?,"Ya, pegawai dapat mengirimkan laporan yang telah dibuat ke manajer untuk ditinjau.",laporan_kerja
+Dapatkah pegawai mengedit laporan yang ditolak oleh manajer?,"Ya, pegawai dapat mengedit laporan yang ditolak sesuai dengan catatan alasan penolakan.",laporan_kerja
+Apakah pegawai dapat mengedit laporan yang disetujui oleh manajer?,"Tidak, laporan yang disetujui oleh manajer hanya dapat dilihat, tetapi tidak bisa diedit oleh pegawai.",laporan_kerja
+Bagaimana direksi melihat riwayat laporan kerja pegawai?,"Direksi dapat mengakses halaman riwayat laporan kerja untuk melihat laporan seluruh pegawai.",laporan_kerja
+Bagaimana cara mengatur ulang jadwal dalam rencana kerja?,"Untuk mengatur ulang jadwal, Anda dapat melakukannya melalui menu ‘Edit’ pada rencana kerja yang ingin diubah. Pastikan semua perubahan yang Anda buat sudah sesuai dengan kebutuhan.",rencana_kerja
+Bagaimana cara pegawai membuat rencana kerja?,"Pegawai dapat mengakses fitur rencana kerja, memasukkan target pekerjaan, dan menyimpannya.",rencana_kerja
+Bagaimana cara memfilter rencana kerja berdasarkan tanggal?,"Pegawai dapat memilih rentang tanggal tertentu untuk menampilkan daftar rencana kerja yang relevan.",rencana_kerja
+Apakah pegawai bisa mengubah atau menghapus rencana kerja setelah dibuat?,"Ya, selama rencana kerja belum digunakan sebagai referensi, pegawai bisa mengedit atau menghapusnya.",rencana_kerja
+Apa yang dapat dilakukan manajer dalam mengelola rencana kerja?,"Manajer dapat membuat rencana kerja dan melihat rencana kerja pegawai dalam divisi mereka.",rencana_kerja
+Bagaimana cara manajer melihat rencana kerja pegawai?,"Manajer dapat mengakses halaman rencana kerja dan memilih pegawai yang ingin dilihat rencananya.",rencana_kerja
+Apa yang dapat dilakukan pegawai terkait rencana kerja?,"Pegawai dapat membuat rencana kerja dan mencari rencana kerja yang sudah dibuat.",rencana_kerja
+Apa yang dapat dilakukan manajer terkait rencana kerja pegawai?,"Manajer dapat melihat rencana kerja pegawai dalam divisi mereka.",rencana_kerja
+Kenapa saya tidak bisa melihat hasil evaluasi kinerja saya?,"Hasil evaluasi kinerja baru bisa diakses setelah semua tahap review oleh manajer dan direksi selesai. Harap bersabar sementara proses tersebut berlangsung.",evaluasi_kinerja
+Bagaimana cara mengajukan banding terhadap evaluasi kinerja?,"Saat ini, fitur untuk mengajukan banding terhadap evaluasi kinerja belum tersedia. Kami akan mempertimbangkan untuk menambahkannya di masa depan.",evaluasi_kinerja
+Apa kriteria utama dalam evaluasi kinerja manajer oleh direksi?,"Efektivitas kepemimpinan, kualitas keputusan strategis, serta kemampuan manajer dalam mengelola tim dan proyek.",evaluasi_kinerja
+Apa yang terjadi jika pegawai menerima penghargaan atau SP?,"Sistem akan mengirimkan pemberitahuan resmi, dan pegawai dapat melihat riwayat penghargaan atau SP yang diterima.",pengajuan_penghargaan
+Bagaimana direksi mengetahui perkembangan evaluasi kinerja dalam organisasi?,"Direksi dapat melihat laporan rangkuman evaluasi kinerja pegawai dan manajer yang dikompilasi oleh HRD.",evaluasi_kinerja
+Bagaimana cara manajer melakukan evaluasi kinerja pegawai?,"Manajer dapat menilai pegawai dalam divisi mereka dan mengajukan penghargaan atau SP ke HRD.",evaluasi_kinerja
+Bagaimana cara melihat riwayat pengajuan penghargaan yang telah saya ajukan?,"Anda dapat melihat daftar lengkap pengajuan penghargaan yang telah Anda ajukan dan diterima dengan memilih menu ‘Riwayat Penghargaan’. Semua pengajuan penghargaan yang telah Anda ajukan dan disetujui akan tercatat secara rinci di sana.",pengajuan_penghargaan
+Bagaimana cara manajer mengajukan penghargaan ke HRD?,"Manajer dapat mengisi form pengajuan penghargaan yang tersedia di halaman evaluasi kinerja.",pengajuan_penghargaan
+Apa yang dapat dilakukan manajer terkait penghargaan atau SP?,"Manajer dapat mengajukan penghargaan atau SP ke HRD.",pengajuan_penghargaan
+Bagaimana cara manajer mengajukan penghargaan atau SP?,"Manajer dapat mengisi formulir pengajuan penghargaan atau SP di halaman evaluasi kinerja.",pengajuan_penghargaan
+"Apakah saya dapat mengedit pengajuan SP setelah dikirim?"," Setelah pengajuan SP dikirim, Anda tidak dapat melakukan perubahan. Jika revisi diperlukan, Anda dapat mengajukan ulang dengan perubahan yang sudah dilakukan.",evaluasi_kinerja
+Kenapa saya tidak bisa melakukan penilaian?,"Pastikan Anda sudah menerima notifikasi bahwa waktu untuk melakukan penilaian sudah dimulai oleh Admin. Jika Anda belum menerima notifikasi, kemungkinan waktu penilaian belum dimulai.",penilaian
+Bagaimana cara pegawai melakukan penilaian terhadap rekan kerja?,"Pegawai dapat mengakses fitur evaluasi, memilih rekan kerja, dan memberikan penilaian berdasarkan kinerja mereka.",penilaian
+Bagaimana pegawai dapat mengetahui hasil penilaian yang diterima?,"Pegawai akan menerima pemberitahuan mengenai hasil penilaian dan penghargaan atau SP yang diterima.",penilaian
+Dapatkah pegawai menilai rekan kerja dalam divisi?,"Tidak, pegawai hanya dapat menerima hasil penilaian.",penilaian
+Bagaimana cara manajer menilai kinerja pegawai?,"Manajer dapat menggunakan fitur evaluasi untuk memberikan penilaian berdasarkan performa kerja pegawai.",penilaian
+Bagaimana pegawai dapat melihat riwayat penilaian mereka?,"Pegawai dapat mengakses halaman riwayat penilaian untuk melihat lampiran penilaian miliknya sendiri.",penilaian
+Dapatkah manajer menilai pegawai dalam divisi mereka?,"Ya, manajer dapat menilai pegawai dalam divisi mereka.",penilaian
+Apa saja kriteria dalam penilaian rekan kerja?,"Produktivitas, keterampilan teknis, kerja sama tim, dan inisiatif dalam menyelesaikan tugas.",penilaian
+Bagaimana pegawai menerima hasil penilaian dari manajer?,"Pegawai akan mendapatkan notifikasi terkait hasil penilaian dari manajer.",penilaian
+Bagaimana cara pegawai menggunakan sistem NLP untuk menyelesaikan masalah teknis?,"Pegawai dapat memasukkan deskripsi masalah teknis dan NLP akan mencari solusi berdasarkan data historis dan best practices.",pengaturan_nlp
+Apa fungsi dari pengaturan NLP bagi admin?,"Pengaturan NLP memungkinkan admin untuk mengonfigurasi sistem yang digunakan untuk masalah teknis.",pengaturan_nlp
+Bagaimana cara admin mengonfigurasi sistem NLP?,"Admin dapat mengakses halaman manajemen NLP dan mengisi parameter yang diperlukan untuk konfigurasi.",pengaturan_nlp
+Bagaimana sistem NLP membantu pegawai dalam menyelesaikan masalah teknis?,"Sistem NLP dapat menganalisis deskripsi masalah teknis dan memberikan solusi berdasarkan data historis.",pengaturan_nlp
+Bagaimana cara admin membuka periode penilaian?,"Admin dapat membuka periode penilaian melalui menu pengaturan waktu di halaman admin.",waktu_penilaian
+Bagaimana cara admin mengatur waktu mulai dan akhir penilaian?,"Admin harus mengisi form yang disediakan dengan tanggal dan waktu mulai serta akhir penilaian.",waktu_penilaian
+Apa yang harus dilakukan pegawai jika mereka ingin membuat rencana kerja baru?,"Pegawai dapat menggunakan fitur untuk membuat rencana kerja baru di sistem.",rencana_kerja
+Apakah pegawai dapat menghapus laporan kerja yang telah dibuat?,"Tidak, pegawai tidak dapat menghapus laporan kerja yang telah dibuat.",laporan_kerja
+Apa peran utama manajer dalam sistem ini?,"Manajer bertugas untuk menilai kinerja pegawai dan mengelola laporan serta rencana kerja tim.",penilaian
+Apa yang dapat dilakukan manajer terkait laporan kerja?,"Manajer dapat membuat laporan kerja untuk dirinya dan melihat laporan kerja yang telah diserahkan oleh pegawai mereka.",laporan_kerja
+Bagaimana manajer dapat membuat rencana kerja?,"Manajer dapat menggunakan fitur yang disediakan dalam sistem untuk membuat rencana kerja.",rencana_kerja
+Apakah manajer dapat melihat rencana kerja pegawai di divisi lain?,"Tidak, manajer hanya dapat melihat dan mencari rencana kerja pegawai dalam divisi mereka sendiri.",rencana_kerja
+Apa yang dapat dilakukan manajer dalam evaluasi kinerja pegawai?,"Manajer dapat menilai pegawai dalam divisi mereka dan mengajukan penghargaan atau SP ke HRD.",evaluasi_kinerja
+Apakah manajer dapat melakukan persetujuan atau penolakan laporan kerja pegawai?,"Ya, manajer dapat melakukan persetujuan atau penolakan laporan kerja pegawai dalam divisi mereka.",laporan_kerja
+Apakah manajer dapat memberikan penilaian kepada pegawai di luar divisi mereka?,"Tidak, manajer hanya dapat memberikan penilaian kepada pegawai di bawah mereka dalam divisi yang sama.",penilaian
+Apakah manajer dapat mengedit laporan kerja yang telah diserahkan oleh pegawai?,"Tidak, manajer tidak dapat mengedit laporan kerja yang telah diserahkan, tetapi dapat memberikan persetujuan atau penolakan.",laporan_kerja
+Apa yang terjadi jika manajer menolak laporan kerja pegawai?,"Pegawai akan menerima notifikasi mengenai penolakan dan dapat memperbaiki laporan sesuai dengan catatan alasan penolakan.",laporan_kerja
+Apakah manajer dapat melihat semua laporan kerja yang ada di sistem?,"Tidak, manajer hanya dapat melihat laporan kerja yang diserahkan oleh pegawai dalam divisi mereka.",laporan_kerja
+"Apakah manajer dapat mengajukan SP sebagai bagian dari pengajuan penghargaan untuk pegawai yang berkinerja buruk?"," Ya, manajer dapat mengajukan SP kepada HRD sebagai bentuk pengajuan penghargaan untuk pegawai yang berkinerja buruk.",pengajuan_penghargaan
+Bagaimana manajer dapat mencari rencana kerja pegawai?,"Manajer dapat menggunakan fitur pencarian yang ada dalam sistem untuk mencari rencana kerja pegawai.",rencana_kerja
+Apakah manajer dapat melihat status pengajuan penghargaan atau SP yang telah diajukan ke HRD?,"Ya, manajer akan menerima pemberitahuan mengenai jawaban persetujuan yang diajukan ke HRD.",pengajuan_penghargaan
+Apakah manajer dapat melihat riwayat laporan kerja pegawai mereka?,"Ya, manajer dapat melihat riwayat laporan kerja yang telah diserahkan oleh pegawai mereka.",laporan_kerja
+Apakah direksi dapat menilai kinerja manajer?,"Ya, direksi dapat menilai kinerja manajer dalam organisasi.",penilaian
+Bagaimana direksi dapat menggunakan sistem NLP?,"Direksi dapat menggunakan sistem NLP untuk menyelesaikan masalah teknis yang ada.",pengaturan_nlp
+Bagaimana cara memfilter rencana kerja berdasarkan tanggal?,"Pegawai dapat memilih rentang tanggal tertentu untuk menampilkan daftar rencana kerja yang relevan.",rencana_kerja
+Apakah pegawai bisa mengubah atau menghapus rencana kerja setelah dibuat?,"Ya, selama rencana kerja belum digunakan sebagai referensi laporan, pegawai bisa mengedit atau menghapusnya.",rencana_kerja
+Bagaimana cara pegawai melakukan penilaian terhadap rekan kerja?,"Pegawai dapat mengakses fitur evaluasi, memilih rekan kerja, dan memberikan penilaian berdasarkan kinerja mereka.",penilaian
+Bagaimana cara manajer menilai kinerja pegawai?,"Manajer dapat menggunakan fitur evaluasi untuk memberikan penilaian berdasarkan performa kerja pegawai.",penilaian
+Apa kriteria utama dalam evaluasi kinerja manajer oleh direksi?,"Efektivitas kepemimpinan, kualitas keputusan strategis, serta kemampuan manajer dalam mengelola tim dan proyek.",evaluasi_kinerja
+Bagaimana direksi mengetahui perkembangan evaluasi kinerja dalam organisasi?,"Direksi dapat melihat laporan rangkuman evaluasi kinerja pegawai dan manajer yang dikompilasi oleh HRD.",evaluasi_kinerja
+"Bagaimana sistem NLP diterapkan dalam evaluasi kinerja pegawai?,"NLP dapat menganalisis pola kerja pegawai dan memberikan rekomendasi berbasis data laporan serta hasil penilaian sebelumnya, untuk meningkatkan proses evaluasi kinerja.",pengaturan_nlp
+Apakah sistem NLP dapat digunakan oleh manajer untuk membantu analisis NLP?,"Ya, manajer dapat menggunakan NLP untuk mendeteksi anomali dalam laporan dan mengidentifikasi area yang perlu ditingkatkan.",pengaturan_nlp
+Bagaimana cara admin membuka periode penilaian?,"Admin dapat membuka periode penilaian melalui menu pengaturan waktu di halaman admin.",waktu_penilaian
+Apa fungsi dari pengaturan NLP bagi admin?,"Pengaturan NLP memungkinkan admin untuk mengonfigurasi sistem yang digunakan untuk masalah teknis.",pengaturan_nlp
+Bagaimana cara admin mengonfigurasi sistem NLP?,"Admin dapat mengakses halaman manajemen NLP dan mengisi parameter yang diperlukan untuk konfigurasi.",pengaturan_nlp
+Bagaimana pegawai dapat melihat riwayat penilaian mereka?,"Pegawai dapat mengakses halaman riwayat penilaian untuk melihat lampiran penilaian miliknya sendiri.",penilaian
+Apa yang dapat dilakukan manajer dalam mengelola rencana kerja?,"Manajer dapat membuat rencana kerja dan melihat rencana kerja pegawai dalam divisi mereka.",rencana_kerja
+Bagaimana cara manajer melihat rencana kerja pegawai?,"Manajer dapat mengakses halaman rencana kerja dan memilih pegawai yang ingin dilihat rencananya.",rencana_kerja
+Bagaimana cara manajer melakukan evaluasi kinerja pegawai?,"Manajer dapat menilai pegawai dalam divisi mereka dan mengajukan penghargaan atau SP ke HRD.",evaluasi_kinerja
+Bagaimana cara manajer mengajukan penghargaan ke HRD?,"Manajer dapat mengisi form pengajuan penghargaan yang tersedia di halaman evaluasi kinerja.",pengajuan_penghargaan
+Apa yang dapat dilakukan direksi terkait riwayat laporan kerja?,"Direksi dapat melihat riwayat laporan kerja dari seluruh pegawai.",laporan_kerja
+Apakah admin dapat melihat laporan kerja pegawai?,"Ya, admin dapat melihat semua laporan kerja pegawai.",laporan_kerja
+Bagaimana cara pegawai membuat laporan kerja harian?,"Pegawai dapat membuat laporan kerja harian melalui form laporan kerja di sistem.",laporan_kerja
+Dapatkah pegawai mengirim laporan yang telah dibuat ke manajer?,"Ya, pegawai dapat mengirimkan laporan yang telah dibuat ke manajer untuk ditinjau.",laporan_kerja
+Apa yang dapat dilakukan pegawai terkait rencana kerja?,"Pegawai dapat membuat rencana kerja dan mencari rencana kerja yang sudah dibuat.",rencana_kerja
+Dapatkah pegawai menilai rekan kerja dalam divisi?,"Tidak, pegawai hanya dapat menerima hasil penilaian.",penilaian
+Dapatkah pegawai mengedit laporan yang ditolak oleh manajer?,"Ya, pegawai dapat mengedit laporan yang ditolak sesuai dengan catatan alasan penolakan.",laporan_kerja
+Apakah pegawai dapat mengedit laporan yang disetujui oleh manajer?,"Tidak, laporan yang disetujui oleh manajer hanya dapat dilihat, tetapi tidak bisa diedit oleh pegawai.",laporan_kerja
+Bagaimana pegawai dapat menggunakan sistem NLP?,"Pegawai dapat menggunakan sistem NLP untuk membantu menyelesaikan masalah teknis yang ada.",pengaturan_nlp
+Apa yang dapat dilakukan manajer terkait rencana kerja pegawai?,"Manajer dapat melihat rencana kerja pegawai dalam divisi mereka.",rencana_kerja
+Dapatkah manajer menilai pegawai dalam divisi mereka?,"Ya, manajer dapat menilai pegawai dalam divisi mereka.",penilaian
+Apa yang dapat dilakukan manajer terkait penghargaan atau SP?,"Manajer dapat mengajukan penghargaan atau SP ke HRD.",pengajuan_penghargaan
+Bagaimana cara manajer mengajukan penghargaan atau SP?,"Manajer dapat mengisi formulir pengajuan penghargaan atau SP di halaman evaluasi kinerja.",pengajuan_penghargaan
+Bagaimana direksi melihat riwayat laporan kerja pegawai?,"Direksi dapat mengakses halaman riwayat laporan kerja untuk melihat laporan seluruh pegawai.",laporan_kerja
+
+
+
+
+
+
+
+

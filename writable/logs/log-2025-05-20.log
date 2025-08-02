@@ -1,0 +1,896 @@
+DEBUG - 2025-05-20 10:00:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:03:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:03:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-05-20 10:09:07 --> Error: Class "App\Models\UnansweredQuestionModel" not found
+[Method: GET, Route: chatbot]
+in APPPATH/Controllers/Chatbot.php on line 37.
+ 1 SYSTEMPATH/CodeIgniter.php(903): App\Controllers\Chatbot->__construct()
+ 2 SYSTEMPATH/CodeIgniter.php(498): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 4 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+ 6 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+DEBUG - 2025-05-20 10:10:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:13:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:13:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:13:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:14:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:14:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:15:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:15:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:15:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:15:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:15:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:15:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:15:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:15:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:15:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:15:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 10:15:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-20 10:21:41 --> mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist in /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/u475425334/domains/sistemkinerja.site/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/u475425334/domains/sistemkinerja.site/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /home/u475425334/domains/sistemkinerja.site/app/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+#8 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+#9 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+#10 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#14 /home/u475425334/domains/sistemkinerja.site/public_html/index.php(67): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2025-05-20 10:21:41 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+[Method: POST, Route: chatbot/getResponse]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 6 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:21:41 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 8 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:21:41 --> [Caused by] mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 9 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+10 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+11 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-05-20 10:22:00 --> mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist in /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/u475425334/domains/sistemkinerja.site/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/u475425334/domains/sistemkinerja.site/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /home/u475425334/domains/sistemkinerja.site/app/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+#8 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+#9 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+#10 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#14 /home/u475425334/domains/sistemkinerja.site/public_html/index.php(67): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2025-05-20 10:22:00 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+[Method: POST, Route: chatbot/getResponse]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 6 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:22:00 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 8 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:22:00 --> [Caused by] mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 9 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+10 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+11 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-05-20 10:25:11 --> mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist in /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/u475425334/domains/sistemkinerja.site/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/u475425334/domains/sistemkinerja.site/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /home/u475425334/domains/sistemkinerja.site/app/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+#8 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+#9 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+#10 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#14 /home/u475425334/domains/sistemkinerja.site/public_html/index.php(67): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2025-05-20 10:25:11 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+[Method: POST, Route: chatbot/getResponse]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 6 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:25:11 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 8 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:25:11 --> [Caused by] mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 9 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+10 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+11 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-05-20 10:28:39 --> mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist in /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/u475425334/domains/sistemkinerja.site/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/u475425334/domains/sistemkinerja.site/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /home/u475425334/domains/sistemkinerja.site/app/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+#8 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+#9 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+#10 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#14 /home/u475425334/domains/sistemkinerja.site/public_html/index.php(67): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2025-05-20 10:28:39 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+[Method: POST, Route: chatbot/getResponse]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 6 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:28:39 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 8 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:28:39 --> [Caused by] mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 9 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+10 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+11 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-05-20 10:54:53 --> mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist in /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/u475425334/domains/sistemkinerja.site/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/u475425334/domains/sistemkinerja.site/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /home/u475425334/domains/sistemkinerja.site/app/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+#8 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+#9 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+#10 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#14 /home/u475425334/domains/sistemkinerja.site/public_html/index.php(67): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2025-05-20 10:54:53 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+[Method: POST, Route: chatbot/getResponse]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 6 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:54:53 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 8 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:54:53 --> [Caused by] mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 9 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+10 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+11 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-05-20 10:55:19 --> mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist in /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/u475425334/domains/sistemkinerja.site/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/u475425334/domains/sistemkinerja.site/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /home/u475425334/domains/sistemkinerja.site/app/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+#8 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+#9 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+#10 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#14 /home/u475425334/domains/sistemkinerja.site/public_html/index.php(67): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2025-05-20 10:55:19 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+[Method: POST, Route: chatbot/getResponse]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 6 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:55:19 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 8 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:55:19 --> [Caused by] mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 9 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+10 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+11 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-05-20 10:55:30 --> mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist in /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/u475425334/domains/sistemkinerja.site/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/u475425334/domains/sistemkinerja.site/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /home/u475425334/domains/sistemkinerja.site/app/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+#8 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+#9 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+#10 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#14 /home/u475425334/domains/sistemkinerja.site/public_html/index.php(67): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2025-05-20 10:55:30 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+[Method: POST, Route: chatbot/getResponse]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 6 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:55:30 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 8 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:55:30 --> [Caused by] mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 9 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+10 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+11 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-05-20 10:55:50 --> mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist in /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/u475425334/domains/sistemkinerja.site/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/u475425334/domains/sistemkinerja.site/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /home/u475425334/domains/sistemkinerja.site/app/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+#8 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+#9 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+#10 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#14 /home/u475425334/domains/sistemkinerja.site/public_html/index.php(67): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2025-05-20 10:55:50 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+[Method: POST, Route: chatbot/getResponse]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 6 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:55:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 8 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 10:55:50 --> [Caused by] mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 9 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+10 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+11 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-05-20 11:00:01 --> mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist in /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/u475425334/domains/sistemkinerja.site/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/u475425334/domains/sistemkinerja.site/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /home/u475425334/domains/sistemkinerja.site/app/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+#8 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+#9 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+#10 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#14 /home/u475425334/domains/sistemkinerja.site/public_html/index.php(67): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2025-05-20 11:00:01 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+[Method: POST, Route: chatbot/getResponse]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 6 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 11:00:01 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 8 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 11:00:01 --> [Caused by] mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 9 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+10 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+11 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-05-20 11:00:11 --> mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist in /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/u475425334/domains/sistemkinerja.site/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/u475425334/domains/sistemkinerja.site/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /home/u475425334/domains/sistemkinerja.site/app/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+#8 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+#9 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+#10 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#14 /home/u475425334/domains/sistemkinerja.site/public_html/index.php(67): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2025-05-20 11:00:11 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+[Method: POST, Route: chatbot/getResponse]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 6 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 11:00:11 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 8 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 11:00:11 --> [Caused by] mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 9 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+10 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+11 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-05-20 11:00:50 --> mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist in /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/u475425334/domains/sistemkinerja.site/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/u475425334/domains/sistemkinerja.site/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /home/u475425334/domains/sistemkinerja.site/app/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+#8 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+#9 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+#10 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#14 /home/u475425334/domains/sistemkinerja.site/public_html/index.php(67): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2025-05-20 11:00:50 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+[Method: POST, Route: chatbot/getResponse]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 6 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 11:00:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 8 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 11:00:50 --> [Caused by] mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 9 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+10 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+11 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+ERROR - 2025-05-20 11:03:25 --> mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist in /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /home/u475425334/domains/sistemkinerja.site/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /home/u475425334/domains/sistemkinerja.site/system/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 /home/u475425334/domains/sistemkinerja.site/system/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 /home/u475425334/domains/sistemkinerja.site/system/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+#6 /home/u475425334/domains/sistemkinerja.site/app/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+#7 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+#8 /home/u475425334/domains/sistemkinerja.site/app/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+#9 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+#10 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#11 /home/u475425334/domains/sistemkinerja.site/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#12 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 /home/u475425334/domains/sistemkinerja.site/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#14 /home/u475425334/domains/sistemkinerja.site/public_html/index.php(67): CodeIgniter\Boot::bootWeb()
+#15 {main}
+CRITICAL - 2025-05-20 11:03:25 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+[Method: POST, Route: chatbot/getResponse]
+in SYSTEMPATH/Database/BaseConnection.php on line 692.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 2 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 4 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 6 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 7 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+ 8 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 11:03:25 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 332.
+ 1 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 2 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 3 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 4 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 6 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 8 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+ 9 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+10 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+11 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+12 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+14 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+CRITICAL - 2025-05-20 11:03:25 --> [Caused by] mysqli_sql_exception: Table 'u475425334_sistemkinerja.unanswered_questions' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 327.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(327): mysqli->query()
+ 2 SYSTEMPATH/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+ 3 SYSTEMPATH/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+ 5 SYSTEMPATH/Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(675): CodeIgniter\Model->doFindAll()
+ 7 APPPATH/Models/UnansweredQuestionModel.php(44): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH/Controllers/Chatbot.php(142): App\Models\UnansweredQuestionModel->findSimilarQuestion()
+ 9 APPPATH/Controllers/Chatbot.php(92): App\Controllers\Chatbot->checkTechnicalAnswer()
+10 SYSTEMPATH/CodeIgniter.php(933): App\Controllers\Chatbot->getResponse()
+11 SYSTEMPATH/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+12 SYSTEMPATH/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+13 SYSTEMPATH/Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+15 FCPATH/index.php(67): CodeIgniter\Boot::bootWeb()
+INFO - 2025-05-20 11:07:20 --> Pertanyaan baru disimpan ke database: laporan kerja pending
+INFO - 2025-05-20 11:07:49 --> Pertanyaan baru disimpan ke database: apakah pegawai bisa mengedit laporan kerja yang sudah dikirimkan?
+INFO - 2025-05-20 11:17:27 --> Pertanyaan baru disimpan ke database: nlp
+DEBUG - 2025-05-20 19:49:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:49:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:49:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:49:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:54:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:54:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:54:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:55:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:55:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:55:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:55:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:56:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:56:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:56:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:57:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:57:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:57:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:57:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:57:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:57:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:57:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:57:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:57:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:57:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:58:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:58:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:58:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:58:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:58:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:58:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:59:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:59:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:59:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:59:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:59:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:59:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 19:59:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:00:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:00:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:00:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:00:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:00:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:00:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:01:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:01:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:01:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:01:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:01:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:01:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:02:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:02:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:02:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:02:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:02:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:02:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:02:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:02:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:03:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:03:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:03:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:03:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:04:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:04:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:04:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:05:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:08:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:08:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:08:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:08:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:08:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:08:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-20 20:08:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -1,0 +1,38 @@
+# Mengatur zona waktu PHP ke Asia/Jakarta (WIB)
+php_value date.timezone "Asia/Jakarta"
+
+# Disable Directory Browsing
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    # Allow Symlinks
+    Options +FollowSymlinks
+    
+    # Enable mod_rewrite
+    RewriteEngine On
+
+    # If CodeIgniter is in a subfolder, uncomment the following line and adjust the path
+    # RewriteBase /subfolder
+
+    # Redirect Trailing Slashes to avoid double slashes in URLs
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Rewrite all requests to index.php except if the file or directory exists
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L]
+
+    # Ensure Authorization header is passed along
+    RewriteCond %{HTTP:Authorization} . 
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    # If mod_rewrite is not enabled, redirect all 404 errors to index.php
+    ErrorDocument 404 /index.php
+</IfModule>
+
+# Disable Server Signature to hide version info
+ServerSignature Off
