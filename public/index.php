@@ -1,5 +1,4 @@
 <?php
-
 // Set timezone
 date_default_timezone_set('Asia/Jakarta');
 
@@ -28,7 +27,13 @@ if (!is_file($pathsPath)) {
 }
 
 // Composer autoloader
-require_once realpath(__DIR__ . '/../vendor/autoload.php');
+$autoloadPath = realpath(__DIR__ . '/../vendor/autoload.php');
+if (!is_file($autoloadPath)) {
+    header('HTTP/1.1 503 Service Unavailable.', true, 503);
+    echo 'Composer autoloader not found at: ' . htmlspecialchars($autoloadPath);
+    exit(1);
+}
+require_once $autoloadPath;
 
 // Load Paths
 require_once $pathsPath;
@@ -36,5 +41,4 @@ $paths = new Config\Paths();
 
 // Bootstrap CodeIgniter
 require_once rtrim($paths->systemDirectory, '\\/ ') . '/Boot.php';
-
 exit(CodeIgniter\Boot::bootWeb($paths));
