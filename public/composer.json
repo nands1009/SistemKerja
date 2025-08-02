@@ -1,0 +1,7 @@
+{
+  "name": "sistemkerja/site",
+  "description": "CodeIgniter 4 app on Railway",
+  "require": {
+    "php": ">=8.1"
+  }
+}
