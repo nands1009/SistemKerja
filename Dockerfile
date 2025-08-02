@@ -1,22 +1,26 @@
 FROM php:8.1-apache
 
-# Install extensions yang dibutuhkan CI4
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+# Install dependencies dan extensions yang dibutuhkan CI4
+RUN apt-get update && apt-get install -y \
+    libicu-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install \
+    intl \
+    mysqli \
+    pdo \
+    pdo_mysql \
+    zip \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Fix Apache ServerName warning
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Enable mod_rewrite untuk CI4
 RUN a2enmod rewrite
-
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Copy composer files first
-COPY composer.json composer.lock* ./
-
-# Install dependencies (if composer.json exists)
-RUN if [ -f composer.json ]; then composer install --no-dev --optimize-autoloader --no-interaction; fi
 
 # Copy aplikasi
 COPY . /var/www/html/
@@ -41,7 +45,9 @@ RUN echo "log_errors = On" >> /usr/local/etc/php/php.ini \
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html
 RUN chmod -R 755 /var/www/html
-RUN chmod -R 777 /var/www/html/writable
+
+# Create writable directory jika belum ada
+RUN mkdir -p /var/www/html/writable && chmod -R 777 /var/www/html/writable
 
 # Expose port 80 (Railway akan map ke PORT environment variable)
 EXPOSE 80
