@@ -1,3 +1,8 @@
 {
-  "start": "php -S 0.0.0.0:8080 -t public"
+  "build": {
+    "builder": "herokuish"
+  },
+  "deploy": {
+    "startCommand": "heroku-php-apache2 public/"
+  }
 }
