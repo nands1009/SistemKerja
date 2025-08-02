@@ -1,29 +1,26 @@
 FROM php:8.1-apache
 
-# Install system dependencies
+# Install system dependencies including ICU for intl extension
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
     libonig-dev \
     libzip-dev \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libpng-dev \
+    libicu-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Configure and install PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+# Install PHP extensions (termasuk intl)
+RUN docker-php-ext-configure intl \
     && docker-php-ext-install -j$(nproc) \
         pdo \
         pdo_mysql \
         mysqli \
         mbstring \
         zip \
-        gd \
-        opcache
+        intl
 
 # Copy application files
 COPY . /var/www/html/
@@ -40,7 +37,7 @@ RUN if [ -f "composer.json" ]; then \
 RUN chown -R www-data:www-data /var/www/html
 RUN chmod -R 755 /var/www/html
 
-# Make writable directory writable
+# Make writable directory writable if exists
 RUN if [ -d "writable" ]; then chmod -R 777 /var/www/html/writable; fi
 
 # Configure Apache
@@ -59,7 +56,5 @@ RUN echo "display_errors = On" >> /usr/local/etc/php/php.ini
 RUN echo "error_reporting = E_ALL" >> /usr/local/etc/php/php.ini
 RUN echo "log_errors = On" >> /usr/local/etc/php/php.ini
 RUN echo "memory_limit = 256M" >> /usr/local/etc/php/php.ini
-RUN echo "upload_max_filesize = 50M" >> /usr/local/etc/php/php.ini
-RUN echo "post_max_size = 50M" >> /usr/local/etc/php/php.ini
 
 EXPOSE 80
