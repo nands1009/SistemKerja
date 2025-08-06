@@ -40,7 +40,6 @@ class Pengajuan extends Controller
     {
         $divisi_id = session()->get('divisi_id');  // Mengambil divisi_id dari session manager
         $pegawais = $this->userModel->where('divisi_id', $divisi_id)->where('role', 'pegawai')->findAll();
-        var_dump($pegawais);
 
         return view('dashboard/hrd/pengajuan', ['pegawais' => $pegawais]);
     }
