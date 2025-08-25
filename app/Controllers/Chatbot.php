@@ -52,7 +52,7 @@ class Chatbot extends Controller
         if (file_exists($csvPath) && ($handle = fopen($csvPath, "r")) !== FALSE) {
             fgetcsv($handle); // Lewati header
 
-            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+            while (($data = fgetcsv($handle, 8192, ",")) !== FALSE) {
                 if (count($data) >= 3) {
                     $question = strtolower(trim($data[0]));
                     $answer   = trim($data[1]);
@@ -69,17 +69,6 @@ class Chatbot extends Controller
                         $this->vocab[$word] = true;
                         $this->wordTagCounts[$tag][$word] = ($this->wordTagCounts[$tag][$word] ?? 0) + 1;
                     }
-
-    public function showFrequentQuestions($tag = null)
-    {
-        $frequentQuestions = $this->answeredQuestionModel->getQuestionsByTag($tag);
-
-        return view('frequent_questions', [
-            'frequentQuestions' => $frequentQuestions,
-            'selectedTag' => $tag
-        ]);
-    }
-}
 
                     // Simpan jawaban berdasarkan tag
                     $this->tagAnswers[$tag][] = $answer;
@@ -130,14 +119,6 @@ class Chatbot extends Controller
 
         // LANGKAH 4: Analisis kemiripan dengan dataset
         $similarityResult = $this->findBestSimilarMatch($input);
-        
-        // Debug: cek apakah ada pertanyaan yang lebih spesifik
-        $contextualMatch = $this->findContextualMatch($input, $similarityResult);
-        if ($contextualMatch) {
-            $this->saveToAnsweredQuestions($input, $contextualMatch['answer'], $contextualMatch['tag']);
-            log_message('info', 'Contextual match found: ' . $contextualMatch['answer']);
-            return $this->response->setJSON(['message' => $contextualMatch['answer']]);
-        }
         
         if ($similarityResult['score'] >= $this->exactMatchThreshold) {
             // Kecocokan hampir persis (95%+)
@@ -212,19 +193,10 @@ class Chatbot extends Controller
         $bestAnswer = null;
         $bestTag = 'unknown';
         $bestQuestion = '';
-        $allMatches = [];
 
         foreach ($this->dataset as $data) {
             // Gunakan multiple similarity algorithms untuk akurasi yang lebih baik
             $similarityScore = $this->calculateCombinedSimilarity($input, $data['question']);
-            
-            // Simpan semua matches untuk debugging
-            $allMatches[] = [
-                'question' => $data['question'],
-                'answer' => $data['answer'],
-                'tag' => $data['tag'],
-                'score' => $similarityScore
-            ];
             
             if ($similarityScore > $bestScore) {
                 $bestScore = $similarityScore;
@@ -234,23 +206,13 @@ class Chatbot extends Controller
             }
         }
 
-        // Sort matches by score for debugging
-        usort($allMatches, function($a, $b) {
-            return $b['score'] <=> $a['score'];
-        });
-
-        // Log top 3 matches for debugging
-        log_message('info', "Input: '{$input}'");
-        for ($i = 0; $i < min(3, count($allMatches)); $i++) {
-            log_message('info', "Match {$i+1}: '{$allMatches[$i]['question']}' - Score: {$allMatches[$i]['score']} - Tag: {$allMatches[$i]['tag']}");
-        }
+        log_message('info', "Best match: '{$bestQuestion}' with score: {$bestScore}");
 
         return [
             'score' => $bestScore,
             'answer' => $bestAnswer,
             'tag' => $bestTag,
-            'question' => $bestQuestion,
-            'all_matches' => array_slice($allMatches, 0, 5) // Top 5 matches
+            'question' => $bestQuestion
         ];
     }
 
@@ -268,53 +230,19 @@ class Chatbot extends Controller
         if ($maxLen == 0) return 0;
         $levenshteinSimilarity = (1 - levenshtein($input1, $input2) / $maxLen) * 100;
 
-        // 3. Word overlap similarity dengan bobot kata penting
+        // 3. Word overlap similarity
         $words1 = array_filter(explode(' ', $input1));
         $words2 = array_filter(explode(' ', $input2));
-        
-        // Kata-kata penting yang mendapat bobot lebih tinggi
-        $importantWords = ['pending', 'status', 'laporan', 'kerja', 'approve', 'ditolak', 'disetujui', 'rencana', 'evaluasi', 'penilaian'];
-        
-        $weightedIntersection = 0;
-        $totalWeight1 = 0;
-        $totalWeight2 = 0;
-        
-        foreach ($words1 as $word) {
-            $weight = in_array($word, $importantWords) ? 2 : 1;
-            $totalWeight1 += $weight;
-            
-            if (in_array($word, $words2)) {
-                $weightedIntersection += $weight;
-            }
-        }
-        
-        foreach ($words2 as $word) {
-            $weight = in_array($word, $importantWords) ? 2 : 1;
-            $totalWeight2 += $weight;
-        }
-        
-        $avgWeight = ($totalWeight1 + $totalWeight2) / 2;
-        $wordOverlapSimilarity = $avgWeight > 0 ? ($weightedIntersection / $avgWeight) * 100 : 0;
+        $intersection = count(array_intersect($words1, $words2));
+        $union = count(array_unique(array_merge($words1, $words2)));
+        $wordOverlapSimilarity = $union > 0 ? ($intersection / $union) * 100 : 0;
 
-        // 4. Exact phrase matching bonus
-        $phraseBonus = 0;
-        $phrases1 = explode(' ', $input1);
-        $phrases2 = explode(' ', $input2);
-        
-        for ($i = 0; $i < count($phrases1) - 1; $i++) {
-            $phrase = $phrases1[$i] . ' ' . $phrases1[$i + 1];
-            if (strpos($input2, $phrase) !== false) {
-                $phraseBonus += 10;
-            }
-        }
+        // Weighted combination
+        $combinedScore = ($similarTextPercent * 0.4) + 
+                        ($levenshteinSimilarity * 0.4) + 
+                        ($wordOverlapSimilarity * 0.2);
 
-        // Weighted combination dengan phrase bonus
-        $combinedScore = ($similarTextPercent * 0.3) + 
-                        ($levenshteinSimilarity * 0.3) + 
-                        ($wordOverlapSimilarity * 0.3) +
-                        (min($phraseBonus, 10) * 0.1); // Max 10 point bonus
-
-        return min($combinedScore, 100); // Cap at 100%
+        return $combinedScore;
     }
 
     private function checkTechnicalAnswer($input)
@@ -520,60 +448,13 @@ class Chatbot extends Controller
         return $this->saveToAnsweredQuestions($question, $answer, $tag);
     }
 
-    private function findContextualMatch($input, $similarityResult)
+    public function showFrequentQuestions($tag = null)
     {
-        // Cari konteks spesifik dalam pertanyaan
-        $inputLower = strtolower($input);
-        
-        // Map kata kunci ke jawaban yang lebih spesifik
-        $contextualMappings = [
-            'pending' => [
-                'keywords' => ['pending', 'menunggu', 'belum disetujui', 'belum approve'],
-                'priority_questions' => [
-                    'Kenapa laporan kerja saya masih dalam status \'Pending\'?',
-                    'kenapa laporan kerja saya masih dalam status \'pending\'?'
-                ]
-            ],
-            'ditolak' => [
-                'keywords' => ['ditolak', 'reject', 'tidak disetujui'],
-                'priority_questions' => [
-                    'Apakah saya bisa mengedit laporan setelah ditolak?',
-                    'Apa yang terjadi jika laporan kerja ditolak oleh manajer?'
-                ]
-            ],
-            'approve' => [
-                'keywords' => ['approve', 'disetujui', 'sudah disetujui'],
-                'priority_questions' => [
-                    'Bagaimana cara mengetahui apakah laporan kerja saya sudah diapprove?',
-                    'Apakah saya bisa mengedit laporan setelah mendapatkan approval?'
-                ]
-            ],
-            'tidak bisa' => [
-                'keywords' => ['tidak bisa', 'tidak dapat', 'gagal'],
-                'priority_questions' => [
-                    'Saya tidak menemukan laporan kerja yang sudah saya buat sebelumnya, bagaimana solusinya agar saya dapat menemukan laporan kerja?'
-                ]
-            ]
-        ];
-        
-        foreach ($contextualMappings as $context => $mapping) {
-            foreach ($mapping['keywords'] as $keyword) {
-                if (strpos($inputLower, $keyword) !== false) {
-                    // Cari jawaban yang paling sesuai dengan konteks
-                    foreach ($mapping['priority_questions'] as $priorityQuestion) {
-                        foreach ($this->dataset as $data) {
-                            if (strtolower($data['question']) === strtolower($priorityQuestion)) {
-                                return [
-                                    'answer' => $data['answer'],
-                                    'tag' => $data['tag'],
-                                    'question' => $data['question']
-                                ];
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        return null;
+        $frequentQuestions = $this->answeredQuestionModel->getQuestionsByTag($tag);
+
+        return view('frequent_questions', [
+            'frequentQuestions' => $frequentQuestions,
+            'selectedTag' => $tag
+        ]);
     }
+}
