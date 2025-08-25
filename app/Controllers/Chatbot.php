@@ -352,16 +352,11 @@ class Chatbot extends Controller
         return isset($expScores[$predictedTag]) ? $expScores[$predictedTag] / $totalExp : 0;
     }
 
-    // Fungsi untuk mendapatkan jawaban berdasarkan tag dengan penyesuaian
+    // Fungsi untuk mendapatkan jawaban berdasarkan tag tanpa random
     private function getAnswerByTag($tag, $input)
     {
         if (!isset($this->tagAnswers[$tag]) || empty($this->tagAnswers[$tag])) {
             return $this->defaultResponse;
-        }
-
-        // Untuk pertanyaan sangat pendek (1 kata), pilih jawaban random dari tag
-        if (str_word_count($input) <= 1) {
-            return $this->tagAnswers[$tag][array_rand($this->tagAnswers[$tag])];
         }
 
         // Cari jawaban dengan similarity terbaik dalam tag yang sama
@@ -378,18 +373,13 @@ class Chatbot extends Controller
             }
         }
 
-        // Jika skor similarity memadai, gunakan jawaban terbaik
+        // Hanya gunakan jawaban jika similarity cukup tinggi
         if ($bestScore >= $this->BEST_SCORE_THRESHOLD) {
             return $bestAnswer;
         }
 
-        // Jika skor rendah, pilih jawaban random dari tag atau gunakan default
-        if ($bestScore < 20) {
-            return $this->defaultResponse;
-        }
-
-        // Fallback ke jawaban random dari tag
-        return $this->tagAnswers[$tag][array_rand($this->tagAnswers[$tag])];
+        // Jika similarity tidak memadai, gunakan respons default
+        return $this->defaultResponse;
     }
     public function showFrequentQuestions($tag = null)
     {
