@@ -33,7 +33,7 @@ class Chatbot extends Controller
     ];
 
     // Threshold untuk menentukan kualitas jawaban
-    protected $exactMatchThreshold = 95;      // Kecocokan hampir persis
+    protected $exactMatchThreshold = 100;      // Kecocokan hampir persis
     protected $goodSimilarityThreshold = 75; // Kemiripan yang baik
     protected $minimumSimilarityThreshold = 50; // Batas minimum untuk dianggap relevan
     protected $minimumConfidenceThreshold = 0.4; // Confidence minimum untuk Naive Bayes
