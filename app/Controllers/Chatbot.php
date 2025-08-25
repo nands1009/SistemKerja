@@ -132,7 +132,7 @@ class Chatbot extends Controller
         $tagConfidence = $this->calculateTagConfidence($input, $predictedTag);
 
         // Jika confidence rendah, gunakan informasi default
-        if ($tagConfidence < 0.3) {
+        if ($tagConfidence < 0.8) {
             // Simpan pertanyaan yang tidak bisa dijawab ke database
             $this->saveUnansweredQuestion($input);
             $answer = $this->getInformationForUnknownQuery($input);
