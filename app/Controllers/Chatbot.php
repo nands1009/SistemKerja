@@ -29,7 +29,7 @@ class Chatbot extends Controller
     protected $defaultResponse = 'Mohon maaf, Saya tidak bisa menjawab pertanyaan anda, tetapi pertanyaan ini akan saya kirim ke admin. Mohon ditunggu admin akan menjawab segera mungkin.';
 
     // Threshold yang lebih ketat untuk menentukan apakah jawaban valid
-    protected $EXACT_MATCH_THRESHOLD = 100;        // Harus persis sama
+    protected $EXACT_MATCH_THRESHOLD = 80;        // Harus persis sama
     protected $SIMILAR_MATCH_THRESHOLD = 80;       // Dinaikkan dari 80 ke 85
     protected $TECHNICAL_MATCH_THRESHOLD = 70;     // Dinaikkan dari 70 ke 80
     protected $CONFIDENCE_THRESHOLD = 0.3;        // Dinaikkan dari 0.8 ke 0.85
