@@ -25,8 +25,10 @@ class Chatbot extends Controller
         'hi' => 'Hi! Ada yang bisa saya bantu?'
     ];
 
-    // Respons default konsisten - TIDAK ADA RANDOM
-    protected $defaultResponse = 'Mohon maaf, Saya tidak bisa menjawab pertanyaan anda, tetapi pertanyaan ini akan saya kirim ke admin. Mohon ditunggu admin akan menjawab segera mungkin.';
+    // Daftar informasi default untuk pertanyaan yang tidak terjawab
+    protected $defaultInformation = [
+        'Saya tidak bisa menjawab pertanyaan anda, tetapi pertanyaan ini akan saya kirim ke admin. Mohon ditunggu admin akan menjawab segera mungkin.',
+    ];
 
     protected $unansweredQuestionModel;
     protected $answeredQuestionModel;
@@ -111,39 +113,43 @@ class Chatbot extends Controller
         // LANGKAH 3: Cek kecocokan berdasarkan similar_text
         $similarMatch = $this->findSimilarMatch($input);
         if ($similarMatch && $similarMatch['score'] > 80) {
-            $tag = $similarMatch['tag'];
+            $tag = $similarMatch['tag']; // Tambahkan tag ke hasil similar_text
             // Simpan pertanyaan yang mirip
             $this->saveToAnsweredQuestions($input, $similarMatch['answer'], $tag);
             return $this->response->setJSON(['message' => $similarMatch['answer']]);
         }
 
-        // LANGKAH 4: Jika skor kemiripan rendah, gunakan respons default
+        // LANGKAH 4: Jika skor kemiripan rendah, gunakan informasi default
         if (isset($similarMatch) && $similarMatch['score'] < 50) {
             // Simpan pertanyaan yang tidak bisa dijawab ke database
             $this->saveUnansweredQuestion($input);
-            return $this->response->setJSON(['message' => $this->defaultResponse]);
+            $answer = $this->getInformationForUnknownQuery($input);
+            return $this->response->setJSON(['message' => $answer]);
         }
 
         // LANGKAH 5: Gunakan Naive Bayes sebagai fallback terakhir jika kemiripan moderat
         $predictedTag = $this->predictTag($input);
         $tagConfidence = $this->calculateTagConfidence($input, $predictedTag);
 
-        // Jika confidence rendah, gunakan respons default
+        // Jika confidence rendah, gunakan informasi default
         if ($tagConfidence < 0.3) {
             // Simpan pertanyaan yang tidak bisa dijawab ke database
             $this->saveUnansweredQuestion($input);
-            return $this->response->setJSON(['message' => $this->defaultResponse]);
+            $answer = $this->getInformationForUnknownQuery($input);
         } else {
             $answer = $this->getAnswerByTag($predictedTag, $input);
 
-            // Jika getAnswerByTag mengembalikan default response, simpan ke database
-            if ($answer === $this->defaultResponse) {
-                $this->saveUnansweredQuestion($input);
-                return $this->response->setJSON(['message' => $this->defaultResponse]);
-            }
+            // Tambahkan log untuk debugging
+            log_message('info', 'Jawaban ditemukan: ' . $answer);
 
-            // Setelah mendapatkan jawaban yang valid, simpan ke answered_questions
+            // Setelah mendapatkan jawaban, simpan ke answered_questions
             $this->saveToAnsweredQuestions($input, $answer, $predictedTag);
+        }
+
+        // Jika jawaban adalah default, simpan pertanyaan ke database
+        if ($answer === "Maaf, saya belum mengerti maksud kamu.") {
+            $this->saveUnansweredQuestion($input);
+            $answer = $this->getInformationForUnknownQuery($input);
         }
 
         return $this->response->setJSON(['message' => $answer]);
@@ -168,6 +174,7 @@ class Chatbot extends Controller
         $vocabSize = count($this->vocab);
 
         $scores = [];
+        $totalScore = 0;
 
         foreach ($this->tagCounts as $tag => $tagTotal) {
             // Probabilitas awal P(tag)
@@ -186,20 +193,11 @@ class Chatbot extends Controller
             }
 
             $scores[$tag] = $tagProb + $wordProb;
+            $totalScore += exp($scores[$tag]);
         }
 
-        // Normalisasi menggunakan softmax untuk mendapatkan probabilitas
-        $maxScore = max($scores);
-        $expScores = [];
-        $totalExp = 0;
-
-        foreach ($scores as $tag => $score) {
-            $expScores[$tag] = exp($score - $maxScore);
-            $totalExp += $expScores[$tag];
-        }
-
-        // Confidence adalah probabilitas dari tag yang diprediksi
-        return isset($expScores[$predictedTag]) ? $expScores[$predictedTag] / $totalExp : 0;
+        // Confidence adalah probabilitas relatif dari tag yang diprediksi
+        return isset($scores[$predictedTag]) ? exp($scores[$predictedTag]) / $totalScore : 0;
     }
 
     // Fungsi mencari kecocokan persis di dataset
@@ -243,7 +241,7 @@ class Chatbot extends Controller
         return [
             'score' => $bestScore,
             'answer' => $bestAnswer,
-            'tag' => $bestTag
+            'tag' => $bestTag // Tambahkan tag ke hasil
         ];
     }
 
@@ -263,7 +261,7 @@ class Chatbot extends Controller
                 if ($word === '') continue;
 
                 $wordCount = $this->wordTagCounts[$tag][$word] ?? 0;
-                $totalWordsInTag = array_sum($this->wordTagCounts[$tag] ?? []);
+                $totalWordsInTag = array_sum($this->wordTagCounts[$tag]);
 
                 // Laplace smoothing
                 $logProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
@@ -276,15 +274,21 @@ class Chatbot extends Controller
         return array_key_first($scores);
     }
 
-    // Fungsi untuk mendapatkan jawaban berdasarkan tag - TANPA RANDOM
+    // Fungsi untuk mendapatkan jawaban berdasarkan tag
     private function getAnswerByTag($tag, $input)
     {
-        if (!isset($this->tagAnswers[$tag]) || empty($this->tagAnswers[$tag])) {
-            return $this->defaultResponse;
+        if (!isset($this->tagAnswers[$tag])) {
+            return "Maaf, saya belum mengerti maksud kamu.";
+        }
+
+        // Untuk pertanyaan pendek, pilih jawaban default
+        if (str_word_count($input) <= 1) {
+            return $this->tagAnswers[$tag][array_rand($this->tagAnswers[$tag])];
         }
 
         $bestScore = 0;
         $bestAnswer = null;
+        $defaultAnswer = $this->tagAnswers[$tag][array_rand($this->tagAnswers[$tag])];
 
         foreach ($this->dataset as $data) {
             if ($data['tag'] === $tag) {
@@ -296,13 +300,20 @@ class Chatbot extends Controller
             }
         }
 
-        // Hanya berikan jawaban jika similarity >= 30%
-        // Jika kurang dari 30%, return default response
-        if ($bestScore >= 30 && !empty($bestAnswer)) {
-            return $bestAnswer;
+        $answer = ($bestScore > 30) ? $bestAnswer : $defaultAnswer;
+
+        if (empty($answer)) {
+            return $this->getInformationForUnknownQuery($input);
         }
 
-        return $this->defaultResponse;
+        return $answer;
+    }
+
+    // Fungsi untuk menangani pertanyaan yang tidak ada dalam database
+    private function getInformationForUnknownQuery($input)
+    {
+        $randomInfo = $this->defaultInformation[array_rand($this->defaultInformation)];
+        return "Mohon maaf, " . $randomInfo;
     }
 
     // Fungsi untuk menyimpan pertanyaan yang tidak terjawab ke database
@@ -326,57 +337,58 @@ class Chatbot extends Controller
     }
 
     // Fungsi untuk menyimpan pertanyaan dan jawaban ke tabel answered_questions
-    private function saveToAnsweredQuestions($question, $answer, $tag)
-    {
-        // Cek apakah pertanyaan sudah ada di unanswered_questions
-        $unansweredQuestion = $this->unansweredQuestionModel
-            ->where('question', $question)
-            ->first();
-            
-        // Prioritaskan tag dari unanswered_questions jika sudah ditentukan oleh admin
-        if ($unansweredQuestion && !empty($unansweredQuestion['tag'])) {
-            // Gunakan tag yang sudah ditetapkan admin
-            $tag = $unansweredQuestion['tag'];
-        }
+    // Fungsi untuk menyimpan pertanyaan dan jawaban ke tabel answered_questions
+private function saveToAnsweredQuestions($question, $answer, $tag)
+{
+    // Cek apakah pertanyaan sudah ada di unanswered_questions
+    $unansweredQuestion = $this->unansweredQuestionModel
+        ->where('question', $question)
+        ->first();
         
-        // Pastikan tag tidak kosong
-        if (empty($tag)) {
-            $tag = 'general';
-        }
-        
-        // Cek apakah pertanyaan sudah ada di answered_questions
-        $existingQuestion = $this->answeredQuestionModel
-            ->where('question', $question)
-            ->first();
-            
-        if ($existingQuestion) {
-            // Update pertanyaan yang sudah ada, termasuk tag
-            $this->answeredQuestionModel->update($existingQuestion['id'], [
-                'answer' => $answer,
-                'tag' => $tag,
-                'frequency' => $existingQuestion['frequency'] + 1,
-                'last_asked_at' => date('Y-m-d H:i:s')
-            ]);
-        } else {
-            // Simpan pertanyaan baru dengan tag dari unanswered_questions
-            $this->answeredQuestionModel->save([
-                'question' => $question,
-                'answer' => $answer,
-                'tag' => $tag,
-                'frequency' => 1,
-                'created_at' => date('Y-m-d H:i:s'),
-                'last_asked_at' => date('Y-m-d H:i:s')
-            ]);
-        }
-        
-        // Update status pertanyaan di unanswered_questions
-        if ($unansweredQuestion) {
-            $this->unansweredQuestionModel->update($unansweredQuestion['id'], [
-                'status' => 'answered',
-                'answer' => $answer
-            ]);
-        }
+    // Prioritaskan tag dari unanswered_questions jika sudah ditentukan oleh admin
+    if ($unansweredQuestion && !empty($unansweredQuestion['tag'])) {
+        // Gunakan tag yang sudah ditetapkan admin
+        $tag = $unansweredQuestion['tag'];
     }
+    
+    // Pastikan tag tidak kosong
+    if (empty($tag)) {
+        $tag = 'general';
+    }
+    
+    // Cek apakah pertanyaan sudah ada di answered_questions
+    $existingQuestion = $this->answeredQuestionModel
+        ->where('question', $question)
+        ->first();
+        
+    if ($existingQuestion) {
+        // Update pertanyaan yang sudah ada, termasuk tag
+        $this->answeredQuestionModel->update($existingQuestion['id'], [
+            'answer' => $answer,
+            'tag' => $tag, // Update tag berdasarkan unanswered_questions
+            'frequency' => $existingQuestion['frequency'] + 1,
+            'last_asked_at' => date('Y-m-d H:i:s')
+        ]);
+    } else {
+        // Simpan pertanyaan baru dengan tag dari unanswered_questions
+        $this->answeredQuestionModel->save([
+            'question' => $question,
+            'answer' => $answer,
+            'tag' => $tag,
+            'frequency' => 1,
+            'created_at' => date('Y-m-d H:i:s'),
+            'last_asked_at' => date('Y-m-d H:i:s')
+        ]);
+    }
+    
+    // Update status pertanyaan di unanswered_questions
+    if ($unansweredQuestion) {
+        $this->unansweredQuestionModel->update($unansweredQuestion['id'], [
+            'status' => 'answered',
+            'answer' => $answer
+        ]);
+    }
+}
 
     // Fungsi lama yang tidak digunakan lagi - bisa dihapus atau dipertahankan untuk kompatibilitas
     public function moveAnsweredQuestionToAnotherTable($question, $answer, $tag)
@@ -385,14 +397,14 @@ class Chatbot extends Controller
         return $this->saveToAnsweredQuestions($question, $answer, $tag);
     }
 
-    public function showFrequentQuestions($tag = null)
-    {
-        $frequentQuestions = $this->answeredQuestionModel->getQuestionsByTag($tag);
+   public function showFrequentQuestions($tag = null)
+{
+    $frequentQuestions = $this->answeredQuestionModel->getQuestionsByTag($tag);
 
-        // Kirim data ke view
-        return view('frequent_questions', [
-            'frequentQuestions' => $frequentQuestions,
-            'selectedTag' => $tag
-        ]);
-    }
+    // Kirim data ke view
+    return view('frequent_questions', [
+        'frequentQuestions' => $frequentQuestions,
+        'selectedTag' => $tag
+    ]);
+}
 }
