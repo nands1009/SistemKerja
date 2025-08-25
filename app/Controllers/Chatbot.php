@@ -120,7 +120,7 @@ class Chatbot extends Controller
         }
 
         // LANGKAH 4: Jika skor kemiripan rendah, gunakan informasi default
-        if (isset($similarMatch) && $similarMatch['score'] < 100) {
+        if (isset($similarMatch) && $similarMatch['score'] < 70) {
             // Simpan pertanyaan yang tidak bisa dijawab ke database
             $this->saveUnansweredQuestion($input);
             $answer = $this->getInformationForUnknownQuery($input);
