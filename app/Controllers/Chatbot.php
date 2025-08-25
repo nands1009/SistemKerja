@@ -22,7 +22,9 @@ class Chatbot extends Controller
         'malam' => 'Selamat malam! Ada yang bisa saya bantu?',
         'halo' => 'Halo! Ada yang bisa saya bantu?',
         'hai' => 'Hai! Ada yang bisa saya bantu hari ini?',
-        'hi' => 'Hi! Ada yang bisa saya bantu?'
+        'hi' => 'Hi! Ada yang bisa saya bantu?',
+        'terima kasih' => 'Sama-sama! Senang bisa membantu Anda.',
+        'makasih' => 'Sama-sama! Ada lagi yang bisa saya bantu?'
     ];
 
     // Daftar informasi default untuk pertanyaan yang tidak terjawab
@@ -30,12 +32,17 @@ class Chatbot extends Controller
         'Saya tidak bisa menjawab pertanyaan anda, tetapi pertanyaan ini akan saya kirim ke admin. Mohon ditunggu admin akan menjawab segera mungkin.',
     ];
 
+    // Threshold untuk menentukan kualitas jawaban
+    protected $exactMatchThreshold = 95;      // Kecocokan hampir persis
+    protected $goodSimilarityThreshold = 75; // Kemiripan yang baik
+    protected $minimumSimilarityThreshold = 50; // Batas minimum untuk dianggap relevan
+    protected $minimumConfidenceThreshold = 0.4; // Confidence minimum untuk Naive Bayes
+
     protected $unansweredQuestionModel;
     protected $answeredQuestionModel;
 
     public function __construct()
     {
-        // Inisialisasi model pertanyaan yang belum dijawab
         $this->unansweredQuestionModel = new UnansweredQuestionModel();
         $this->answeredQuestionModel = new AnsweredQuestionsModel();
         
@@ -47,9 +54,9 @@ class Chatbot extends Controller
 
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                 if (count($data) >= 3) {
-                    $question = strtolower(trim($data[0])); // 0: question
-                    $answer   = trim($data[1]);             // 1: answer
-                    $tag      = trim($data[2]);             // 2: tag
+                    $question = strtolower(trim($data[0]));
+                    $answer   = trim($data[1]);
+                    $tag      = trim($data[2]);
 
                     $this->dataset[] = compact('question', 'answer', 'tag');
 
@@ -84,83 +91,165 @@ class Chatbot extends Controller
             return $this->response->setJSON(['message' => 'Pertanyaan kosong.']);
         }
 
-        // Cek jika ada kecocokan dengan kata kunci tertentu
-        foreach ($this->keywordResponses as $keyword => $response) {
-            if ($input === $keyword || strpos($input, $keyword) !== false) {
-                // Simpan juga respons kata kunci ke tabel answered_questions
-                $this->saveToAnsweredQuestions($input, $response, 'greeting');
-                return $this->response->setJSON(['message' => $response]);
-            }
+        // Log input untuk debugging
+        log_message('info', 'Input user: ' . $input);
+
+        // LANGKAH 1: Cek kata kunci sederhana (salam, terima kasih, dll)
+        $keywordResponse = $this->checkKeywordResponses($input);
+        if ($keywordResponse) {
+            $this->saveToAnsweredQuestions($input, $keywordResponse, 'greeting');
+            return $this->response->setJSON(['message' => $keywordResponse]);
         }
 
-        // LANGKAH 1: Cek apakah pertanyaan ini sudah pernah dijawab oleh teknisi
+        // LANGKAH 2: Cek jawaban teknis yang sudah dijawab admin
         $technicalAnswer = $this->checkTechnicalAnswer($input);
         if ($technicalAnswer) {
-            // Simpan pertanyaan teknis yang sudah dijawab
             $this->saveToAnsweredQuestions($input, $technicalAnswer, 'technical');
             return $this->response->setJSON(['message' => $technicalAnswer]);
         }
 
-        // LANGKAH 2: Cek kecocokan persis di dataset
+        // LANGKAH 3: Cek kecocokan persis dalam dataset
         $exactMatch = $this->findExactMatch($input);
         if ($exactMatch) {
             $tag = $this->findTagFromExactMatch($input);
-            // Simpan pertanyaan yang cocok persis
             $this->saveToAnsweredQuestions($input, $exactMatch, $tag);
+            log_message('info', 'Exact match found: ' . $exactMatch);
             return $this->response->setJSON(['message' => $exactMatch]);
         }
 
-        // LANGKAH 3: Cek kecocokan berdasarkan similar_text
-        $similarMatch = $this->findSimilarMatch($input);
-        if ($similarMatch && $similarMatch['score'] > 80) {
-            $tag = $similarMatch['tag']; // Tambahkan tag ke hasil similar_text
-            // Simpan pertanyaan yang mirip
-            $this->saveToAnsweredQuestions($input, $similarMatch['answer'], $tag);
-            return $this->response->setJSON(['message' => $similarMatch['answer']]);
+        // LANGKAH 4: Analisis kemiripan dengan dataset
+        $similarityResult = $this->findBestSimilarMatch($input);
+        
+        if ($similarityResult['score'] >= $this->exactMatchThreshold) {
+            // Kecocokan hampir persis (95%+)
+            $this->saveToAnsweredQuestions($input, $similarityResult['answer'], $similarityResult['tag']);
+            log_message('info', 'Near exact match found with score: ' . $similarityResult['score']);
+            return $this->response->setJSON(['message' => $similarityResult['answer']]);
+        }
+        
+        if ($similarityResult['score'] >= $this->goodSimilarityThreshold) {
+            // Kemiripan yang baik (75%+)
+            $this->saveToAnsweredQuestions($input, $similarityResult['answer'], $similarityResult['tag']);
+            log_message('info', 'Good similarity match found with score: ' . $similarityResult['score']);
+            return $this->response->setJSON(['message' => $similarityResult['answer']]);
         }
 
-        // LANGKAH 4: Jika skor kemiripan rendah, gunakan informasi default
-        if (isset($similarMatch) && $similarMatch['score'] < 70) {
-            // Simpan pertanyaan yang tidak bisa dijawab ke database
-            $this->saveUnansweredQuestion($input);
-            $answer = $this->getInformationForUnknownQuery($input);
-            return $this->response->setJSON(['message' => $answer]);
+        // LANGKAH 5: Gunakan Naive Bayes untuk pertanyaan yang lebih kompleks
+        if (str_word_count($input) > 2) { // Hanya untuk pertanyaan yang tidak terlalu singkat
+            $predictedTag = $this->predictTag($input);
+            $tagConfidence = $this->calculateTagConfidence($input, $predictedTag);
+            
+            log_message('info', 'Predicted tag: ' . $predictedTag . ' with confidence: ' . $tagConfidence);
+            
+            if ($tagConfidence >= $this->minimumConfidenceThreshold) {
+                $answer = $this->getAnswerByTag($predictedTag, $input);
+                
+                if ($answer && $answer !== "Maaf, saya belum mengerti maksud kamu.") {
+                    $this->saveToAnsweredQuestions($input, $answer, $predictedTag);
+                    log_message('info', 'Naive Bayes answer found: ' . $answer);
+                    return $this->response->setJSON(['message' => $answer]);
+                }
+            }
         }
 
-        // LANGKAH 5: Gunakan Naive Bayes sebagai fallback terakhir jika kemiripan moderat
-        $predictedTag = $this->predictTag($input);
-        $tagConfidence = $this->calculateTagConfidence($input, $predictedTag);
-
-        // Jika confidence rendah, gunakan informasi default
-        if ($tagConfidence < 0.3) {
-            // Simpan pertanyaan yang tidak bisa dijawab ke database
-            $this->saveUnansweredQuestion($input);
-            $answer = $this->getInformationForUnknownQuery($input);
-        } else {
-            $answer = $this->getAnswerByTag($predictedTag, $input);
-
-            // Tambahkan log untuk debugging
-            log_message('info', 'Jawaban ditemukan: ' . $answer);
-
-            // Setelah mendapatkan jawaban, simpan ke answered_questions
-            $this->saveToAnsweredQuestions($input, $answer, $predictedTag);
+        // LANGKAH 6: Jika masih ada kemiripan minimal, berikan jawaban dengan disclaimer
+        if ($similarityResult['score'] >= $this->minimumSimilarityThreshold) {
+            $disclaimerAnswer = "Mungkin yang Anda maksud adalah: " . $similarityResult['answer'] . 
+                              "\n\nJika ini tidak sesuai dengan yang Anda tanyakan, mohon ajukan pertanyaan dengan lebih spesifik.";
+            
+            $this->saveToAnsweredQuestions($input, $disclaimerAnswer, $similarityResult['tag']);
+            log_message('info', 'Minimum similarity match with disclaimer');
+            return $this->response->setJSON(['message' => $disclaimerAnswer]);
         }
 
-        // Jika jawaban adalah default, simpan pertanyaan ke database
-        if ($answer === "Maaf, saya belum mengerti maksud kamu.") {
-            $this->saveUnansweredQuestion($input);
-            $answer = $this->getInformationForUnknownQuery($input);
-        }
-
-        return $this->response->setJSON(['message' => $answer]);
+        // LANGKAH 7: Fallback ke respons default
+        log_message('info', 'No suitable answer found, using default response');
+        $this->saveUnansweredQuestion($input);
+        $defaultAnswer = $this->getInformationForUnknownQuery($input);
+        
+        return $this->response->setJSON(['message' => $defaultAnswer]);
     }
 
-    // Fungsi untuk memeriksa apakah pertanyaan sudah pernah dijawab oleh teknisi
+    private function checkKeywordResponses($input)
+    {
+        // Cek kecocokan persis terlebih dahulu
+        if (isset($this->keywordResponses[$input])) {
+            return $this->keywordResponses[$input];
+        }
+
+        // Cek apakah input mengandung kata kunci
+        foreach ($this->keywordResponses as $keyword => $response) {
+            if (strpos($input, $keyword) !== false) {
+                return $response;
+            }
+        }
+
+        return null;
+    }
+
+    private function findBestSimilarMatch($input)
+    {
+        $bestScore = 0;
+        $bestAnswer = null;
+        $bestTag = 'unknown';
+        $bestQuestion = '';
+
+        foreach ($this->dataset as $data) {
+            // Gunakan multiple similarity algorithms untuk akurasi yang lebih baik
+            $similarityScore = $this->calculateCombinedSimilarity($input, $data['question']);
+            
+            if ($similarityScore > $bestScore) {
+                $bestScore = $similarityScore;
+                $bestAnswer = $data['answer'];
+                $bestTag = $data['tag'];
+                $bestQuestion = $data['question'];
+            }
+        }
+
+        log_message('info', "Best match: '{$bestQuestion}' with score: {$bestScore}");
+
+        return [
+            'score' => $bestScore,
+            'answer' => $bestAnswer,
+            'tag' => $bestTag,
+            'question' => $bestQuestion
+        ];
+    }
+
+    private function calculateCombinedSimilarity($input1, $input2)
+    {
+        // Kombinasi dari beberapa metode similarity
+        $input1 = strtolower(trim($input1));
+        $input2 = strtolower(trim($input2));
+
+        // 1. Similar text percentage
+        similar_text($input1, $input2, $similarTextPercent);
+
+        // 2. Levenshtein distance similarity
+        $maxLen = max(strlen($input1), strlen($input2));
+        if ($maxLen == 0) return 0;
+        $levenshteinSimilarity = (1 - levenshtein($input1, $input2) / $maxLen) * 100;
+
+        // 3. Word overlap similarity
+        $words1 = array_filter(explode(' ', $input1));
+        $words2 = array_filter(explode(' ', $input2));
+        $intersection = count(array_intersect($words1, $words2));
+        $union = count(array_unique(array_merge($words1, $words2)));
+        $wordOverlapSimilarity = $union > 0 ? ($intersection / $union) * 100 : 0;
+
+        // Weighted combination
+        $combinedScore = ($similarTextPercent * 0.4) + 
+                        ($levenshteinSimilarity * 0.4) + 
+                        ($wordOverlapSimilarity * 0.2);
+
+        return $combinedScore;
+    }
+
     private function checkTechnicalAnswer($input)
     {
         $result = $this->unansweredQuestionModel->findSimilarQuestion($input);
         
-        if ($result['match'] && $result['score'] > 70) {
+        if ($result['match'] && $result['score'] > $this->goodSimilarityThreshold) {
             return $result['match']['answer'];
         }
         
@@ -174,10 +263,9 @@ class Chatbot extends Controller
         $vocabSize = count($this->vocab);
 
         $scores = [];
-        $totalScore = 0;
 
         foreach ($this->tagCounts as $tag => $tagTotal) {
-            // Probabilitas awal P(tag)
+            // Prior probability P(tag)
             $tagProb = log($tagTotal / $totalDocs);
 
             // Likelihood untuk setiap kata
@@ -188,19 +276,29 @@ class Chatbot extends Controller
                 $wordCount = $this->wordTagCounts[$tag][$word] ?? 0;
                 $totalWordsInTag = array_sum($this->wordTagCounts[$tag] ?? []);
 
-                // Likelihood dengan Laplace smoothing
+                // Laplace smoothing
                 $wordProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
             }
 
             $scores[$tag] = $tagProb + $wordProb;
-            $totalScore += exp($scores[$tag]);
+        }
+
+        // Convert to probabilities
+        $maxScore = max($scores);
+        $expScores = [];
+        $totalExp = 0;
+
+        foreach ($scores as $tag => $score) {
+            $expScore = exp($score - $maxScore); // Normalisasi untuk mencegah overflow
+            $expScores[$tag] = $expScore;
+            $totalExp += $expScore;
         }
 
         // Confidence adalah probabilitas relatif dari tag yang diprediksi
-        return isset($scores[$predictedTag]) ? exp($scores[$predictedTag]) / $totalScore : 0;
+        return isset($expScores[$predictedTag]) && $totalExp > 0 ? 
+               $expScores[$predictedTag] / $totalExp : 0;
     }
 
-    // Fungsi mencari kecocokan persis di dataset
     private function findExactMatch($input)
     {
         foreach ($this->dataset as $data) {
@@ -211,7 +309,6 @@ class Chatbot extends Controller
         return null;
     }
 
-    // Fungsi untuk menemukan tag dari pertanyaan yang cocok persis
     private function findTagFromExactMatch($input)
     {
         foreach ($this->dataset as $data) {
@@ -222,30 +319,6 @@ class Chatbot extends Controller
         return 'unknown';
     }
 
-    // Fungsi mencari kecocokan mirip dengan menggunakan similar_text
-    private function findSimilarMatch($input)
-    {
-        $bestScore = 0;
-        $bestAnswer = null;
-        $bestTag = 'unknown';
-
-        foreach ($this->dataset as $data) {
-            similar_text(strtolower($input), strtolower($data['question']), $percent);
-            if ($percent > $bestScore) {
-                $bestScore = $percent;
-                $bestAnswer = $data['answer'];
-                $bestTag = $data['tag'];
-            }
-        }
-
-        return [
-            'score' => $bestScore,
-            'answer' => $bestAnswer,
-            'tag' => $bestTag // Tambahkan tag ke hasil
-        ];
-    }
-
-    // Fungsi untuk memprediksi tag dari pertanyaan
     private function predictTag($input)
     {
         $inputWords = preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', $input));
@@ -261,7 +334,7 @@ class Chatbot extends Controller
                 if ($word === '') continue;
 
                 $wordCount = $this->wordTagCounts[$tag][$word] ?? 0;
-                $totalWordsInTag = array_sum($this->wordTagCounts[$tag]);
+                $totalWordsInTag = array_sum($this->wordTagCounts[$tag] ?? []);
 
                 // Laplace smoothing
                 $logProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
@@ -274,57 +347,47 @@ class Chatbot extends Controller
         return array_key_first($scores);
     }
 
-    // Fungsi untuk mendapatkan jawaban berdasarkan tag
     private function getAnswerByTag($tag, $input)
     {
         if (!isset($this->tagAnswers[$tag])) {
             return "Maaf, saya belum mengerti maksud kamu.";
         }
 
-        // Untuk pertanyaan pendek, pilih jawaban default
-        if (str_word_count($input) <= 1) {
-            return $this->tagAnswers[$tag][array_rand($this->tagAnswers[$tag])];
-        }
-
+        // Cari jawaban terbaik dalam tag yang sama
         $bestScore = 0;
         $bestAnswer = null;
-        $defaultAnswer = $this->tagAnswers[$tag][array_rand($this->tagAnswers[$tag])];
 
         foreach ($this->dataset as $data) {
             if ($data['tag'] === $tag) {
-                similar_text($input, $data['question'], $percent);
-                if ($percent > $bestScore) {
-                    $bestScore = $percent;
+                $similarity = $this->calculateCombinedSimilarity($input, $data['question']);
+                if ($similarity > $bestScore) {
+                    $bestScore = $similarity;
                     $bestAnswer = $data['answer'];
                 }
             }
         }
 
-        $answer = ($bestScore > 30) ? $bestAnswer : $defaultAnswer;
-
-        if (empty($answer)) {
-            return $this->getInformationForUnknownQuery($input);
+        // Jika ada jawaban dengan skor yang cukup baik, gunakan itu
+        if ($bestAnswer && $bestScore > 30) {
+            return $bestAnswer;
         }
 
-        return $answer;
+        // Fallback ke jawaban acak dari tag
+        return $this->tagAnswers[$tag][array_rand($this->tagAnswers[$tag])];
     }
 
-    // Fungsi untuk menangani pertanyaan yang tidak ada dalam database
     private function getInformationForUnknownQuery($input)
     {
         $randomInfo = $this->defaultInformation[array_rand($this->defaultInformation)];
         return "Mohon maaf, " . $randomInfo;
     }
 
-    // Fungsi untuk menyimpan pertanyaan yang tidak terjawab ke database
     private function saveUnansweredQuestion($question)
     {
-        // Cek apakah pertanyaan sudah ada di database
         $existingQuestion = $this->unansweredQuestionModel
             ->where('question', $question)
             ->first();
             
-        // Jika pertanyaan belum ada di database, simpan
         if (!$existingQuestion) {
             $this->unansweredQuestionModel->save([
                 'question' => $question,
@@ -336,75 +399,62 @@ class Chatbot extends Controller
         }
     }
 
-    // Fungsi untuk menyimpan pertanyaan dan jawaban ke tabel answered_questions
-    // Fungsi untuk menyimpan pertanyaan dan jawaban ke tabel answered_questions
-private function saveToAnsweredQuestions($question, $answer, $tag)
-{
-    // Cek apakah pertanyaan sudah ada di unanswered_questions
-    $unansweredQuestion = $this->unansweredQuestionModel
-        ->where('question', $question)
-        ->first();
+    private function saveToAnsweredQuestions($question, $answer, $tag)
+    {
+        $unansweredQuestion = $this->unansweredQuestionModel
+            ->where('question', $question)
+            ->first();
+            
+        if ($unansweredQuestion && !empty($unansweredQuestion['tag'])) {
+            $tag = $unansweredQuestion['tag'];
+        }
         
-    // Prioritaskan tag dari unanswered_questions jika sudah ditentukan oleh admin
-    if ($unansweredQuestion && !empty($unansweredQuestion['tag'])) {
-        // Gunakan tag yang sudah ditetapkan admin
-        $tag = $unansweredQuestion['tag'];
-    }
-    
-    // Pastikan tag tidak kosong
-    if (empty($tag)) {
-        $tag = 'general';
-    }
-    
-    // Cek apakah pertanyaan sudah ada di answered_questions
-    $existingQuestion = $this->answeredQuestionModel
-        ->where('question', $question)
-        ->first();
+        if (empty($tag)) {
+            $tag = 'general';
+        }
         
-    if ($existingQuestion) {
-        // Update pertanyaan yang sudah ada, termasuk tag
-        $this->answeredQuestionModel->update($existingQuestion['id'], [
-            'answer' => $answer,
-            'tag' => $tag, // Update tag berdasarkan unanswered_questions
-            'frequency' => $existingQuestion['frequency'] + 1,
-            'last_asked_at' => date('Y-m-d H:i:s')
-        ]);
-    } else {
-        // Simpan pertanyaan baru dengan tag dari unanswered_questions
-        $this->answeredQuestionModel->save([
-            'question' => $question,
-            'answer' => $answer,
-            'tag' => $tag,
-            'frequency' => 1,
-            'created_at' => date('Y-m-d H:i:s'),
-            'last_asked_at' => date('Y-m-d H:i:s')
-        ]);
+        $existingQuestion = $this->answeredQuestionModel
+            ->where('question', $question)
+            ->first();
+            
+        if ($existingQuestion) {
+            $this->answeredQuestionModel->update($existingQuestion['id'], [
+                'answer' => $answer,
+                'tag' => $tag,
+                'frequency' => $existingQuestion['frequency'] + 1,
+                'last_asked_at' => date('Y-m-d H:i:s')
+            ]);
+        } else {
+            $this->answeredQuestionModel->save([
+                'question' => $question,
+                'answer' => $answer,
+                'tag' => $tag,
+                'frequency' => 1,
+                'created_at' => date('Y-m-d H:i:s'),
+                'last_asked_at' => date('Y-m-d H:i:s')
+            ]);
+        }
+        
+        if ($unansweredQuestion) {
+            $this->unansweredQuestionModel->update($unansweredQuestion['id'], [
+                'status' => 'answered',
+                'answer' => $answer
+            ]);
+        }
     }
-    
-    // Update status pertanyaan di unanswered_questions
-    if ($unansweredQuestion) {
-        $this->unansweredQuestionModel->update($unansweredQuestion['id'], [
-            'status' => 'answered',
-            'answer' => $answer
-        ]);
-    }
-}
 
-    // Fungsi lama yang tidak digunakan lagi - bisa dihapus atau dipertahankan untuk kompatibilitas
     public function moveAnsweredQuestionToAnotherTable($question, $answer, $tag)
     {
-        // Arahkan ke fungsi baru
         return $this->saveToAnsweredQuestions($question, $answer, $tag);
     }
 
-   public function showFrequentQuestions($tag = null)
-{
-    $frequentQuestions = $this->answeredQuestionModel->getQuestionsByTag($tag);
+    public function showFrequentQuestions($tag = null)
+    {
+        $frequentQuestions = $this->answeredQuestionModel->getQuestionsByTag($tag);
 
-    // Kirim data ke view
-    return view('frequent_questions', [
-        'frequentQuestions' => $frequentQuestions,
-        'selectedTag' => $tag
-    ]);
-}
+        return view('frequent_questions', [
+            'frequentQuestions' => $frequentQuestions,
+            'selectedTag' => $tag
+        ]);
+    }
 }
