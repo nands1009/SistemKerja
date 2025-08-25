@@ -35,8 +35,9 @@ class Chatbot extends Controller
     // Threshold untuk menentukan kualitas jawaban
     protected $exactMatchThreshold = 95;      // Kecocokan hampir persis
     protected $goodSimilarityThreshold = 75; // Kemiripan yang baik
-    protected $minimumSimilarityThreshold = 50; // Batas minimum untuk dianggap relevan
-    protected $minimumConfidenceThreshold = 0.4; // Confidence minimum untuk Naive Bayes
+    protected $minimumSimilarityThreshold = 40; // Batas minimum untuk dianggap relevan (turunkan dari 50)
+    protected $minimumConfidenceThreshold = 0.3; // Confidence minimum untuk Naive Bayes (turunkan dari 0.4)
+    protected $shortQuestionSimilarityThreshold = 60; // Khusus untuk pertanyaan singkat
 
     protected $unansweredQuestionModel;
     protected $answeredQuestionModel;
@@ -134,25 +135,31 @@ class Chatbot extends Controller
             return $this->response->setJSON(['message' => $similarityResult['answer']]);
         }
 
-        // LANGKAH 5: Gunakan Naive Bayes untuk pertanyaan yang lebih kompleks
-        if (str_word_count($input) > 2) { // Hanya untuk pertanyaan yang tidak terlalu singkat
-            $predictedTag = $this->predictTag($input);
-            $tagConfidence = $this->calculateTagConfidence($input, $predictedTag);
+        // LANGKAH 5: Gunakan Naive Bayes (DIPERBAIKI: tidak ada batasan panjang kata)
+        $predictedTag = $this->predictTag($input);
+        $tagConfidence = $this->calculateTagConfidence($input, $predictedTag);
+        
+        log_message('info', 'Predicted tag: ' . $predictedTag . ' with confidence: ' . $tagConfidence);
+        
+        if ($tagConfidence >= $this->minimumConfidenceThreshold) {
+            $answer = $this->getAnswerByTag($predictedTag, $input);
             
-            log_message('info', 'Predicted tag: ' . $predictedTag . ' with confidence: ' . $tagConfidence);
-            
-            if ($tagConfidence >= $this->minimumConfidenceThreshold) {
-                $answer = $this->getAnswerByTag($predictedTag, $input);
-                
-                if ($answer && $answer !== "Maaf, saya belum mengerti maksud kamu.") {
-                    $this->saveToAnsweredQuestions($input, $answer, $predictedTag);
-                    log_message('info', 'Naive Bayes answer found: ' . $answer);
-                    return $this->response->setJSON(['message' => $answer]);
-                }
+            if ($answer && $answer !== "Maaf, saya belum mengerti maksud kamu.") {
+                $this->saveToAnsweredQuestions($input, $answer, $predictedTag);
+                log_message('info', 'Naive Bayes answer found: ' . $answer);
+                return $this->response->setJSON(['message' => $answer]);
             }
         }
 
-        // LANGKAH 6: Jika masih ada kemiripan minimal, berikan jawaban dengan disclaimer
+        // LANGKAH 6: Khusus untuk pertanyaan singkat (1-2 kata), coba dengan threshold yang lebih rendah
+        $wordCount = str_word_count($input);
+        if ($wordCount <= 2 && $similarityResult['score'] >= $this->shortQuestionSimilarityThreshold) {
+            $this->saveToAnsweredQuestions($input, $similarityResult['answer'], $similarityResult['tag']);
+            log_message('info', 'Short question match found with score: ' . $similarityResult['score']);
+            return $this->response->setJSON(['message' => $similarityResult['answer']]);
+        }
+
+        // LANGKAH 7: Jika masih ada kemiripan minimal, berikan jawaban dengan disclaimer
         if ($similarityResult['score'] >= $this->minimumSimilarityThreshold) {
             $disclaimerAnswer = "Mungkin yang Anda maksud adalah: " . $similarityResult['answer'] . 
                               "\n\nJika ini tidak sesuai dengan yang Anda tanyakan, mohon ajukan pertanyaan dengan lebih spesifik.";
@@ -162,7 +169,7 @@ class Chatbot extends Controller
             return $this->response->setJSON(['message' => $disclaimerAnswer]);
         }
 
-        // LANGKAH 7: Fallback ke respons default
+        // LANGKAH 8: Fallback ke respons default
         log_message('info', 'No suitable answer found, using default response');
         $this->saveUnansweredQuestion($input);
         $defaultAnswer = $this->getInformationForUnknownQuery($input);
@@ -237,12 +244,25 @@ class Chatbot extends Controller
         $union = count(array_unique(array_merge($words1, $words2)));
         $wordOverlapSimilarity = $union > 0 ? ($intersection / $union) * 100 : 0;
 
-        // Weighted combination
-        $combinedScore = ($similarTextPercent * 0.4) + 
-                        ($levenshteinSimilarity * 0.4) + 
-                        ($wordOverlapSimilarity * 0.2);
+        // 4. PERBAIKAN: Tambahkan bonus untuk pertanyaan singkat yang cocok dengan kata kunci dalam jawaban
+        $keywordBonus = 0;
+        if (str_word_count($input1) <= 2) {
+            // Untuk pertanyaan singkat, cek apakah kata dalam pertanyaan ada di jawaban
+            foreach ($words1 as $word) {
+                if (strlen($word) > 2 && strpos($input2, $word) !== false) {
+                    $keywordBonus += 15; // Bonus 15% per kata yang cocok
+                }
+            }
+        }
 
-        return $combinedScore;
+        // Weighted combination dengan bonus untuk pertanyaan singkat
+        $combinedScore = ($similarTextPercent * 0.35) + 
+                        ($levenshteinSimilarity * 0.35) + 
+                        ($wordOverlapSimilarity * 0.3) +
+                        $keywordBonus;
+
+        // Cap maksimum score di 100
+        return min($combinedScore, 100);
     }
 
     private function checkTechnicalAnswer($input)
@@ -276,8 +296,14 @@ class Chatbot extends Controller
                 $wordCount = $this->wordTagCounts[$tag][$word] ?? 0;
                 $totalWordsInTag = array_sum($this->wordTagCounts[$tag] ?? []);
 
-                // Laplace smoothing
-                $wordProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
+                // PERBAIKAN: Smoothing yang lebih baik untuk pertanyaan singkat
+                if (count($inputWords) <= 2 && $wordCount > 0) {
+                    // Berikan boost untuk kata yang ditemukan dalam tag untuk pertanyaan singkat
+                    $wordProb += log(($wordCount + 2) / ($totalWordsInTag + $vocabSize));
+                } else {
+                    // Laplace smoothing standar
+                    $wordProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
+                }
             }
 
             $scores[$tag] = $tagProb + $wordProb;
@@ -336,8 +362,12 @@ class Chatbot extends Controller
                 $wordCount = $this->wordTagCounts[$tag][$word] ?? 0;
                 $totalWordsInTag = array_sum($this->wordTagCounts[$tag] ?? []);
 
-                // Laplace smoothing
-                $logProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
+                // PERBAIKAN: Smoothing yang sama seperti di calculateTagConfidence
+                if (count($inputWords) <= 2 && $wordCount > 0) {
+                    $logProb += log(($wordCount + 2) / ($totalWordsInTag + $vocabSize));
+                } else {
+                    $logProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
+                }
             }
 
             $scores[$tag] = $logProb;
@@ -367,8 +397,10 @@ class Chatbot extends Controller
             }
         }
 
-        // Jika ada jawaban dengan skor yang cukup baik, gunakan itu
-        if ($bestAnswer && $bestScore > 30) {
+        // PERBAIKAN: Threshold yang lebih rendah untuk pertanyaan singkat
+        $minScoreThreshold = str_word_count($input) <= 2 ? 20 : 30;
+        
+        if ($bestAnswer && $bestScore > $minScoreThreshold) {
             return $bestAnswer;
         }
 
