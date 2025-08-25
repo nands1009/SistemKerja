@@ -25,15 +25,8 @@ class Chatbot extends Controller
         'hi' => 'Hi! Ada yang bisa saya bantu?'
     ];
 
-    // Respons default untuk pertanyaan yang tidak terjawab - DIPERKETAT
+    // Respons default konsisten - TIDAK ADA RANDOM
     protected $defaultResponse = 'Mohon maaf, Saya tidak bisa menjawab pertanyaan anda, tetapi pertanyaan ini akan saya kirim ke admin. Mohon ditunggu admin akan menjawab segera mungkin.';
-
-    // Threshold yang diseimbangkan untuk menentukan apakah jawaban valid
-    protected $EXACT_MATCH_THRESHOLD = 100;        // Harus persis sama
-    protected $SIMILAR_MATCH_THRESHOLD = 70;       // Disesuaikan untuk pertanyaan mirip
-    protected $TECHNICAL_MATCH_THRESHOLD = 65;     // Threshold untuk jawaban teknis
-    protected $CONFIDENCE_THRESHOLD = 0.6;         // Threshold confidence Naive Bayes
-    protected $BEST_SCORE_THRESHOLD = 35;          // Threshold untuk similarity dalam tag
 
     protected $unansweredQuestionModel;
     protected $answeredQuestionModel;
@@ -89,7 +82,7 @@ class Chatbot extends Controller
             return $this->response->setJSON(['message' => 'Pertanyaan kosong.']);
         }
 
-        // Cek jika ada kecocokan dengan kata kunci tertentu (greeting)
+        // Cek jika ada kecocokan dengan kata kunci tertentu
         foreach ($this->keywordResponses as $keyword => $response) {
             if ($input === $keyword || strpos($input, $keyword) !== false) {
                 // Simpan juga respons kata kunci ke tabel answered_questions
@@ -115,34 +108,45 @@ class Chatbot extends Controller
             return $this->response->setJSON(['message' => $exactMatch]);
         }
 
-        // LANGKAH 3: Cek kecocokan berdasarkan similar_text dengan threshold lebih ketat
+        // LANGKAH 3: Cek kecocokan berdasarkan similar_text
         $similarMatch = $this->findSimilarMatch($input);
-        if ($similarMatch && $similarMatch['score'] >= $this->SIMILAR_MATCH_THRESHOLD) {
+        if ($similarMatch && $similarMatch['score'] > 80) {
             $tag = $similarMatch['tag'];
             // Simpan pertanyaan yang mirip
             $this->saveToAnsweredQuestions($input, $similarMatch['answer'], $tag);
             return $this->response->setJSON(['message' => $similarMatch['answer']]);
         }
 
-        // LANGKAH 4: Untuk pertanyaan yang tidak memenuhi threshold similarity tinggi,
-        // gunakan Naive Bayes dengan confidence threshold yang wajar
+        // LANGKAH 4: Jika skor kemiripan rendah, gunakan respons default
+        if (isset($similarMatch) && $similarMatch['score'] < 50) {
+            // Simpan pertanyaan yang tidak bisa dijawab ke database
+            $this->saveUnansweredQuestion($input);
+            return $this->response->setJSON(['message' => $this->defaultResponse]);
+        }
+
+        // LANGKAH 5: Gunakan Naive Bayes sebagai fallback terakhir jika kemiripan moderat
         $predictedTag = $this->predictTag($input);
         $tagConfidence = $this->calculateTagConfidence($input, $predictedTag);
 
-        // Jika confidence memadai, berikan jawaban
-        if ($tagConfidence >= $this->CONFIDENCE_THRESHOLD) {
+        // Jika confidence rendah, gunakan respons default
+        if ($tagConfidence < 0.3) {
+            // Simpan pertanyaan yang tidak bisa dijawab ke database
+            $this->saveUnansweredQuestion($input);
+            return $this->response->setJSON(['message' => $this->defaultResponse]);
+        } else {
             $answer = $this->getAnswerByTag($predictedTag, $input);
-            
-            // Jika jawaban valid (bukan default), simpan dan return
-            if ($answer !== $this->defaultResponse) {
-                $this->saveToAnsweredQuestions($input, $answer, $predictedTag);
-                return $this->response->setJSON(['message' => $answer]);
+
+            // Jika getAnswerByTag mengembalikan default response, simpan ke database
+            if ($answer === $this->defaultResponse) {
+                $this->saveUnansweredQuestion($input);
+                return $this->response->setJSON(['message' => $this->defaultResponse]);
             }
+
+            // Setelah mendapatkan jawaban yang valid, simpan ke answered_questions
+            $this->saveToAnsweredQuestions($input, $answer, $predictedTag);
         }
 
-        // LANGKAH 5: Jika semua langkah gagal, gunakan respons default
-        $this->saveUnansweredQuestion($input);
-        return $this->response->setJSON(['message' => $this->defaultResponse]);
+        return $this->response->setJSON(['message' => $answer]);
     }
 
     // Fungsi untuk memeriksa apakah pertanyaan sudah pernah dijawab oleh teknisi
@@ -150,12 +154,52 @@ class Chatbot extends Controller
     {
         $result = $this->unansweredQuestionModel->findSimilarQuestion($input);
         
-        // Threshold disesuaikan untuk lebih fleksibel
-        if ($result['match'] && $result['score'] >= $this->TECHNICAL_MATCH_THRESHOLD) {
+        if ($result['match'] && $result['score'] > 70) {
             return $result['match']['answer'];
         }
         
         return null;
+    }
+
+    private function calculateTagConfidence($input, $predictedTag)
+    {
+        $inputWords = preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', $input));
+        $totalDocs = array_sum($this->tagCounts);
+        $vocabSize = count($this->vocab);
+
+        $scores = [];
+
+        foreach ($this->tagCounts as $tag => $tagTotal) {
+            // Probabilitas awal P(tag)
+            $tagProb = log($tagTotal / $totalDocs);
+
+            // Likelihood untuk setiap kata
+            $wordProb = 0;
+            foreach ($inputWords as $word) {
+                if ($word === '') continue;
+
+                $wordCount = $this->wordTagCounts[$tag][$word] ?? 0;
+                $totalWordsInTag = array_sum($this->wordTagCounts[$tag] ?? []);
+
+                // Likelihood dengan Laplace smoothing
+                $wordProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
+            }
+
+            $scores[$tag] = $tagProb + $wordProb;
+        }
+
+        // Normalisasi menggunakan softmax untuk mendapatkan probabilitas
+        $maxScore = max($scores);
+        $expScores = [];
+        $totalExp = 0;
+
+        foreach ($scores as $tag => $score) {
+            $expScores[$tag] = exp($score - $maxScore);
+            $totalExp += $expScores[$tag];
+        }
+
+        // Confidence adalah probabilitas dari tag yang diprediksi
+        return isset($expScores[$predictedTag]) ? $expScores[$predictedTag] / $totalExp : 0;
     }
 
     // Fungsi mencari kecocokan persis di dataset
@@ -203,6 +247,64 @@ class Chatbot extends Controller
         ];
     }
 
+    // Fungsi untuk memprediksi tag dari pertanyaan
+    private function predictTag($input)
+    {
+        $inputWords = preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', $input));
+        $totalDocs = array_sum($this->tagCounts);
+        $vocabSize = count($this->vocab);
+
+        $scores = [];
+
+        foreach ($this->tagCounts as $tag => $tagTotal) {
+            $logProb = log($tagTotal / $totalDocs);
+
+            foreach ($inputWords as $word) {
+                if ($word === '') continue;
+
+                $wordCount = $this->wordTagCounts[$tag][$word] ?? 0;
+                $totalWordsInTag = array_sum($this->wordTagCounts[$tag] ?? []);
+
+                // Laplace smoothing
+                $logProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
+            }
+
+            $scores[$tag] = $logProb;
+        }
+
+        arsort($scores);
+        return array_key_first($scores);
+    }
+
+    // Fungsi untuk mendapatkan jawaban berdasarkan tag - TANPA RANDOM
+    private function getAnswerByTag($tag, $input)
+    {
+        if (!isset($this->tagAnswers[$tag]) || empty($this->tagAnswers[$tag])) {
+            return $this->defaultResponse;
+        }
+
+        $bestScore = 0;
+        $bestAnswer = null;
+
+        foreach ($this->dataset as $data) {
+            if ($data['tag'] === $tag) {
+                similar_text($input, $data['question'], $percent);
+                if ($percent > $bestScore) {
+                    $bestScore = $percent;
+                    $bestAnswer = $data['answer'];
+                }
+            }
+        }
+
+        // Hanya berikan jawaban jika similarity >= 30%
+        // Jika kurang dari 30%, return default response
+        if ($bestScore >= 30 && !empty($bestAnswer)) {
+            return $bestAnswer;
+        }
+
+        return $this->defaultResponse;
+    }
+
     // Fungsi untuk menyimpan pertanyaan yang tidak terjawab ke database
     private function saveUnansweredQuestion($question)
     {
@@ -220,11 +322,6 @@ class Chatbot extends Controller
             ]);
             
             log_message('info', 'Pertanyaan baru disimpan ke database: ' . $question);
-        } else {
-            // Jika sudah ada, update waktu terakhir ditanya
-            $this->unansweredQuestionModel->update($existingQuestion['id'], [
-                'updated_at' => date('Y-m-d H:i:s')
-            ]);
         }
     }
 
@@ -281,106 +378,13 @@ class Chatbot extends Controller
         }
     }
 
-    // Fungsi untuk memprediksi tag dari pertanyaan menggunakan Naive Bayes
-    private function predictTag($input)
+    // Fungsi lama yang tidak digunakan lagi - bisa dihapus atau dipertahankan untuk kompatibilitas
+    public function moveAnsweredQuestionToAnotherTable($question, $answer, $tag)
     {
-        $inputWords = preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', $input));
-        $totalDocs = array_sum($this->tagCounts);
-        $vocabSize = count($this->vocab);
-
-        $scores = [];
-
-        foreach ($this->tagCounts as $tag => $tagTotal) {
-            $logProb = log($tagTotal / $totalDocs);
-
-            foreach ($inputWords as $word) {
-                if ($word === '') continue;
-
-                $wordCount = $this->wordTagCounts[$tag][$word] ?? 0;
-                $totalWordsInTag = array_sum($this->wordTagCounts[$tag] ?? []);
-
-                // Laplace smoothing
-                $logProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
-            }
-
-            $scores[$tag] = $logProb;
-        }
-
-        arsort($scores);
-        return array_key_first($scores);
+        // Arahkan ke fungsi baru
+        return $this->saveToAnsweredQuestions($question, $answer, $tag);
     }
 
-    // Fungsi untuk menghitung confidence dari prediksi tag
-    private function calculateTagConfidence($input, $predictedTag)
-    {
-        $inputWords = preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', $input));
-        $totalDocs = array_sum($this->tagCounts);
-        $vocabSize = count($this->vocab);
-
-        $scores = [];
-
-        foreach ($this->tagCounts as $tag => $tagTotal) {
-            // Probabilitas awal P(tag)
-            $tagProb = log($tagTotal / $totalDocs);
-
-            // Likelihood untuk setiap kata
-            $wordProb = 0;
-            foreach ($inputWords as $word) {
-                if ($word === '') continue;
-
-                $wordCount = $this->wordTagCounts[$tag][$word] ?? 0;
-                $totalWordsInTag = array_sum($this->wordTagCounts[$tag] ?? []);
-
-                // Likelihood dengan Laplace smoothing
-                $wordProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
-            }
-
-            $scores[$tag] = $tagProb + $wordProb;
-        }
-
-        // Normalisasi menggunakan softmax untuk mendapatkan probabilitas
-        $maxScore = max($scores);
-        $expScores = [];
-        $totalExp = 0;
-
-        foreach ($scores as $tag => $score) {
-            $expScores[$tag] = exp($score - $maxScore);
-            $totalExp += $expScores[$tag];
-        }
-
-        // Confidence adalah probabilitas dari tag yang diprediksi
-        return isset($expScores[$predictedTag]) ? $expScores[$predictedTag] / $totalExp : 0;
-    }
-
-    // Fungsi untuk mendapatkan jawaban berdasarkan tag tanpa random
-    private function getAnswerByTag($tag, $input)
-    {
-        if (!isset($this->tagAnswers[$tag]) || empty($this->tagAnswers[$tag])) {
-            return $this->defaultResponse;
-        }
-
-        // Cari jawaban dengan similarity terbaik dalam tag yang sama
-        $bestScore = 0;
-        $bestAnswer = null;
-
-        foreach ($this->dataset as $data) {
-            if ($data['tag'] === $tag) {
-                similar_text(strtolower($input), strtolower($data['question']), $percent);
-                if ($percent > $bestScore) {
-                    $bestScore = $percent;
-                    $bestAnswer = $data['answer'];
-                }
-            }
-        }
-
-        // Hanya gunakan jawaban jika similarity cukup tinggi
-        if ($bestScore >= $this->BEST_SCORE_THRESHOLD) {
-            return $bestAnswer;
-        }
-
-        // Jika similarity tidak memadai, gunakan respons default
-        return $this->defaultResponse;
-    }
     public function showFrequentQuestions($tag = null)
     {
         $frequentQuestions = $this->answeredQuestionModel->getQuestionsByTag($tag);
