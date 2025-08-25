@@ -30,10 +30,10 @@ class Chatbot extends Controller
 
     // Threshold yang lebih ketat untuk menentukan apakah jawaban valid
     protected $EXACT_MATCH_THRESHOLD = 100;        // Harus persis sama
-    protected $SIMILAR_MATCH_THRESHOLD = 85;       // Dinaikkan dari 80 ke 85
-    protected $TECHNICAL_MATCH_THRESHOLD = 80;     // Dinaikkan dari 70 ke 80
-    protected $CONFIDENCE_THRESHOLD = 0.85;        // Dinaikkan dari 0.8 ke 0.85
-    protected $BEST_SCORE_THRESHOLD = 40;          // Dinaikkan dari 30 ke 40
+    protected $SIMILAR_MATCH_THRESHOLD = 80;       // Dinaikkan dari 80 ke 85
+    protected $TECHNICAL_MATCH_THRESHOLD = 70;     // Dinaikkan dari 70 ke 80
+    protected $CONFIDENCE_THRESHOLD = 0.3;        // Dinaikkan dari 0.8 ke 0.85
+    protected $BEST_SCORE_THRESHOLD = 30;          // Dinaikkan dari 30 ke 40
 
     protected $unansweredQuestionModel;
     protected $answeredQuestionModel;
