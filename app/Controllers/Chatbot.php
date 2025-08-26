@@ -13,6 +13,8 @@ class Chatbot extends Controller
     protected $tagCounts = [];
     protected $wordTagCounts = [];
     protected $tagAnswers = [];
+    protected $geminiApiKey;
+    protected $useGemini = true; // Flag untuk mengaktifkan/nonaktifkan Gemini
 
     // Daftar kata kunci untuk respons khusus
     protected $keywordResponses = [
@@ -40,6 +42,15 @@ class Chatbot extends Controller
         // Inisialisasi model
         $this->unansweredQuestionModel = new UnansweredQuestionModel();
         $this->answeredQuestionModel = new AnsweredQuestionsModel();
+        
+        // Set Gemini API Key dari environment variable
+        $this->geminiApiKey = getenv('GEMINI_API_KEY') ?: '';
+        
+        // Nonaktifkan Gemini jika API key tidak ada
+        if (empty($this->geminiApiKey)) {
+            $this->useGemini = false;
+            log_message('warning', 'Gemini API Key tidak ditemukan. Gemini AI dinonaktifkan.');
+        }
         
         // Memuat dataset CSV
         $this->loadDataset();
@@ -153,9 +164,145 @@ class Chatbot extends Controller
             }
         }
 
-        // LANGKAH 6: Jika semua metode gagal, kirim ke admin
+        // LANGKAH 6: Coba gunakan Gemini AI sebagai backup
+        if ($this->useGemini) {
+            $geminiResponse = $this->askGeminiAI($input);
+            if ($geminiResponse && !empty($geminiResponse)) {
+                // Simpan jawaban Gemini ke database untuk pembelajaran
+                $this->saveToAnsweredQuestions($input, $geminiResponse, 'gemini_ai');
+                
+                // Juga simpan ke unanswered untuk review admin
+                $this->saveUnansweredQuestion($input, $geminiResponse);
+                
+                return $this->response->setJSON([
+                    'message' => $geminiResponse,
+                    'source' => 'AI Assistant'
+                ]);
+            }
+        }
+
+        // LANGKAH 7: Jika semua metode gagal, kirim ke admin
         $this->saveUnansweredQuestion($input);
         return $this->response->setJSON(['message' => $this->defaultMessage]);
+    }
+
+    private function askGeminiAI($question)
+    {
+        if (!$this->useGemini) {
+            return null;
+        }
+
+        try {
+            // Buat konteks berdasarkan dataset yang ada untuk memberikan guidance ke Gemini
+            $datasetContext = $this->buildDatasetContext();
+            
+            $prompt = $this->buildGeminiPrompt($question, $datasetContext);
+            
+            $response = $this->callGeminiAPI($prompt);
+            
+            if ($response && !empty($response)) {
+                log_message('info', 'Gemini AI response untuk: "' . $question . '" - Response: ' . substr($response, 0, 100));
+                return $response;
+            }
+            
+        } catch (Exception $e) {
+            log_message('error', 'Gemini AI Error: ' . $e->getMessage());
+        }
+
+        return null;
+    }
+
+    private function buildDatasetContext()
+    {
+        // Ambil beberapa contoh dari dataset untuk memberikan konteks ke Gemini
+        $contexts = [];
+        $tagsSample = array_slice(array_keys($this->tagCounts), 0, 5); // Ambil 5 tag teratas
+        
+        foreach ($tagsSample as $tag) {
+            if (isset($this->tagAnswers[$tag])) {
+                $contexts[] = "Tag: {$tag} - Contoh jawaban: " . substr($this->tagAnswers[$tag][0], 0, 100);
+            }
+        }
+        
+        return implode("\n", array_slice($contexts, 0, 3)); // Batasi konteks
+    }
+
+    private function buildGeminiPrompt($question, $context)
+    {
+        return "Anda adalah asisten chatbot yang membantu menjawab pertanyaan. 
+Berikan jawaban yang informatif, akurat, dan membantu dalam bahasa Indonesia.
+
+Konteks dari database kami:
+{$context}
+
+Pertanyaan user: {$question}
+
+Berikan jawaban yang:
+1. Singkat dan jelas (maksimal 200 kata)
+2. Menggunakan bahasa Indonesia yang sopan
+3. Jika tidak yakin dengan jawaban, katakan bahwa Anda akan menghubungkan dengan admin
+4. Hindari memberikan informasi medis, hukum, atau finansial yang spesifik tanpa disclaimer
+
+Jawaban:";
+    }
+
+    private function callGeminiAPI($prompt)
+    {
+        $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' . $this->geminiApiKey;
+        
+        $data = [
+            'contents' => [
+                [
+                    'parts' => [
+                        [
+                            'text' => $prompt
+                        ]
+                    ]
+                ]
+            ],
+            'generationConfig' => [
+                'temperature' => 0.7,
+                'topK' => 40,
+                'topP' => 0.95,
+                'maxOutputTokens' => 1024,
+            ]
+        ];
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+        ]);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        
+        if (curl_errno($ch)) {
+            log_message('error', 'Gemini API cURL Error: ' . curl_error($ch));
+            curl_close($ch);
+            return null;
+        }
+        
+        curl_close($ch);
+
+        if ($httpCode !== 200) {
+            log_message('error', 'Gemini API HTTP Error: ' . $httpCode . ' - Response: ' . $response);
+            return null;
+        }
+
+        $responseData = json_decode($response, true);
+        
+        if (isset($responseData['candidates'][0]['content']['parts'][0]['text'])) {
+            return trim($responseData['candidates'][0]['content']['parts'][0]['text']);
+        }
+
+        log_message('error', 'Gemini API Response tidak valid: ' . $response);
+        return null;
     }
 
     private function checkKeywordResponse($input)
@@ -339,7 +486,7 @@ class Chatbot extends Controller
         return $bestAnswer ?? $this->defaultMessage;
     }
 
-    private function saveUnansweredQuestion($question)
+    private function saveUnansweredQuestion($question, $geminiAnswer = null)
     {
         // Cek apakah pertanyaan sudah ada di database
         $existingQuestion = $this->unansweredQuestionModel
@@ -352,16 +499,20 @@ class Chatbot extends Controller
             $data = [
                 'question' => $question,
                 'status' => 'pending',
+                'ai_suggestion' => $geminiAnswer, // Simpan saran dari AI
                 'created_at' => date('Y-m-d H:i:s')
             ];
 
             $this->unansweredQuestionModel->save($data);
             log_message('info', 'Pertanyaan baru disimpan ke database: ' . $question);
         } else {
-            // Update frequency jika sudah ada
-            $this->unansweredQuestionModel->update($existingQuestion['id'], [
-                'updated_at' => date('Y-m-d H:i:s')
-            ]);
+            // Update dengan AI suggestion jika ada
+            if ($geminiAnswer) {
+                $this->unansweredQuestionModel->update($existingQuestion['id'], [
+                    'ai_suggestion' => $geminiAnswer,
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]);
+            }
         }
     }
 
@@ -397,6 +548,7 @@ class Chatbot extends Controller
                 'answer' => $answer,
                 'tag' => $tag,
                 'frequency' => 1,
+                'source' => ($tag === 'gemini_ai') ? 'AI' : 'dataset',
                 'created_at' => date('Y-m-d H:i:s'),
                 'last_asked_at' => date('Y-m-d H:i:s')
             ]);
@@ -424,6 +576,36 @@ class Chatbot extends Controller
         return view('frequent_questions', [
             'frequentQuestions' => $frequentQuestions,
             'selectedTag' => $tag
+        ]);
+    }
+
+    // Method untuk mengaktifkan/nonaktifkan Gemini AI
+    public function toggleGemini()
+    {
+        $this->useGemini = !$this->useGemini;
+        
+        return $this->response->setJSON([
+            'status' => 'success',
+            'gemini_status' => $this->useGemini ? 'enabled' : 'disabled'
+        ]);
+    }
+
+    // Method untuk test Gemini connection
+    public function testGemini()
+    {
+        if (!$this->useGemini) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Gemini AI tidak aktif'
+            ]);
+        }
+
+        $testResponse = $this->askGeminiAI('Hello, test connection');
+        
+        return $this->response->setJSON([
+            'status' => $testResponse ? 'success' : 'error',
+            'message' => $testResponse ? 'Koneksi Gemini AI berhasil' : 'Koneksi Gemini AI gagal',
+            'response' => $testResponse
         ]);
     }
 }
