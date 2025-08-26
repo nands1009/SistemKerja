@@ -160,27 +160,72 @@ class Chatbot extends Controller
             return $this->response->setJSON(['message' => $casualAnswer]);
         }
 
-        // Gunakan Dataset-Aware Response untuk skor rendah atau tidak ada kecocokan
+        // **PERBAIKAN UTAMA**: Coba Gemini dulu, jika gagal maka kirim ke admin
         $contextualAnswer = $this->getHumanLikeResponse($input);
-        if ($contextualAnswer && $contextualAnswer !== 'error') {
+        
+        // Jika Gemini berhasil memberikan jawaban yang valid
+        if ($contextualAnswer && $contextualAnswer !== 'error' && !empty(trim($contextualAnswer))) {
             $this->saveToAnsweredQuestions($input, $contextualAnswer, 'contextual');
             return $this->response->setJSON(['message' => $contextualAnswer]);
         }
 
-        // Fallback ke Naive Bayes
+        // **JIKA GEMINI GAGAL**: Coba Naive Bayes sebagai fallback
         $predictedTag = $this->predictTag($input);
         $tagConfidence = $this->calculateTagConfidence($input, $predictedTag);
 
-        if ($tagConfidence < 0.3) {
-            $this->saveUnansweredQuestion($input);
-            $answer = $this->getCasualUnknownResponse($input);
-        } else {
+        if ($tagConfidence >= 0.3) {
             $answer = $this->getAnswerByTag($predictedTag, $input);
             $answer = $this->makeMoreCasual($answer, $input);
-            $this->saveToAnsweredQuestions($input, $answer, $predictedTag);
+            
+            // Cek apakah jawaban valid (bukan error response)
+            if (!$this->isGenericErrorResponse($answer)) {
+                $this->saveToAnsweredQuestions($input, $answer, $predictedTag);
+                return $this->response->setJSON(['message' => $answer]);
+            }
         }
 
-        return $this->response->setJSON(['message' => $answer]);
+        // **LANGKAH TERAKHIR**: Semua metode gagal, kirim ke admin
+        $this->saveUnansweredQuestion($input);
+        $adminNotificationResponse = $this->getAdminNotificationResponse($input);
+        
+        return $this->response->setJSON(['message' => $adminNotificationResponse]);
+    }
+
+    // **Method baru untuk cek apakah response adalah error generic**
+    private function isGenericErrorResponse($response)
+    {
+        $errorPatterns = [
+            'kurang tau nih',
+            'belum pernah dapet',
+            'bingung juga sih',
+            'kurang ngerti',
+            'waduh kurang paham',
+            'ga tau aku',
+            'maaf, saya belum mengerti'
+        ];
+        
+        $lowerResponse = strtolower($response);
+        foreach ($errorPatterns as $pattern) {
+            if (strpos($lowerResponse, $pattern) !== false) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    // **Method baru untuk response notifikasi admin**
+    private function getAdminNotificationResponse($input)
+    {
+        $adminResponses = [
+            'Waduh, ini pertanyaan baru nih. Udah aku kirim ke admin ya, nanti mereka jawab langsung.',
+            'Hmm belum tau jawabannya. Udah aku forward ke tim yang lebih tau, tunggu sebentar ya.',
+            'Pertanyaan bagus nih, tapi aku belum bisa jawab. Udah aku teruskan ke atasan deh.',
+            'Wah ini di luar kemampuan aku. Admin udah aku kabarin, mereka bakal jawab segera kok.',
+            'Maaf ya belum bisa bantu. Pertanyaannya udah aku kirim ke yang lebih ahli.',
+        ];
+        
+        return $adminResponses[array_rand($adminResponses)];
     }
 
     // Method untuk mencari referensi yang relevan tanpa menyebutkan "dataset" atau "FAQ"
@@ -211,10 +256,15 @@ class Chatbot extends Controller
         return array_slice($relevantData, 0, 2); // Hanya 2 referensi teratas
     }
 
-    // Response yang lebih manusiawi dan natural
+    // **PERBAIKAN**: Response yang lebih manusiawi dan natural dengan error handling yang lebih baik
     private function getHumanLikeResponse($question)
     {
         try {
+            // Jika API key tidak valid, langsung return error
+            if (empty($this->geminiApiKey) || $this->geminiApiKey === 'YOUR_GEMINI_API_KEY_HERE') {
+                return 'error';
+            }
+
             $systemInfo = $this->getSystemContext($question);
             $relevantRefs = $this->findRelevantReferences($question);
             $prompt = $this->buildCasualPrompt($question, $systemInfo, $relevantRefs);
@@ -245,26 +295,73 @@ class Chatbot extends Controller
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10); // Timeout lebih singkat
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
 
             $response = curl_exec($ch);
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $curlError = curl_error($ch);
             curl_close($ch);
 
+            // **PERBAIKAN**: Lebih detail error handling
+            if ($curlError) {
+                log_message('error', 'Gemini API Curl Error: ' . $curlError);
+                return 'error';
+            }
+
             if ($httpCode !== 200) {
+                log_message('error', 'Gemini API HTTP Error: ' . $httpCode . ', Response: ' . $response);
+                return 'error';
+            }
+
+            if (empty($response)) {
+                log_message('error', 'Gemini API returned empty response');
                 return 'error';
             }
 
             $result = json_decode($response, true);
             
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                log_message('error', 'Gemini API JSON decode error: ' . json_last_error_msg());
+                return 'error';
+            }
+            
+            // **PERBAIKAN**: Validasi response structure yang lebih ketat
             if (isset($result['candidates'][0]['content']['parts'][0]['text'])) {
                 $rawAnswer = trim($result['candidates'][0]['content']['parts'][0]['text']);
+                
+                // Validasi apakah jawaban tidak kosong dan bermakna
+                if (empty($rawAnswer) || strlen($rawAnswer) < 10) {
+                    log_message('info', 'Gemini returned too short or empty answer');
+                    return 'error';
+                }
+                
+                // Cek apakah Gemini memberikan jawaban yang menunjukkan ketidaktahuan
+                $uncertaintyPatterns = [
+                    'saya tidak tahu',
+                    'tidak dapat menjawab',
+                    'maaf, saya tidak',
+                    'kurang informasi',
+                    'tidak memiliki informasi'
+                ];
+                
+                $lowerAnswer = strtolower($rawAnswer);
+                foreach ($uncertaintyPatterns as $pattern) {
+                    if (strpos($lowerAnswer, $pattern) !== false) {
+                        log_message('info', 'Gemini expressed uncertainty: ' . $rawAnswer);
+                        return 'error';
+                    }
+                }
+                
                 return $this->finalizeHumanResponse($rawAnswer);
             }
             
+            // Jika struktur response tidak sesuai ekspektasi
+            log_message('error', 'Gemini API unexpected response structure: ' . print_r($result, true));
             return 'error';
 
         } catch (Exception $e) {
+            log_message('error', 'Gemini API Exception: ' . $e->getMessage());
             return 'error';
         }
     }
@@ -272,7 +369,9 @@ class Chatbot extends Controller
     // Build prompt yang lebih casual dan spontan
     private function buildCasualPrompt($question, $systemInfo, $relevantRefs)
     {
+        $basePrompt = "Kamu adalah staff IT di PT. ARMINDO yang ngebantu dengan sistem kinerja pegawai. ";
         $basePrompt .= "Ngomongnya santai, ga formal, kayak ngobrol sama temen. ";
+        $basePrompt .= "PENTING: Kalo emang ga tau atau ga yakin jawabannya, bilang aja 'ga tau' atau 'kurang paham' jangan asal jawab. ";
         
         $contextPrompt = "\nKamu ngerti banget soal:\n";
         $contextPrompt .= "- Laporan kerja harian pegawai\n";
@@ -292,11 +391,11 @@ class Chatbot extends Controller
         $stylePrompt .= "- Santai aja, pake 'nih', 'sih', 'deh', 'ya' kayak orang Indonesia\n";
         $stylePrompt .= "- Jangan sebut AI, asisten, atau sistem otomatis\n";
         $stylePrompt .= "- Langsung to the point, ga usah bertele-tele\n";
-        $stylePrompt .= "- Kalo ga tau bilang aja 'kurang tau nih' atau 'coba tanya atasan'\n";
+        $stylePrompt .= "- KALO EMANG GA TAU atau GA YAKIN, bilang aja 'kurang tau nih' atau 'coba tanya atasan'\n";
         $stylePrompt .= "- Jawab pendek aja, 1-2 kalimat cukup\n";
         $stylePrompt .= "- Jangan pake kata formal kayak 'Silakan', 'Mohon', 'Terima kasih'\n\n";
         
-        $questionPrompt = "Temen kantor tanya: \"{$question}\"\n\njawab singkat:";
+        $questionPrompt = "Temen kantor tanya: \"{$question}\"\n\nJawab singkat (kalo ga tau bilang ga tau):";
         
         return $basePrompt . $contextPrompt . $referencePrompt . $stylePrompt . $questionPrompt;
     }
@@ -399,22 +498,7 @@ class Chatbot extends Controller
         return trim($answer);
     }
 
-    // Response untuk pertanyaan yang ga tau jadi lebih spontan
-    private function getCasualUnknownResponse($input)
-    {
-        $unknownResponses = [
-            'Waduh kurang tau nih. Coba tanya atasan aja deh.',
-            'Hmm belum pernah dapet yang kayak gini. Tanya HRD aja mungkin?',
-            'Bingung juga sih. Bisa jelasin lagi ga maksudnya?',
-            'Itu kayaknya bukan bagianku deh. Coba tanya yang lain.',
-            'Kurang ngerti maksudnya gimana. Bisa lebih detail ga?',
-            'Wah itu ga tau aku. Mungkin supervisor tau kali ya.',
-        ];
-        
-        return $unknownResponses[array_rand($unknownResponses)];
-    }
-
-    // Method existing lainnya tetap sama tapi dengan penyesuaian natural response...
+    // **Method lainnya tetap sama seperti sebelumnya**
     private function checkTechnicalAnswer($input)
     {
         $result = $this->unansweredQuestionModel->findSimilarQuestion($input);
@@ -552,7 +636,7 @@ class Chatbot extends Controller
     private function getAnswerByTag($tag, $input)
     {
         if (!isset($this->tagAnswers[$tag])) {
-            return $this->getCasualUnknownResponse($input);
+            return "Kurang tau nih soal itu.";
         }
 
         if (str_word_count($input) <= 1) {
@@ -576,7 +660,7 @@ class Chatbot extends Controller
         $answer = ($bestScore > 30) ? $bestAnswer : $defaultAnswer;
 
         if (empty($answer)) {
-            return $this->getCasualUnknownResponse($input);
+            return "Kurang paham maksudnya.";
         }
 
         return $answer;
@@ -594,6 +678,8 @@ class Chatbot extends Controller
                 'status' => 'pending',
                 'created_at' => date('Y-m-d H:i:s')
             ]);
+            
+            log_message('info', 'Pertanyaan baru disimpan ke database: ' . $question);
         }
     }
 
