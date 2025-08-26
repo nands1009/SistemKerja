@@ -20,7 +20,7 @@ class Chatbot extends Controller
     protected $systemContext = [
         'company_name' => 'PT. ARMINDO',
         'system_features' => [
-            'laporan_kinerja' => 'Sistem laporan kinerja harian, mingguan, dan bulanan',
+            'laporan_kinerja' => 'Pegawai dapat membuat laporan kerja harian melalui form laporan kerja di sistem.',
             'evaluasi_pegawai' => 'Penilaian kinerja pegawai dengan berbagai metrik',
             'riwayat_pekerjaan' => 'Tracking riwayat tugas dan pencapaian pegawai',
             'absensi' => 'Sistem absensi digital dan monitoring kehadiran',
@@ -37,19 +37,17 @@ class Chatbot extends Controller
     ];
 
     protected $keywordResponses = [
-        'pagi' => 'Selamat pagi! Saya di sini untuk membantu Anda dengan sistem kinerja perusahaan. Ada yang bisa dibantu?',
-        'siang' => 'Selamat siang! Apakah ada kendala dengan laporan kerja atau sistem kinerja yang perlu bantuan?',
-        'sore' => 'Selamat sore! Saya siap membantu Anda dengan pertanyaan seputar sistem kinerja dan laporan.',
-        'malam' => 'Selamat malam! Meski sudah malam, saya tetap siap membantu dengan sistem kinerja perusahaan.',
-        'halo' => 'Halo! Saya asisten virtual untuk sistem kinerja perusahaan. Ada yang bisa saya bantu?',
-        'hai' => 'Hai! Saya di sini untuk membantu Anda dengan segala hal terkait laporan kerja dan evaluasi kinerja.',
-        'hi' => 'Hi! Ada kendala dengan sistem kinerja atau butuh panduan penggunaan fitur tertentu?'
+        'pagi' => 'Selamat pagi! Ada yang bisa saya bantu?',
+        'siang' => 'Selamat siang! Ada yang bisa saya bantu?',
+        'sore' => 'Selamat sore! Ada yang bisa saya bantu?',
+        'malam' => 'Selamat malam! Ada yang bisa saya bantu?',
+        'halo' => 'Halo! Ada yang bisa saya bantu?',
+        'hai' => 'Hai! Ada yang bisa saya bantu hari ini?',
+        'hi' => 'Hi! Ada yang bisa saya bantu?'
     ];
 
     protected $defaultInformation = [
-        'Tim support sedang memproses pertanyaan Anda. Sementara itu, Anda bisa cek panduan di menu Help atau hubungi supervisor langsung.',
-        'Pertanyaan Anda sedang dianalisis oleh sistem. Coba periksa FAQ di dashboard atau konsultasi dengan HR.',
-        'Saya akan mencarikan informasi yang tepat untuk Anda. Sambil menunggu, silakan cek dokumentasi sistem di menu Bantuan.'
+        'Saya akan mencarikan informasi yang tepat untuk Anda. Sambil menunggu'
     ];
 
     protected $unansweredQuestionModel;
@@ -307,7 +305,6 @@ class Chatbot extends Controller
         $instructionPrompt .= "- Referensikan FAQ yang relevan di atas jika ada\n";
         $instructionPrompt .= "- Berikan langkah-langkah spesifik jika diperlukan\n";
         $instructionPrompt .= "- Jangan sebut diri sebagai AI, berperan sebagai staff support internal\n";
-        $instructionPrompt .= "- Gunakan frasa seperti 'berdasarkan pengalaman', 'biasanya', 'saya bantu'\n";
         $instructionPrompt .= "- Jika tidak yakin 100%, sarankan konsultasi supervisor atau cek dokumentasi\n\n";
         
         $questionPrompt = "Pertanyaan Karyawan: " . $question . "\n\nJawaban Support Staff:";
@@ -344,7 +341,6 @@ class Chatbot extends Controller
     {
         // Hapus indikasi AI yang terlalu jelas
         $replacements = [
-            'sebagai AI' => 'berdasarkan pengalaman sistem',
             'saya adalah AI' => 'saya dari tim support',
             'artificial intelligence' => 'sistem otomatis',
             'machine learning' => 'algoritma sistem',
@@ -357,14 +353,13 @@ class Chatbot extends Controller
         $naturalStarters = [
             'Baik, saya bantu. ',
             'Untuk masalah ini, ',
-            'Berdasarkan pengalaman dengan sistem, ',
             'Biasanya untuk kasus seperti ini, ',
             'Saya coba jelaskan step by step. ',
             'Oh iya, untuk hal ini '
         ];
         
         // Cek apakah jawaban sudah natural
-        $isAlreadyNatural = preg_match('/^(baik|untuk|berdasarkan|biasanya|saya|oh|kalau)/i', trim($naturalAnswer));
+        $isAlreadyNatural = preg_match('/^(baik|untuk|biasanya|saya|oh|kalau)/i', trim($naturalAnswer));
         
         if (!$isAlreadyNatural) {
             $starter = $naturalStarters[array_rand($naturalStarters)];
