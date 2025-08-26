@@ -25,6 +25,7 @@ protected $systemContext = [
             'description' => 'Sistem manajemen laporan kerja harian pegawai',
             'functions' => [
                 'buat_laporan' => 'Pegawai dapat membuat laporan kerja harian melalui form laporan kerja di sistem',
+                'gimana cara ngedit laporan kerja' => 'Oke jadi, gampang banget, tinggal buka riwayat laporan kerja di sistem, terus edit aja deh',
                 'kirim_laporan' => 'Pegawai dapat mengirimkan laporan yang telah dibuat ke manajer untuk ditinjau',
                 'edit_laporan' => 'Pegawai dapat mengedit laporan yang ditolak oleh manajer, tapi tidak bisa edit laporan yang sudah di-approve',
                 'riwayat_laporan' => 'Menu Riwayat Laporan Kerja untuk melihat seluruh laporan yang telah dibuat sebelumnya',
@@ -166,6 +167,7 @@ protected $systemContext = [
         'halo' => 'Halo! Iya ada apa?',
         'hai' => 'Hai! Gimana?',
         'hi' => 'Hi! Ada yang mau ditanya?'
+        '
     ];
 
     // Responses yang lebih natural dan spontan
