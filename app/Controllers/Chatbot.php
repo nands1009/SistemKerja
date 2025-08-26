@@ -27,15 +27,11 @@ class Chatbot extends Controller
         'hi' => 'Hi! Ada yang bisa saya bantu?'
     ];
 
-    // Threshold untuk menentukan apakah jawaban cukup relevan
-    protected $MINIMUM_CONFIDENCE_SCORE = 75; // Naikkan dari 70 ke 75
-    protected $GEMINI_MINIMUM_SCORE = 60;     // Threshold untuk menggunakan Gemini
-    protected $EXACT_MATCH_THRESHOLD = 85;    // Threshold untuk exact match
-    
-    // Kata-kata yang mengindikasikan pertanyaan tidak jelas
-    protected $unclearIndicators = [
-        'apa', 'gimana', 'bagaimana', 'kenapa', 'mengapa', 'kapan', 'dimana', 
-        'siapa', 'berapa', 'test', 'coba', 'tes', '123', 'abc'
+    // Daftar informasi default untuk pertanyaan yang tidak terjawab
+    protected $defaultInformation = [
+        'Pertanyaan Anda telah kami terima dan akan segera ditangani oleh tim kami. Terima kasih atas kesabarannya.',
+        'Tim customer service kami akan segera merespons pertanyaan Anda. Mohon tunggu sebentar.',
+        'Pertanyaan Anda sedang diproses. Kami akan memberikan jawaban secepatnya.'
     ];
 
     protected $unansweredQuestionModel;
@@ -51,11 +47,6 @@ class Chatbot extends Controller
         $this->answeredQuestionModel = new AnsweredQuestionsModel();
         
         // Memuat dataset CSV
-        $this->loadDataset();
-    }
-
-    private function loadDataset()
-    {
         $csvPath = FCPATH . 'dataset/chatbot_dataset.csv';
 
         if (file_exists($csvPath) && ($handle = fopen($csvPath, "r")) !== FALSE) {
@@ -94,213 +85,94 @@ class Chatbot extends Controller
 
     public function getResponse()
     {
-        $input = trim($this->request->getPost('message'));
+        $input = strtolower(trim($this->request->getPost('message')));
 
         if (!$input) {
             return $this->response->setJSON(['message' => 'Pertanyaan kosong.']);
         }
 
-        // Validasi input untuk menghindari spam atau input tidak valid
-        if (!$this->isValidQuestion($input)) {
-            $this->saveUnansweredQuestion($input, 'invalid_input');
-            return $this->response->setJSON([
-                'message' => 'Maaf, pertanyaan Anda tidak jelas. Silakan tulis pertanyaan yang lebih spesifik atau hubungi admin untuk bantuan lebih lanjut.'
-            ]);
+        // Cek jika ada kecocokan dengan kata kunci tertentu
+        foreach ($this->keywordResponses as $keyword => $response) {
+            if ($input === $keyword || strpos($input, $keyword) !== false) {
+                // Simpan juga respons kata kunci ke tabel answered_questions
+                $this->saveToAnsweredQuestions($input, $response, 'greeting');
+                return $this->response->setJSON(['message' => $response]);
+            }
         }
 
-        $inputLower = strtolower($input);
-
-        // LANGKAH 1: Cek kata kunci sapaan
-        $greetingResponse = $this->checkGreetingKeywords($inputLower);
-        if ($greetingResponse) {
-            $this->saveToAnsweredQuestions($input, $greetingResponse, 'greeting');
-            return $this->response->setJSON(['message' => $greetingResponse]);
-        }
-
-        // LANGKAH 2: Cek jawaban teknis dari admin
-        $technicalAnswer = $this->checkTechnicalAnswer($inputLower);
+        // LANGKAH 1: Cek apakah pertanyaan ini sudah pernah dijawab oleh teknisi/admin
+        $technicalAnswer = $this->checkTechnicalAnswer($input);
         if ($technicalAnswer) {
+            // Simpan pertanyaan teknis yang sudah dijawab
             $this->saveToAnsweredQuestions($input, $technicalAnswer, 'technical');
             return $this->response->setJSON(['message' => $technicalAnswer]);
         }
 
-        // LANGKAH 3: Cek kecocokan persis di dataset
-        $exactMatch = $this->findExactMatch($inputLower);
+        // LANGKAH 2: Cek kecocokan persis di dataset
+        $exactMatch = $this->findExactMatch($input);
         if ($exactMatch) {
-            $tag = $this->findTagFromExactMatch($inputLower);
+            $tag = $this->findTagFromExactMatch($input);
             $this->saveToAnsweredQuestions($input, $exactMatch, $tag);
             return $this->response->setJSON(['message' => $exactMatch]);
         }
 
-        // LANGKAH 4: Cek kecocokan similar dengan threshold ketat
-        $similarMatch = $this->findSimilarMatch($inputLower);
-        
-        if ($similarMatch && $similarMatch['score'] >= $this->MINIMUM_CONFIDENCE_SCORE) {
-            // Validasi tambahan untuk memastikan jawaban relevan
-            if ($this->isAnswerRelevant($input, $similarMatch['answer'], $similarMatch['question'])) {
-                $this->saveToAnsweredQuestions($input, $similarMatch['answer'], $similarMatch['tag']);
-                return $this->response->setJSON(['message' => $similarMatch['answer']]);
-            }
+        // LANGKAH 3: Cek kecocokan berdasarkan similar_text dengan threshold yang lebih ketat
+        $similarMatch = $this->findSimilarMatch($input);
+        if ($similarMatch && $similarMatch['score'] > 85) { // Threshold dinaikkan menjadi 85%
+            $tag = $similarMatch['tag'];
+            $this->saveToAnsweredQuestions($input, $similarMatch['answer'], $tag);
+            return $this->response->setJSON(['message' => $similarMatch['answer']]);
         }
 
-        // LANGKAH 5: Coba Gemini AI untuk pertanyaan dengan skor menengah
-        if ($similarMatch && $similarMatch['score'] >= $this->GEMINI_MINIMUM_SCORE) {
-            $geminiAnswer = $this->getGeminiResponse($input, $similarMatch);
-            if ($geminiAnswer && $geminiAnswer !== 'error') {
-                // Validasi jawaban Gemini sebelum mengirim
-                if ($this->validateGeminiAnswer($geminiAnswer, $input)) {
-                    $this->saveToAnsweredQuestions($input, $geminiAnswer, 'ai_generated');
-                    return $this->response->setJSON(['message' => $geminiAnswer]);
-                }
-            }
-        }
+        // LANGKAH 4: Gunakan Naive Bayes untuk prediksi tag
+        $predictedTag = $this->predictTag($input);
+        $tagConfidence = $this->calculateTagConfidence($input, $predictedTag);
 
-        // LANGKAH 6: Naive Bayes sebagai fallback terakhir
-        $predictedTag = $this->predictTag($inputLower);
-        $tagConfidence = $this->calculateTagConfidence($inputLower, $predictedTag);
-
-        if ($tagConfidence >= 0.4) { // Naikkan threshold confidence
-            $answer = $this->getAnswerByTag($predictedTag, $inputLower);
+        // Jika confidence cukup tinggi (> 0.4), gunakan jawaban dari dataset
+        if ($tagConfidence > 0.4) {
+            $answer = $this->getAnswerByTag($predictedTag, $input);
             
-            // Validasi jawaban dari Naive Bayes
-            if ($this->isAnswerRelevant($input, $answer, '')) {
+            // Pastikan jawaban bukan default/error message
+            if ($answer !== "Maaf, saya belum mengerti maksud kamu." && !empty($answer)) {
                 $this->saveToAnsweredQuestions($input, $answer, $predictedTag);
                 return $this->response->setJSON(['message' => $answer]);
             }
         }
 
-        // LANGKAH 7: Jika semua gagal, kirim ke admin
-        $this->saveUnansweredQuestion($input, 'no_suitable_answer');
-        return $this->response->setJSON([
-            'message' => 'Maaf, saya belum bisa memahami pertanyaan Anda dengan baik. Pertanyaan Anda telah diteruskan ke tim support kami untuk mendapatkan jawaban yang lebih akurat. Terima kasih atas kesabaran Anda.'
-        ]);
-    }
-
-    // Fungsi untuk memvalidasi apakah pertanyaan valid
-    private function isValidQuestion($input)
-    {
-        $input = trim($input);
-        $inputLower = strtolower($input);
-        
-        // Cek panjang minimum
-        if (strlen($input) < 3) {
-            return false;
-        }
-        
-        // Cek apakah hanya karakter berulang
-        if (preg_match('/^(.)\1+$/', $input)) {
-            return false;
-        }
-        
-        // Cek apakah hanya angka atau karakter khusus
-        if (preg_match('/^[0-9\W]+$/', $input)) {
-            return false;
-        }
-        
-        // Cek kata-kata tidak jelas yang berdiri sendiri
-        $words = explode(' ', $inputLower);
-        if (count($words) == 1 && in_array($words[0], $this->unclearIndicators)) {
-            return false;
-        }
-        
-        return true;
-    }
-
-    // Fungsi untuk memvalidasi relevansi jawaban
-    private function isAnswerRelevant($question, $answer, $originalQuestion = '')
-    {
-        $questionLower = strtolower($question);
-        $answerLower = strtolower($answer);
-        
-        // Cek apakah jawaban terlalu generik
-        $genericAnswers = [
-            'maaf, saya belum mengerti',
-            'mohon maaf',
-            'terima kasih',
-            'selamat'
-        ];
-        
-        foreach ($genericAnswers as $generic) {
-            if (strpos($answerLower, $generic) !== false && strlen($answer) < 50) {
-                return false;
+        // LANGKAH 5: Jika confidence rendah atau similarity rendah, gunakan Gemini AI dengan konteks dataset
+        if ($tagConfidence < 0.4 || (isset($similarMatch) && $similarMatch['score'] < 85)) {
+            $geminiAnswer = $this->getGeminiResponseFromDataset($input);
+            if ($geminiAnswer && $geminiAnswer !== 'error' && !empty(trim($geminiAnswer))) {
+                $this->saveToAnsweredQuestions($input, $geminiAnswer, 'ai_generated');
+                return $this->response->setJSON(['message' => $geminiAnswer]);
             }
         }
-        
-        // Cek konteks pertanyaan dan jawaban
-        if ($originalQuestion) {
-            $questionWords = array_filter(explode(' ', $questionLower));
-            $originalWords = array_filter(explode(' ', strtolower($originalQuestion)));
-            $answerWords = array_filter(explode(' ', $answerLower));
-            
-            // Hitung kecocokan kata kunci
-            $commonWords = array_intersect($questionWords, $originalWords);
-            $answerRelevance = array_intersect($questionWords, $answerWords);
-            
-            // Jika tidak ada kata yang cocok dan jawaban terlalu pendek
-            if (empty($commonWords) && empty($answerRelevance) && strlen($answer) < 30) {
-                return false;
-            }
-        }
-        
-        return true;
+
+        // LANGKAH 6: Jika semua gagal, simpan ke unanswered questions dan kirim ke admin
+        $this->saveUnansweredQuestion($input);
+        $answer = $this->getInformationForUnknownQuery($input);
+        return $this->response->setJSON(['message' => $answer]);
     }
 
-    // Fungsi untuk memvalidasi jawaban dari Gemini
-    private function validateGeminiAnswer($answer, $question)
-    {
-        $answerLower = strtolower(trim($answer));
-        $questionLower = strtolower(trim($question));
-        
-        // Cek apakah jawaban terlalu pendek atau generik
-        if (strlen($answer) < 20) {
-            return false;
-        }
-        
-        // Cek apakah jawaban mengandung informasi yang relevan
-        $questionWords = array_filter(explode(' ', $questionLower), function($word) {
-            return strlen($word) > 3 && !in_array($word, ['yang', 'dengan', 'untuk', 'dari', 'pada']);
-        });
-        
-        $relevantWords = 0;
-        foreach ($questionWords as $word) {
-            if (strpos($answerLower, $word) !== false) {
-                $relevantWords++;
-            }
-        }
-        
-        // Minimal 1 kata relevan untuk jawaban pendek, atau minimal 30% untuk jawaban panjang
-        $minRelevance = count($questionWords) > 3 ? ceil(count($questionWords) * 0.3) : 1;
-        
-        return $relevantWords >= $minRelevance;
-    }
-
-    // Fungsi untuk cek kata kunci sapaan
-    private function checkGreetingKeywords($input)
-    {
-        foreach ($this->keywordResponses as $keyword => $response) {
-            if ($input === $keyword || strpos($input, $keyword) !== false) {
-                return $response;
-            }
-        }
-        return null;
-    }
-
-    // Fungsi yang sudah diperbaiki untuk Gemini AI
-    private function getGeminiResponse($question, $context = null)
+    // Fungsi baru untuk mendapatkan respons dari Gemini AI berdasarkan dataset internal
+    private function getGeminiResponseFromDataset($question)
     {
         try {
+            // Buat konteks dari dataset internal
+            $datasetContext = $this->buildDatasetContext();
+            
+            // URL API Gemini
             $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=" . $this->geminiApiKey;
             
-            // Buat prompt yang lebih spesifik dengan konteks
-            $contextInfo = "";
-            if ($context && isset($context['question'])) {
-                $contextInfo = " Pertanyaan serupa yang pernah ditanyakan: '" . $context['question'] . "' dengan jawaban: '" . $context['answer'] . "'. ";
-            }
-            
-            $prompt = "Anda adalah asisten customer service yang profesional dan membantu. " . $contextInfo . 
-                     "Berikan jawaban yang spesifik, informatif, dan dalam bahasa Indonesia untuk pertanyaan: '" . $question . 
-                     "'. Jawaban harus relevan dengan pertanyaan, tidak lebih dari 150 kata, dan hindari jawaban yang terlalu umum. " .
-                     "Jika tidak bisa menjawab dengan pasti, katakan 'Saya perlu informasi lebih lanjut untuk menjawab pertanyaan Anda.'";
+            // Buat prompt yang membatasi Gemini untuk hanya menggunakan dataset internal
+            $prompt = "Anda adalah asisten customer service. PENTING: Anda HANYA boleh menjawab berdasarkan informasi yang tersedia dalam dataset berikut ini. Jika pertanyaan tidak dapat dijawab berdasarkan dataset ini, jawab dengan 'DATA_NOT_FOUND'.
+
+Dataset yang tersedia:
+" . $datasetContext . "
+
+Pertanyaan: " . $question . "
+
+Jawaban (gunakan HANYA informasi dari dataset di atas, dalam bahasa Indonesia yang sopan dan informatif):";
             
             $data = [
                 'contents' => [
@@ -313,10 +185,10 @@ class Chatbot extends Controller
                     ]
                 ],
                 'generationConfig' => [
-                    'temperature' => 0.3,  // Kurangi temperature untuk jawaban lebih konsisten
+                    'temperature' => 0.3, // Lebih rendah untuk jawaban yang lebih konsisten
                     'maxOutputTokens' => 150,
-                    'topP' => 0.7,
-                    'topK' => 20
+                    'topP' => 0.8,
+                    'topK' => 40
                 ]
             ];
 
@@ -341,9 +213,18 @@ class Chatbot extends Controller
 
             $result = json_decode($response, true);
             
+            // Ekstrak jawaban dari respons Gemini
             if (isset($result['candidates'][0]['content']['parts'][0]['text'])) {
                 $answer = trim($result['candidates'][0]['content']['parts'][0]['text']);
-                log_message('info', 'Gemini AI response: ' . $answer);
+                
+                // Jika Gemini mengatakan tidak dapat menemukan data, return error
+                if (strpos($answer, 'DATA_NOT_FOUND') !== false || 
+                    strpos(strtolower($answer), 'tidak dapat menjawab') !== false ||
+                    strpos(strtolower($answer), 'informasi tidak tersedia') !== false) {
+                    return 'error';
+                }
+                
+                log_message('info', 'Gemini AI response from dataset: ' . $answer);
                 return $answer;
             } else {
                 log_message('error', 'Unexpected Gemini API response format: ' . $response);
@@ -356,167 +237,46 @@ class Chatbot extends Controller
         }
     }
 
-    // Fungsi untuk memeriksa jawaban teknis dari admin
+    // Fungsi untuk membangun konteks dataset
+    private function buildDatasetContext()
+    {
+        $context = "";
+        $addedQuestions = []; // Untuk menghindari duplikasi
+        
+        // Ambil sample dari dataset untuk konteks (maksimal 50 entri untuk menghindari token limit)
+        $sampleCount = 0;
+        foreach ($this->dataset as $data) {
+            if ($sampleCount >= 50) break;
+            
+            $questionKey = strtolower(trim($data['question']));
+            if (!in_array($questionKey, $addedQuestions)) {
+                $context .= "Q: " . $data['question'] . "\n";
+                $context .= "A: " . $data['answer'] . "\n";
+                $context .= "Tag: " . $data['tag'] . "\n\n";
+                $addedQuestions[] = $questionKey;
+                $sampleCount++;
+            }
+        }
+        
+        return $context;
+    }
+
+    // Fungsi untuk memeriksa apakah pertanyaan sudah pernah dijawab oleh teknisi/admin
     private function checkTechnicalAnswer($input)
     {
+        // Cek di answered_questions terlebih dahulu
+        $answeredQuestion = $this->answeredQuestionModel->findSimilarQuestion($input);
+        if ($answeredQuestion['match'] && $answeredQuestion['score'] > 80) {
+            return $answeredQuestion['match']['answer'];
+        }
+
+        // Cek di unanswered_questions yang sudah dijawab admin
         $result = $this->unansweredQuestionModel->findSimilarQuestion($input);
-        
-        if ($result['match'] && $result['score'] > $this->EXACT_MATCH_THRESHOLD) {
+        if ($result['match'] && $result['score'] > 80 && $result['match']['status'] === 'answered') {
             return $result['match']['answer'];
         }
         
         return null;
-    }
-
-    // Fungsi yang sudah diperbaiki untuk similar match
-    private function findSimilarMatch($input)
-    {
-        $bestScore = 0;
-        $bestAnswer = null;
-        $bestTag = 'unknown';
-        $bestQuestion = '';
-        
-        $inputWords = preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', strtolower($input)));
-        $inputWords = array_filter($inputWords, function($word) {
-            return strlen($word) > 2; // Filter kata yang terlalu pendek
-        });
-
-        foreach ($this->dataset as $data) {
-            $questionWords = preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', strtolower($data['question'])));
-            $questionWords = array_filter($questionWords, function($word) {
-                return strlen($word) > 2;
-            });
-            
-            // Hitung similar_text score
-            similar_text(strtolower($input), strtolower($data['question']), $percent);
-            
-            // Hitung keyword matching dengan bobot
-            $keywordScore = $this->calculateKeywordScore($inputWords, $questionWords);
-            
-            // Hitung semantic similarity
-            $semanticScore = $this->calculateSemanticSimilarity($inputWords, $questionWords);
-            
-            // Gabungkan semua skor dengan bobot
-            $finalScore = ($percent * 0.4) + ($keywordScore * 0.4) + ($semanticScore * 0.2);
-            
-            // Penalty untuk jawaban yang terlalu berbeda konteks
-            $contextPenalty = $this->calculateContextPenalty($input, $data['question']);
-            $finalScore -= $contextPenalty;
-            
-            if ($finalScore > $bestScore) {
-                $bestScore = $finalScore;
-                $bestAnswer = $data['answer'];
-                $bestTag = $data['tag'];
-                $bestQuestion = $data['question'];
-            }
-        }
-
-        return [
-            'score' => $bestScore,
-            'answer' => $bestAnswer,
-            'tag' => $bestTag,
-            'question' => $bestQuestion
-        ];
-    }
-
-    // Fungsi untuk menghitung skor kata kunci
-    private function calculateKeywordScore($inputWords, $questionWords)
-    {
-        if (empty($inputWords) || empty($questionWords)) {
-            return 0;
-        }
-        
-        $commonWords = array_intersect($inputWords, $questionWords);
-        $importantWords = array_filter($commonWords, function($word) {
-            return strlen($word) > 3 && !in_array($word, ['yang', 'dengan', 'untuk', 'dari', 'pada', 'akan', 'dapat', 'juga', 'atau', 'dan']);
-        });
-        
-        $totalWords = max(count($inputWords), count($questionWords));
-        $score = (count($importantWords) / $totalWords) * 100;
-        
-        return min($score, 50); // Maksimal 50 poin dari keyword matching
-    }
-
-    // Fungsi untuk menghitung semantic similarity
-    private function calculateSemanticSimilarity($inputWords, $questionWords)
-    {
-        // Kelompokkan kata berdasarkan konteks
-        $contextGroups = [
-            'login' => ['masuk', 'login', 'akses', 'account'],
-            'laporan' => ['laporan', 'report', 'data', 'informasi'],
-            'rencana' => ['rencana', 'plan', 'planning', 'jadwal'],
-            'edit' => ['edit', 'ubah', 'update', 'modifikasi'],
-            'buat' => ['buat', 'create', 'tambah', 'new'],
-        ];
-        
-        $inputContext = [];
-        $questionContext = [];
-        
-        // Identifikasi konteks dari input dan pertanyaan
-        foreach ($contextGroups as $context => $words) {
-            if (array_intersect($inputWords, $words)) {
-                $inputContext[] = $context;
-            }
-            if (array_intersect($questionWords, $words)) {
-                $questionContext[] = $context;
-            }
-        }
-        
-        // Hitung similarity berdasarkan konteks
-        $contextSimilarity = count(array_intersect($inputContext, $questionContext));
-        return $contextSimilarity * 10; // Maksimal 10 poin per konteks yang cocok
-    }
-
-    // Fungsi untuk menghitung penalty konteks
-    private function calculateContextPenalty($input, $question)
-    {
-        // Kelompok kata yang bertentangan
-        $conflictingGroups = [
-            'login' => ['logout', 'keluar'],
-            'masuk' => ['keluar', 'logout'],
-            'buat' => ['hapus', 'delete'],
-            'edit' => ['create', 'buat'],
-            'laporan' => ['rencana'],
-            'rencana' => ['laporan']
-        ];
-        
-        $inputLower = strtolower($input);
-        $questionLower = strtolower($question);
-        
-        $penalty = 0;
-        
-        foreach ($conflictingGroups as $word => $conflicts) {
-            if (strpos($inputLower, $word) !== false) {
-                foreach ($conflicts as $conflict) {
-                    if (strpos($questionLower, $conflict) !== false) {
-                        $penalty += 25; // Heavy penalty untuk konteks yang bertentangan
-                    }
-                }
-            }
-        }
-        
-        return $penalty;
-    }
-
-    // Fungsi yang sudah ada sebelumnya (tidak diubah)
-    private function findExactMatch($input)
-    {
-        foreach ($this->dataset as $data) {
-            if (strtolower(trim($data['question'])) === $input) {
-                return $data['answer'];
-            }
-        }
-        return null;
-    }
-
-    private function findTagFromExactMatch($input)
-    {
-        foreach ($this->dataset as $data) {
-            if (strtolower(trim($data['question'])) === $input) {
-                return $data['tag'];
-            }
-        }
-        return 'unknown';
     }
 
     private function calculateTagConfidence($input, $predictedTag)
@@ -529,15 +289,18 @@ class Chatbot extends Controller
         $totalScore = 0;
 
         foreach ($this->tagCounts as $tag => $tagTotal) {
+            // Probabilitas awal P(tag)
             $tagProb = log($tagTotal / $totalDocs);
+
+            // Likelihood untuk setiap kata
             $wordProb = 0;
-            
             foreach ($inputWords as $word) {
                 if ($word === '') continue;
 
                 $wordCount = $this->wordTagCounts[$tag][$word] ?? 0;
                 $totalWordsInTag = array_sum($this->wordTagCounts[$tag] ?? []);
 
+                // Likelihood dengan Laplace smoothing
                 $wordProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
             }
 
@@ -545,9 +308,56 @@ class Chatbot extends Controller
             $totalScore += exp($scores[$tag]);
         }
 
+        // Confidence adalah probabilitas relatif dari tag yang diprediksi
         return isset($scores[$predictedTag]) ? exp($scores[$predictedTag]) / $totalScore : 0;
     }
 
+    // Fungsi mencari kecocokan persis di dataset
+    private function findExactMatch($input)
+    {
+        foreach ($this->dataset as $data) {
+            if (strtolower(trim($data['question'])) === $input) {
+                return $data['answer'];
+            }
+        }
+        return null;
+    }
+
+    // Fungsi untuk menemukan tag dari pertanyaan yang cocok persis
+    private function findTagFromExactMatch($input)
+    {
+        foreach ($this->dataset as $data) {
+            if (strtolower(trim($data['question'])) === $input) {
+                return $data['tag'];
+            }
+        }
+        return 'unknown';
+    }
+
+    // Fungsi mencari kecocokan mirip dengan menggunakan similar_text
+    private function findSimilarMatch($input)
+    {
+        $bestScore = 0;
+        $bestAnswer = null;
+        $bestTag = 'unknown';
+
+        foreach ($this->dataset as $data) {
+            similar_text(strtolower($input), strtolower($data['question']), $percent);
+            if ($percent > $bestScore) {
+                $bestScore = $percent;
+                $bestAnswer = $data['answer'];
+                $bestTag = $data['tag'];
+            }
+        }
+
+        return [
+            'score' => $bestScore,
+            'answer' => $bestAnswer,
+            'tag' => $bestTag
+        ];
+    }
+
+    // Fungsi untuk memprediksi tag dari pertanyaan
     private function predictTag($input)
     {
         $inputWords = preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', $input));
@@ -565,6 +375,7 @@ class Chatbot extends Controller
                 $wordCount = $this->wordTagCounts[$tag][$word] ?? 0;
                 $totalWordsInTag = array_sum($this->wordTagCounts[$tag]);
 
+                // Laplace smoothing
                 $logProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
             }
 
@@ -575,6 +386,7 @@ class Chatbot extends Controller
         return array_key_first($scores);
     }
 
+    // Fungsi untuk mendapatkan jawaban berdasarkan tag dengan similarity yang lebih ketat
     private function getAnswerByTag($tag, $input)
     {
         if (!isset($this->tagAnswers[$tag])) {
@@ -583,43 +395,55 @@ class Chatbot extends Controller
 
         $bestScore = 0;
         $bestAnswer = null;
-        $defaultAnswer = $this->tagAnswers[$tag][array_rand($this->tagAnswers[$tag])];
+        $threshold = 60; // Threshold yang lebih tinggi
 
+        // Cari jawaban yang paling mirip dalam tag yang sama
         foreach ($this->dataset as $data) {
             if ($data['tag'] === $tag) {
                 similar_text($input, $data['question'], $percent);
-                if ($percent > $bestScore) {
+                if ($percent > $bestScore && $percent > $threshold) {
                     $bestScore = $percent;
                     $bestAnswer = $data['answer'];
                 }
             }
         }
 
-        $answer = ($bestScore > 40) ? $bestAnswer : $defaultAnswer; // Naikkan threshold
-
-        if (empty($answer)) {
-            return "Maaf, saya belum mengerti maksud kamu.";
+        // Jika tidak ada yang memenuhi threshold, kembalikan null agar bisa dicoba dengan Gemini
+        if ($bestScore < $threshold) {
+            return null;
         }
 
-        return $answer;
+        return $bestAnswer ?: "Maaf, saya belum mengerti maksud kamu.";
     }
 
-    // Fungsi yang diperbaiki untuk menyimpan pertanyaan yang tidak terjawab
-    private function saveUnansweredQuestion($question, $reason = 'unknown')
+    // Fungsi untuk menangani pertanyaan yang tidak ada dalam database
+    private function getInformationForUnknownQuery($input)
     {
+        $randomInfo = $this->defaultInformation[array_rand($this->defaultInformation)];
+        return $randomInfo . " Pertanyaan Anda: \"" . $input . "\" telah diteruskan ke tim customer service kami.";
+    }
+
+    // Fungsi untuk menyimpan pertanyaan yang tidak terjawab ke database
+    private function saveUnansweredQuestion($question)
+    {
+        // Cek apakah pertanyaan sudah ada di database
         $existingQuestion = $this->unansweredQuestionModel
             ->where('question', $question)
             ->first();
             
+        // Jika pertanyaan belum ada di database, simpan
         if (!$existingQuestion) {
             $this->unansweredQuestionModel->save([
                 'question' => $question,
                 'status' => 'pending',
-                'reason' => $reason, // Tambahan: alasan kenapa tidak terjawab
+                'priority' => 'normal', // Tambahkan priority jika ada field ini
                 'created_at' => date('Y-m-d H:i:s')
             ]);
             
-            log_message('info', 'Pertanyaan baru disimpan ke database dengan alasan: ' . $reason . ' - ' . $question);
+            log_message('info', 'Pertanyaan baru disimpan ke database: ' . $question);
+            
+            // Optional: Kirim notifikasi ke admin (bisa ditambahkan sesuai kebutuhan)
+            $this->notifyAdmin($question);
         } else {
             // Update frequency jika pertanyaan sudah ada
             $this->unansweredQuestionModel->update($existingQuestion['id'], [
@@ -629,26 +453,31 @@ class Chatbot extends Controller
         }
     }
 
-    // Fungsi lainnya tetap sama seperti sebelumnya
+    // Fungsi untuk menyimpan pertanyaan dan jawaban ke tabel answered_questions
     private function saveToAnsweredQuestions($question, $answer, $tag)
     {
+        // Cek apakah pertanyaan sudah ada di unanswered_questions
         $unansweredQuestion = $this->unansweredQuestionModel
             ->where('question', $question)
             ->first();
             
+        // Prioritaskan tag dari unanswered_questions jika sudah ditentukan oleh admin
         if ($unansweredQuestion && !empty($unansweredQuestion['tag'])) {
             $tag = $unansweredQuestion['tag'];
         }
         
+        // Pastikan tag tidak kosong
         if (empty($tag)) {
             $tag = 'general';
         }
         
+        // Cek apakah pertanyaan sudah ada di answered_questions
         $existingQuestion = $this->answeredQuestionModel
             ->where('question', $question)
             ->first();
             
         if ($existingQuestion) {
+            // Update pertanyaan yang sudah ada
             $this->answeredQuestionModel->update($existingQuestion['id'], [
                 'answer' => $answer,
                 'tag' => $tag,
@@ -656,6 +485,7 @@ class Chatbot extends Controller
                 'last_asked_at' => date('Y-m-d H:i:s')
             ]);
         } else {
+            // Simpan pertanyaan baru
             $this->answeredQuestionModel->save([
                 'question' => $question,
                 'answer' => $answer,
@@ -666,17 +496,29 @@ class Chatbot extends Controller
             ]);
         }
         
+        // Update status pertanyaan di unanswered_questions
         if ($unansweredQuestion) {
             $this->unansweredQuestionModel->update($unansweredQuestion['id'], [
                 'status' => 'answered',
-                'answer' => $answer
+                'answer' => $answer,
+                'answered_at' => date('Y-m-d H:i:s')
             ]);
         }
     }
 
-    public function moveAnsweredQuestionToAnotherTable($question, $answer, $tag)
+    // Fungsi untuk mengirim notifikasi ke admin (optional)
+    private function notifyAdmin($question)
     {
-        return $this->saveToAnsweredQuestions($question, $answer, $tag);
+        // Implementasi notifikasi admin bisa berupa:
+        // - Email
+        // - Push notification
+        // - Webhook ke sistem admin
+        // - Log khusus untuk admin dashboard
+        
+        log_message('info', 'ADMIN NOTIFICATION: New unanswered question - ' . $question);
+        
+        // Contoh: Bisa ditambahkan email notification
+        // $this->sendEmailToAdmin($question);
     }
 
     public function showFrequentQuestions($tag = null)
