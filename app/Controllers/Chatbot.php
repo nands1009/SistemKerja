@@ -5,9 +5,6 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\UnansweredQuestionModel;
 use App\Models\AnsweredQuestionsModel;
-use App\Models\EmployeeModel; // Tambahkan model yang diperlukan
-use App\Models\PerformanceModel;
-use App\Models\ReportModel;
 use Exception;
 
 class Chatbot extends Controller
@@ -39,7 +36,6 @@ class Chatbot extends Controller
         ]
     ];
 
-    // Daftar kata kunci untuk respons khusus
     protected $keywordResponses = [
         'pagi' => 'Selamat pagi! Saya di sini untuk membantu Anda dengan sistem kinerja perusahaan. Ada yang bisa dibantu?',
         'siang' => 'Selamat siang! Apakah ada kendala dengan laporan kerja atau sistem kinerja yang perlu bantuan?',
@@ -58,9 +54,6 @@ class Chatbot extends Controller
 
     protected $unansweredQuestionModel;
     protected $answeredQuestionModel;
-    protected $employeeModel;
-    protected $performanceModel;
-    protected $reportModel;
 
     public function __construct()
     {
@@ -68,9 +61,6 @@ class Chatbot extends Controller
         
         $this->unansweredQuestionModel = new UnansweredQuestionModel();
         $this->answeredQuestionModel = new AnsweredQuestionsModel();
-        $this->employeeModel = new EmployeeModel(); // Inisialisasi model yang diperlukan
-        $this->performanceModel = new PerformanceModel();
-        $this->reportModel = new ReportModel();
         
         $this->loadDataset();
     }
@@ -149,11 +139,11 @@ class Chatbot extends Controller
             return $this->response->setJSON(['message' => $similarMatch['answer']]);
         }
 
-        // Jika skor rendah atau tidak ada kecocokan, gunakan Context-Aware Gemini
-        $contextualAnswer = $this->getContextualGeminiResponse($input);
-        if ($contextualAnswer && $contextualAnswer !== 'error') {
-            $this->saveToAnsweredQuestions($input, $contextualAnswer, 'ai_contextual');
-            return $this->response->setJSON(['message' => $contextualAnswer]);
+        // Gunakan Dataset-Aware Gemini untuk skor rendah atau tidak ada kecocokan
+        $datasetAwareAnswer = $this->getDatasetAwareGeminiResponse($input);
+        if ($datasetAwareAnswer && $datasetAwareAnswer !== 'error') {
+            $this->saveToAnsweredQuestions($input, $datasetAwareAnswer, 'ai_contextual');
+            return $this->response->setJSON(['message' => $datasetAwareAnswer]);
         }
 
         // Fallback ke Naive Bayes
@@ -171,16 +161,68 @@ class Chatbot extends Controller
         return $this->response->setJSON(['message' => $answer]);
     }
 
-    // Fungsi utama: Context-Aware Gemini Response
-    private function getContextualGeminiResponse($question)
+    // Method untuk mencari referensi dataset yang relevan
+    private function findRelevantDatasetReferences($question)
+    {
+        $relevantData = [];
+        $questionWords = preg_split('/\s+/', strtolower($question));
+        
+        foreach ($this->dataset as $data) {
+            $dataWords = preg_split('/\s+/', strtolower($data['question']));
+            $commonWords = array_intersect($questionWords, $dataWords);
+            
+            if (count($commonWords) >= 1) { // Minimal 1 kata sama
+                similar_text(strtolower($question), strtolower($data['question']), $percent);
+                $relevantData[] = [
+                    'question' => $data['question'],
+                    'answer' => $data['answer'],
+                    'tag' => $data['tag'],
+                    'similarity' => $percent
+                ];
+            }
+        }
+        
+        // Sort by similarity
+        usort($relevantData, function($a, $b) {
+            return $b['similarity'] - $a['similarity'];
+        });
+        
+        return array_slice($relevantData, 0, 3); // Top 3 most relevant
+    }
+
+    // Method untuk membangun knowledge base summary
+    private function buildKnowledgeBaseSummary()
+    {
+        $categories = [];
+        
+        foreach ($this->dataset as $data) {
+            $tag = $data['tag'];
+            if (!isset($categories[$tag])) {
+                $categories[$tag] = [];
+            }
+            $categories[$tag][] = $data['question'];
+        }
+        
+        $summary = [];
+        foreach ($categories as $tag => $questions) {
+            $summary[] = "{$tag}: " . count($questions) . " FAQ tersedia";
+        }
+        
+        return implode(", ", $summary);
+    }
+
+    // Dataset-Aware Gemini Response
+    private function getDatasetAwareGeminiResponse($question)
     {
         try {
-            // Dapatkan context dari sistem
+            // Dapatkan context sistem
             $systemInfo = $this->getSystemContext($question);
-            $userContext = $this->getUserContext();
             
-            // Buat prompt yang natural dan kontekstual
-            $prompt = $this->buildContextualPrompt($question, $systemInfo, $userContext);
+            // Dapatkan referensi dataset yang relevan
+            $relevantDataset = $this->findRelevantDatasetReferences($question);
+            
+            // Build prompt yang comprehensive
+            $prompt = $this->buildDatasetAwarePrompt($question, $systemInfo, $relevantDataset);
             
             $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=" . $this->geminiApiKey;
             
@@ -195,16 +237,10 @@ class Chatbot extends Controller
                     ]
                 ],
                 'generationConfig' => [
-                    'temperature' => 0.4, // Lebih konsisten
-                    'maxOutputTokens' => 300,
+                    'temperature' => 0.3, // Lebih konsisten dengan dataset
+                    'maxOutputTokens' => 350,
                     'topP' => 0.9,
                     'topK' => 40
-                ],
-                'safetySettings' => [
-                    [
-                        'category' => 'HARM_CATEGORY_HARASSMENT',
-                        'threshold' => 'BLOCK_MEDIUM_AND_ABOVE'
-                    ]
                 ]
             ];
 
@@ -213,9 +249,7 @@ class Chatbot extends Controller
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Content-Type: application/json',
-            ]);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
             curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 
             $response = curl_exec($ch);
@@ -223,7 +257,7 @@ class Chatbot extends Controller
             curl_close($ch);
 
             if ($httpCode !== 200) {
-                log_message('error', 'Gemini API HTTP ' . $httpCode . ': ' . $response);
+                log_message('error', 'Dataset-aware Gemini API HTTP ' . $httpCode);
                 return 'error';
             }
 
@@ -231,21 +265,54 @@ class Chatbot extends Controller
             
             if (isset($result['candidates'][0]['content']['parts'][0]['text'])) {
                 $rawAnswer = trim($result['candidates'][0]['content']['parts'][0]['text']);
-                
-                // Post-process jawaban agar lebih natural
-                $naturalAnswer = $this->naturalizeAnswer($rawAnswer, $question);
-                
-                log_message('info', 'Contextual Gemini response: ' . $naturalAnswer);
-                return $naturalAnswer;
-            } else {
-                log_message('error', 'Unexpected Gemini response: ' . $response);
-                return 'error';
+                return $this->naturalizeAnswer($rawAnswer, $question);
             }
+            
+            return 'error';
 
         } catch (Exception $e) {
-            log_message('error', 'Gemini API error: ' . $e->getMessage());
+            log_message('error', 'Dataset-aware Gemini error: ' . $e->getMessage());
             return 'error';
         }
+    }
+
+    // Build prompt dengan dataset context
+    private function buildDatasetAwarePrompt($question, $systemInfo, $relevantDataset)
+    {
+        $basePrompt = "Anda adalah staff IT support berpengalaman di " . $this->systemContext['company_name'] . " yang menguasai sistem manajemen kinerja perusahaan. ";
+        
+        // Tambahkan knowledge base summary
+        $knowledgePrompt = "\nSistem yang Anda kuasai:\n";
+        foreach ($this->systemContext['system_features'] as $feature => $description) {
+            $knowledgePrompt .= "- {$description}\n";
+        }
+        
+        // Tambahkan referensi dataset yang relevan
+        $referencePrompt = "";
+        if (!empty($relevantDataset)) {
+            $referencePrompt = "\nFAQ Terkait yang Sudah Ada di Sistem:\n";
+            foreach ($relevantDataset as $ref) {
+                $referencePrompt .= "• {$ref['question']} → {$ref['answer']}\n";
+            }
+        }
+        
+        // Context proses spesifik
+        $processPrompt = "";
+        if (isset($systemInfo['feature']) && isset($this->systemContext['common_processes']['cara_'.$systemInfo['feature']])) {
+            $processPrompt = "\nProses standar untuk {$systemInfo['feature']}: " . $this->systemContext['common_processes']['cara_'.$systemInfo['feature']] . "\n";
+        }
+        
+        $instructionPrompt = "\nCara menjawab:\n";
+        $instructionPrompt .= "- Jawab seperti staff IT yang berpengalaman, gunakan bahasa Indonesia natural\n";
+        $instructionPrompt .= "- Referensikan FAQ yang relevan di atas jika ada\n";
+        $instructionPrompt .= "- Berikan langkah-langkah spesifik jika diperlukan\n";
+        $instructionPrompt .= "- Jangan sebut diri sebagai AI, berperan sebagai staff support internal\n";
+        $instructionPrompt .= "- Gunakan frasa seperti 'berdasarkan pengalaman', 'biasanya', 'saya bantu'\n";
+        $instructionPrompt .= "- Jika tidak yakin 100%, sarankan konsultasi supervisor atau cek dokumentasi\n\n";
+        
+        $questionPrompt = "Pertanyaan Karyawan: " . $question . "\n\nJawaban Support Staff:";
+        
+        return $basePrompt . $knowledgePrompt . $referencePrompt . $processPrompt . $instructionPrompt . $questionPrompt;
     }
 
     // Dapatkan konteks sistem berdasarkan pertanyaan
@@ -257,62 +324,19 @@ class Chatbot extends Controller
         // Analisis kata kunci untuk menentukan fitur yang relevan
         if (strpos($question, 'laporan') !== false || strpos($question, 'report') !== false) {
             $context['feature'] = 'laporan_kinerja';
-            $context['process'] = $this->systemContext['common_processes']['cara_input_laporan'];
         } elseif (strpos($question, 'kinerja') !== false || strpos($question, 'evaluasi') !== false) {
             $context['feature'] = 'evaluasi_pegawai';
-            $context['process'] = $this->systemContext['common_processes']['cara_cek_kinerja'];
         } elseif (strpos($question, 'target') !== false || strpos($question, 'kpi') !== false) {
             $context['feature'] = 'target_kpi';
-            $context['process'] = $this->systemContext['common_processes']['cara_update_target'];
         } elseif (strpos($question, 'cuti') !== false || strpos($question, 'absen') !== false) {
             $context['feature'] = 'absensi';
-            $context['process'] = $this->systemContext['common_processes']['cara_request_cuti'];
+        } elseif (strpos($question, 'riwayat') !== false || strpos($question, 'history') !== false) {
+            $context['feature'] = 'riwayat_pekerjaan';
         } else {
             $context['feature'] = 'general';
-            $context['process'] = 'Silakan navigasi melalui dashboard utama untuk mengakses fitur yang diperlukan';
-        }
-
-        // Tambahkan informasi fitur
-        if (isset($this->systemContext['system_features'][$context['feature']])) {
-            $context['description'] = $this->systemContext['system_features'][$context['feature']];
         }
 
         return $context;
-    }
-
-    // Dapatkan konteks user (bisa dikembangkan lebih lanjut)
-    private function getUserContext()
-    {
-        // Placeholder - bisa diisi dengan data session user aktif
-        return [
-            'role' => 'employee', // Bisa didapat dari session
-            'department' => 'general', // Bisa didapat dari database user
-            'access_level' => 'standard'
-        ];
-    }
-
-    // Build prompt yang kontekstual dan natural
-    private function buildContextualPrompt($question, $systemInfo, $userContext)
-    {
-        $basePrompt = "Anda adalah asisten virtual internal " . $this->systemContext['company_name'] . " yang membantu karyawan dengan sistem manajemen kinerja. ";
-        
-        $rolePrompt = "Berikan jawaban yang praktis, friendly, dan seolah-olah Anda adalah staff IT support yang berpengalaman dengan sistem perusahaan. ";
-        
-        $contextPrompt = "";
-        if (isset($systemInfo['feature']) && $systemInfo['feature'] !== 'general') {
-            $contextPrompt = "Pertanyaan ini terkait dengan " . ($systemInfo['description'] ?? $systemInfo['feature']) . ". ";
-            if (isset($systemInfo['process'])) {
-                $contextPrompt .= "Proses umumnya: " . $systemInfo['process'] . ". ";
-            }
-        }
-        
-        $instructionPrompt = "Jawab dalam bahasa Indonesia yang natural dan jangan menyebutkan bahwa Anda adalah AI. ";
-        $instructionPrompt .= "Gunakan istilah seperti 'saya akan bantu', 'berdasarkan pengalaman', 'biasanya', dll. ";
-        $instructionPrompt .= "Jika tidak yakin, sarankan untuk menghubungi supervisor atau cek dokumentasi sistem. ";
-        
-        $questionPrompt = "\n\nPertanyaan: " . $question . "\n\nJawaban:";
-        
-        return $basePrompt . $rolePrompt . $contextPrompt . $instructionPrompt . $questionPrompt;
     }
 
     // Naturalisasi jawaban agar tidak terkesan AI
@@ -320,34 +344,52 @@ class Chatbot extends Controller
     {
         // Hapus indikasi AI yang terlalu jelas
         $replacements = [
-            'sebagai AI' => 'berdasarkan pengalaman dengan sistem',
-            'saya adalah AI' => 'saya dari tim support sistem',
-            'sistem AI' => 'sistem bantuan',
+            'sebagai AI' => 'berdasarkan pengalaman sistem',
+            'saya adalah AI' => 'saya dari tim support',
             'artificial intelligence' => 'sistem otomatis',
-            'machine learning' => 'algoritma sistem'
+            'machine learning' => 'algoritma sistem',
+            'sebagai asisten AI' => 'sebagai staff support'
         ];
         
         $naturalAnswer = str_ireplace(array_keys($replacements), array_values($replacements), $answer);
         
-        // Tambahkan variasi natural di awal jawaban
+        // Tambahkan variasi natural di awal jika belum ada
         $naturalStarters = [
             'Baik, saya bantu. ',
             'Untuk masalah ini, ',
-            'Berdasarkan pengalaman, ',
+            'Berdasarkan pengalaman dengan sistem, ',
             'Biasanya untuk kasus seperti ini, ',
-            'Saya coba jelaskan. '
+            'Saya coba jelaskan step by step. ',
+            'Oh iya, untuk hal ini '
         ];
         
-        // Jika jawaban belum dimulai dengan starter natural, tambahkan
-        if (!preg_match('/^(baik|untuk|berdasarkan|biasanya|saya)/i', trim($naturalAnswer))) {
+        // Cek apakah jawaban sudah natural
+        $isAlreadyNatural = preg_match('/^(baik|untuk|berdasarkan|biasanya|saya|oh|kalau)/i', trim($naturalAnswer));
+        
+        if (!$isAlreadyNatural) {
             $starter = $naturalStarters[array_rand($naturalStarters)];
             $naturalAnswer = $starter . lcfirst(trim($naturalAnswer));
+        }
+        
+        // Tambahkan closing yang supportive random
+        $supportiveEndings = [
+            ' Semoga membantu!',
+            ' Kalau masih bingung, bisa langsung tanya saya lagi.',
+            ' Mudah kan prosesnya?',
+            ' Coba dulu ya, kalau ada kendala kabari saya.',
+            ''
+        ];
+        
+        // 30% chance untuk menambah ending
+        if (rand(1, 10) <= 3) {
+            $ending = $supportiveEndings[array_rand($supportiveEndings)];
+            $naturalAnswer = rtrim($naturalAnswer, '.') . $ending;
         }
         
         return trim($naturalAnswer);
     }
 
-    // Method lainnya tetap sama seperti sebelumnya...
+    // Method existing lainnya...
     private function checkTechnicalAnswer($input)
     {
         $result = $this->unansweredQuestionModel->findSimilarQuestion($input);
@@ -364,6 +406,8 @@ class Chatbot extends Controller
         $inputWords = preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', $input));
         $totalDocs = array_sum($this->tagCounts);
         $vocabSize = count($this->vocab);
+
+        if ($totalDocs == 0 || $vocabSize == 0) return 0;
 
         $scores = [];
         $totalScore = 0;
@@ -383,7 +427,7 @@ class Chatbot extends Controller
             $totalScore += exp($scores[$tag]);
         }
 
-        return isset($scores[$predictedTag]) ? exp($scores[$predictedTag]) / $totalScore : 0;
+        return isset($scores[$predictedTag]) && $totalScore > 0 ? exp($scores[$predictedTag]) / $totalScore : 0;
     }
 
     private function findExactMatch($input)
@@ -430,6 +474,8 @@ class Chatbot extends Controller
 
     private function predictTag($input)
     {
+        if (empty($this->tagCounts)) return 'general';
+
         $inputWords = preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', $input));
         $totalDocs = array_sum($this->tagCounts);
         $vocabSize = count($this->vocab);
@@ -441,13 +487,17 @@ class Chatbot extends Controller
             foreach ($inputWords as $word) {
                 if ($word === '') continue;
                 $wordCount = $this->wordTagCounts[$tag][$word] ?? 0;
-                $totalWordsInTag = array_sum($this->wordTagCounts[$tag]);
-                $logProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
+                $totalWordsInTag = array_sum($this->wordTagCounts[$tag] ?? []);
+                if ($totalWordsInTag > 0) {
+                    $logProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
+                }
             }
 
             $scores[$tag] = $logProb;
         }
 
+        if (empty($scores)) return 'general';
+        
         arsort($scores);
         return array_key_first($scores);
     }
