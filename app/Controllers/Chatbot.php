@@ -17,24 +17,146 @@ class Chatbot extends Controller
     protected $geminiApiKey;
     
     // Context sistem kinerja perusahaan
-    protected $systemContext = [
-        'company_name' => 'PT. ARMINDO',
-        'system_features' => [
-            'laporan_kinerja' => 'Pegawai dapat membuat laporan kerja harian melalui form laporan kerja di sistem.',
-            'evaluasi_pegawai' => 'Penilaian kinerja pegawai dengan berbagai metrik',
-            'riwayat_pekerjaan' => 'Tracking riwayat tugas dan pencapaian pegawai',
-            'absensi' => 'Sistem absensi digital dan monitoring kehadiran',
-            'target_kpi' => 'Penetapan dan monitoring KPI individual dan tim',
-            'feedback_360' => 'Sistem feedback dari atasan, rekan kerja, dan bawahan',
-            'pelatihan_development' => 'Tracking program pelatihan dan pengembangan skill'
+protected $systemContext = [
+    'company_name' => 'PT. ARMINDO',
+    'system_features' => [
+        // LAPORAN KERJA
+        'laporan_kerja' => [
+            'description' => 'Sistem manajemen laporan kerja harian pegawai',
+            'functions' => [
+                'buat_laporan' => 'Pegawai dapat membuat laporan kerja harian melalui form laporan kerja di sistem',
+                'kirim_laporan' => 'Pegawai dapat mengirimkan laporan yang telah dibuat ke manajer untuk ditinjau',
+                'edit_laporan' => 'Pegawai dapat mengedit laporan yang ditolak oleh manajer, tapi tidak bisa edit laporan yang sudah di-approve',
+                'riwayat_laporan' => 'Menu Riwayat Laporan Kerja untuk melihat seluruh laporan yang telah dibuat sebelumnya',
+                'status_laporan' => 'Sistem menampilkan status: Pending, Approved, atau Rejected',
+                'notifikasi' => 'Pegawai menerima notifikasi ketika laporan disetujui atau ditolak',
+                'approval_manajer' => 'Manajer dapat melakukan persetujuan atau penolakan laporan kerja pegawai dalam divisi mereka',
+                'revisi_laporan' => 'Untuk revisi laporan yang sudah approved, buat laporan baru dengan menambahkan kata "Revisi" pada judul'
+            ],
+            'required_info' => 'Nama pegawai, tanggal, rincian pekerjaan, hasil pekerjaan, kendala yang dihadapi, serta solusi yang diterapkan',
+            'access_level' => [
+                'pegawai' => 'Hanya dapat mengakses laporan kerja miliknya sendiri',
+                'manajer' => 'Dapat melihat laporan kerja pegawai dalam divisi mereka',
+                'admin' => 'Dapat melihat semua laporan kerja pegawai',
+                'direksi' => 'Dapat melihat riwayat laporan kerja dari seluruh pegawai'
+            ]
         ],
-        'common_processes' => [
-            'cara_input_laporan' => 'Login → Dashboard → Laporan Harian → Isi Form → Submit',
-            'cara_cek_kinerja' => 'Menu Evaluasi → Pilih Periode → Lihat Grafik Performance',
-            'cara_update_target' => 'Menu KPI → Edit Target → Konfirmasi dengan Supervisor',
-            'cara_request_cuti' => 'Menu Absensi → Request Cuti → Tunggu Approval'
+
+        // RENCANA KERJA
+        'rencana_kerja' => [
+            'description' => 'Sistem perencanaan dan manajemen target kerja',
+            'functions' => [
+                'buat_rencana' => 'Pegawai dapat mengakses fitur rencana kerja, memasukkan target pekerjaan, dan menyimpannya',
+                'edit_rencana' => 'Pegawai bisa mengedit atau menghapus rencana kerja selama belum digunakan sebagai referensi laporan',
+                'filter_tanggal' => 'Dapat memfilter rencana kerja berdasarkan rentang tanggal tertentu',
+                'atur_jadwal' => 'Mengatur ulang jadwal melalui menu Edit pada rencana kerja yang ingin diubah'
+            ],
+            'access_level' => [
+                'pegawai' => 'Dapat membuat rencana kerja dan mencari rencana kerja yang sudah dibuat',
+                'manajer' => 'Dapat membuat rencana kerja dan melihat rencana kerja pegawai dalam divisi mereka, tidak bisa melihat rencana kerja pegawai di divisi lain'
+            ]
+        ],
+
+        // EVALUASI KINERJA & PENILAIAN
+        'evaluasi_kinerja' => [
+            'description' => 'Sistem penilaian dan evaluasi kinerja pegawai',
+            'functions' => [
+                'penilaian_pegawai' => 'Manajer dapat menilai pegawai dalam divisi mereka menggunakan fitur evaluasi',
+                'penilaian_manajer' => 'Direksi dapat menilai kinerja manajer dalam organisasi',
+                'riwayat_penilaian' => 'Pegawai dapat mengakses halaman riwayat penilaian untuk melihat lampiran penilaian miliknya sendiri',
+                'periode_penilaian' => 'Admin dapat membuka periode penilaian melalui menu pengaturan waktu',
+                'hasil_evaluasi' => 'Hasil evaluasi kinerja baru bisa diakses setelah semua tahap review oleh manajer dan direksi selesai',
+                'laporan_evaluasi' => 'Direksi dapat melihat laporan rangkuman evaluasi kinerja pegawai dan manajer yang dikompilasi oleh HRD'
+            ],
+            'kriteria_penilaian' => [
+                'pegawai' => 'Produktivitas, keterampilan teknis, kerja sama tim, dan inisiatif dalam menyelesaikan tugas',
+                'manajer' => 'Efektivitas kepemimpinan, kualitas keputusan strategis, serta kemampuan dalam mengelola tim dan proyek'
+            ],
+            'access_level' => [
+                'pegawai' => 'Hanya dapat menerima hasil penilaian, tidak bisa menilai rekan kerja dalam divisi',
+                'manajer' => 'Dapat menilai pegawai dalam divisi mereka, tidak bisa menilai pegawai di luar divisi',
+                'direksi' => 'Dapat menilai kinerja manajer'
+            ]
+        ],
+
+        // PENGAJUAN PENGHARGAAN & SP
+        'pengajuan_penghargaan' => [
+            'description' => 'Sistem pengajuan penghargaan dan surat peringatan (SP)',
+            'functions' => [
+                'ajukan_penghargaan' => 'Manajer dapat mengisi form pengajuan penghargaan di halaman evaluasi kinerja',
+                'ajukan_sp' => 'Manajer dapat mengajukan SP kepada HRD untuk pegawai yang berkinerja buruk',
+                'riwayat_pengajuan' => 'Menu Riwayat Penghargaan untuk melihat daftar lengkap pengajuan yang telah diajukan dan diterima',
+                'status_pengajuan' => 'Manajer akan menerima pemberitahuan mengenai jawaban persetujuan yang diajukan ke HRD',
+                'notifikasi_hasil' => 'Sistem mengirimkan pemberitahuan resmi ketika pegawai menerima penghargaan atau SP'
+            ],
+            'rules' => [
+                'edit_sp' => 'Setelah pengajuan SP dikirim, tidak dapat melakukan perubahan. Jika revisi diperlukan, harus mengajukan ulang',
+                'approval_hrd' => 'Semua pengajuan penghargaan dan SP harus disetujui oleh HRD'
+            ]
+        ],
+
+        // SISTEM NLP (Natural Language Processing)
+        'pengaturan_nlp' => [
+            'description' => 'Sistem NLP untuk membantu menyelesaikan masalah teknis',
+            'functions' => [
+                'analisis_masalah' => 'NLP dapat menganalisis deskripsi masalah teknis dan memberikan solusi berdasarkan data historis',
+                'rekomendasi_evaluasi' => 'NLP menganalisis pola kerja pegawai dan memberikan rekomendasi berbasis data laporan serta hasil penilaian sebelumnya',
+                'deteksi_anomali' => 'Manajer dapat menggunakan NLP untuk mendeteksi anomali dalam laporan dan mengidentifikasi area yang perlu ditingkatkan',
+                'konfigurasi_admin' => 'Admin dapat mengonfigurasi sistem NLP melalui halaman manajemen NLP'
+            ],
+            'access_level' => [
+                'pegawai' => 'Dapat menggunakan sistem NLP untuk membantu menyelesaikan masalah teknis',
+                'manajer' => 'Dapat menggunakan NLP untuk analisis laporan dan deteksi anomali',
+                'admin' => 'Dapat mengonfigurasi dan mengatur parameter sistem NLP',
+                'direksi' => 'Dapat menggunakan sistem NLP untuk menyelesaikan masalah teknis'
+            ]
+        ],
+
+        // MANAJEMEN WAKTU & PERIODE
+        'waktu_penilaian' => [
+            'description' => 'Sistem pengaturan periode dan waktu penilaian',
+            'functions' => [
+                'buka_periode' => 'Admin dapat membuka periode penilaian melalui menu pengaturan waktu',
+                'atur_waktu' => 'Admin mengisi form dengan tanggal dan waktu mulai serta akhir penilaian',
+                'notifikasi_periode' => 'Pegawai menerima notifikasi ketika waktu penilaian sudah dimulai'
+            ],
+            'rules' => [
+                'akses_penilaian' => 'Pegawai hanya bisa melakukan penilaian setelah menerima notifikasi bahwa periode penilaian sudah dimulai'
+            ]
         ]
-    ];
+    ],
+
+    // COMMON PROCESSES yang diperbaiki
+    'common_processes' => [
+        'cara_input_laporan' => 'Login → Menu Laporan Kerja → Isi Form (nama, tanggal, rincian pekerjaan, hasil, kendala, solusi) → Kirim ke Manajer',
+        'cara_cek_status_laporan' => 'Menu Riwayat Laporan Kerja → Pilih laporan → Lihat status (Pending/Approved/Rejected)',
+        'cara_edit_laporan_ditolak' => 'Menu Riwayat → Pilih laporan yang ditolak → Edit sesuai catatan → Kirim ulang',
+        'cara_buat_rencana_kerja' => 'Menu Rencana Kerja → Buat Baru → Masukkan target pekerjaan → Simpan',
+        'cara_lihat_hasil_penilaian' => 'Menu Riwayat Penilaian → Lihat lampiran penilaian milik sendiri',
+        'cara_ajukan_penghargaan' => 'Halaman Evaluasi Kinerja → Isi Form Pengajuan Penghargaan → Kirim ke HRD',
+        'cara_gunakan_nlp' => 'Input deskripsi masalah teknis → Sistem NLP mencari solusi berdasarkan data historis'
+    ],
+
+    // USER ROLES yang lebih detail
+    'user_roles' => [
+        'pegawai' => [
+            'dapat' => ['buat laporan kerja', 'buat rencana kerja', 'lihat riwayat penilaian sendiri', 'gunakan NLP'],
+            'tidak_dapat' => ['edit laporan yang approved', 'hapus laporan yang sudah dikirim', 'lihat laporan orang lain', 'menilai rekan kerja']
+        ],
+        'manajer' => [
+            'dapat' => ['approve/reject laporan pegawai divisi', 'lihat rencana kerja pegawai divisi', 'nilai pegawai divisi', 'ajukan penghargaan/SP', 'gunakan NLP untuk analisis'],
+            'tidak_dapat' => ['edit laporan pegawai', 'lihat data pegawai divisi lain', 'nilai pegawai luar divisi']
+        ],
+        'admin' => [
+            'dapat' => ['lihat semua laporan kerja', 'atur periode penilaian', 'konfigurasi sistem NLP'],
+            'fokus' => 'manajemen sistem dan pengaturan teknis'
+        ],
+        'direksi' => [
+            'dapat' => ['lihat riwayat laporan semua pegawai', 'nilai kinerja manajer', 'lihat laporan evaluasi komprehensif', 'gunakan NLP'],
+            'fokus' => 'oversight dan evaluasi strategis'
+        ]
+    ]
+];
 
     protected $keywordResponses = [
         'pagi' => 'Pagi juga! Ada yang bisa dibantu?',
