@@ -6,7 +6,6 @@ question,answer,tag
 "Bagaimana cara mengetahui apakah laporan kerja saya sudah diterima?","Anda akan menerima notifikasi begitu laporan Anda disetujui. Selain itu, Anda juga dapat memeriksa status laporan di menu 'Riwayat Laporan Kerja' untuk melihat status setiap laporan yang telah Anda buat.",laporan_kerja
 "Apakah saya dapat mengedit laporan setelah laporan saya diapprove?","Setelah laporan disetujui, laporan tersebut bersifat final dan tidak bisa diedit lagi. Pastikan laporan Anda sudah lengkap dan benar sebelum disetujui.",laporan_kerja
 "Bagaimana cara pegawai mengajukan laporan kerja harian?","Pegawai dapat mengisi formulir laporan kerja harian dan mengirimkannya ke manajer untuk ditinjau.",laporan_kerja
-"Bagaimana cara membuat laporan kerja harian?","Pegawai dapat mengakses formulir laporan kerja, mengisi rincian tugas, jam kerja, serta kendala yang dihadapi.",laporan_kerja
 "Bagaimana pegawai dapat menghapus laporan kerja yang sudah dibuat?","Laporan hanya dapat dihapus jika belum dikirim ke manajer.",laporan_kerja
 "Bagaimana cara mengetahui apakah laporan kerja saya sudah dikirimkan?","Sistem akan mengirimkan notifikasi apakah laporan telah disetujui, ditolak, atau masih dalam tinjauan",laporan_kerja
 "Apakah manajer dapat melakukan persetujuan atau penolakan laporan kerja pegawai?","Ya, manajer dapat melakukan persetujuan atau penolakan laporan kerja pegawai dalam divisi mereka.",laporan_kerja
