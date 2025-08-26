@@ -24,7 +24,8 @@ class Chatbot extends Controller
         'malam' => 'Selamat malam! Ada yang bisa saya bantu?',
         'halo' => 'Halo! Ada yang bisa saya bantu?',
         'hai' => 'Hai! Ada yang bisa saya bantu hari ini?',
-        'hi' => 'Hi! Ada yang bisa saya bantu?'
+        'hi' => 'Hi! Ada yang bisa saya bantu?',
+        'bagaimana cara mengedit recana kerja' => 'Rencan kerja anda bisa anda edit, dengan cara anda klik menu rencan kerja dan anda klik button edit di sebelah button details'
     ];
 
     // Daftar informasi default untuk pertanyaan yang tidak terjawab
