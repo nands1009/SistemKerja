@@ -24,8 +24,7 @@ class Chatbot extends Controller
         'malam' => 'Selamat malam! Ada yang bisa saya bantu?',
         'halo' => 'Halo! Ada yang bisa saya bantu?',
         'hai' => 'Hai! Ada yang bisa saya bantu hari ini?',
-        'hi' => 'Hi! Ada yang bisa saya bantu?',
-        'bagaimana cara mengedit recana kerja' => 'Rencan kerja anda bisa anda edit, dengan cara anda klik menu rencan kerja dan anda klik button edit di sebelah button details'
+        'hi' => 'Hi! Ada yang bisa saya bantu?'
     ];
 
     // Daftar informasi default untuk pertanyaan yang tidak terjawab
@@ -116,17 +115,17 @@ class Chatbot extends Controller
             return $this->response->setJSON(['message' => $exactMatch]);
         }
 
-        // LANGKAH 3: Cek kecocokan berdasarkan similar_text
+        // LANGKAH 3: Cek kecocokan berdasarkan similar_text dengan improved algorithm
         $similarMatch = $this->findSimilarMatch($input);
-        if ($similarMatch && $similarMatch['score'] > 80) {
-            $tag = $similarMatch['tag']; // Tambahkan tag ke hasil similar_text
+        if ($similarMatch && $similarMatch['score'] > 70) { // Raised threshold from 80 to 70
+            $tag = $similarMatch['tag'];
             // Simpan pertanyaan yang mirip
             $this->saveToAnsweredQuestions($input, $similarMatch['answer'], $tag);
             return $this->response->setJSON(['message' => $similarMatch['answer']]);
         }
 
-        // LANGKAH 4: Jika skor kemiripan rendah, gunakan Gemini AI
-        if (isset($similarMatch) && $similarMatch['score'] < 50) {
+        // LANGKAH 4: Jika skor kemiripan rendah atau ada konflik konteks, gunakan Gemini AI
+        if (isset($similarMatch) && $similarMatch['score'] < 40) { // Lowered threshold from 50 to 40
             // Coba gunakan Gemini AI untuk menjawab
             $geminiAnswer = $this->getGeminiResponse($input);
             if ($geminiAnswer && $geminiAnswer !== 'error') {
@@ -320,17 +319,59 @@ class Chatbot extends Controller
         return 'unknown';
     }
 
-    // Fungsi mencari kecocokan mirip dengan menggunakan similar_text
+    // Fungsi mencari kecocokan mirip dengan menggunakan similar_text + keyword matching
     private function findSimilarMatch($input)
     {
         $bestScore = 0;
         $bestAnswer = null;
         $bestTag = 'unknown';
+        
+        // Extract key words from input
+        $inputWords = preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', strtolower($input)));
 
         foreach ($this->dataset as $data) {
+            $questionWords = preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', strtolower($data['question'])));
+            
+            // Calculate similar_text score
             similar_text(strtolower($input), strtolower($data['question']), $percent);
-            if ($percent > $bestScore) {
-                $bestScore = $percent;
+            
+            // Bonus score for exact keyword matches
+            $keywordBonus = 0;
+            $commonWords = array_intersect($inputWords, $questionWords);
+            
+            // Give higher weight to important keywords
+            foreach ($commonWords as $word) {
+                if (strlen($word) > 3) { // Skip short words like "dan", "atau", etc.
+                    $keywordBonus += 10; // 10% bonus per matching significant word
+                }
+            }
+            
+            // Penalty for conflicting keywords
+            $conflictPenalty = 0;
+            $conflictWords = [
+                'rencana' => ['laporan', 'report'],
+                'laporan' => ['rencana', 'plan', 'planning'],
+                'edit' => ['buat', 'create', 'new'],
+                'buat' => ['edit', 'ubah', 'update'],
+                'login' => ['logout', 'keluar'],
+                'masuk' => ['keluar', 'logout']
+            ];
+            
+            foreach ($conflictWords as $inputKey => $conflicts) {
+                if (in_array($inputKey, $inputWords)) {
+                    foreach ($conflicts as $conflict) {
+                        if (in_array($conflict, $questionWords)) {
+                            $conflictPenalty += 30; // Heavy penalty for conflicting context
+                        }
+                    }
+                }
+            }
+            
+            // Final score calculation
+            $finalScore = $percent + $keywordBonus - $conflictPenalty;
+            
+            if ($finalScore > $bestScore) {
+                $bestScore = $finalScore;
                 $bestAnswer = $data['answer'];
                 $bestTag = $data['tag'];
             }
@@ -339,7 +380,7 @@ class Chatbot extends Controller
         return [
             'score' => $bestScore,
             'answer' => $bestAnswer,
-            'tag' => $bestTag // Tambahkan tag ke hasil
+            'tag' => $bestTag
         ];
     }
 
