@@ -16,25 +16,40 @@ class Chatbot extends Controller
     protected $geminiApiKey;
     protected $useGemini = true;
 
-    // Tambahkan mapping sinonim untuk meningkatkan pengenalan
+    // Mapping sinonim berdasarkan dataset yang ada
     protected $synonyms = [
-        'lihat' => ['melihat', 'cek', 'check', 'periksa', 'buka'],
-        'cara' => ['bagaimana', 'gimana', 'metode', 'langkah'],
-        'penilaian' => ['nilai', 'rating', 'score', 'evaluasi', 'assessment'],
-        'bot' => ['chatbot', 'robot', 'ai', 'assistant', 'asisten'],
-        'bantuan' => ['help', 'tolong', 'bantu'],
-        'masalah' => ['problem', 'trouble', 'kendala', 'issue']
+        'lihat' => ['melihat', 'cek', 'check', 'periksa', 'buka', 'akses', 'tampilkan'],
+        'cara' => ['bagaimana', 'gimana', 'metode', 'langkah', 'prosedur'],
+        'penilaian' => ['nilai', 'rating', 'score', 'evaluasi', 'assessment', 'menilai'],
+        'laporan' => ['report', 'dokumentasi', 'dokumen'],
+        'kerja' => ['pekerjaan', 'tugas', 'job', 'aktivitas'],
+        'rencana' => ['planning', 'plan', 'jadwal', 'target'],
+        'pegawai' => ['karyawan', 'staff', 'pekerja', 'employee'],
+        'manajer' => ['manager', 'atasan', 'supervisor', 'pimpinan'],
+        'edit' => ['ubah', 'ganti', 'revisi', 'modifikasi', 'perbaiki'],
+        'hapus' => ['delete', 'hilangkan', 'buang', 'remove'],
+        'kirim' => ['send', 'submit', 'ajukan', 'serahkan'],
+        'approve' => ['setuju', 'terima', 'acc', 'disetujui'],
+        'tolak' => ['reject', 'ditolak', 'refuse'],
+        'status' => ['kondisi', 'keadaan', 'situasi'],
+        'riwayat' => ['history', 'histori', 'catatan', 'record'],
+        'buat' => ['membuat', 'create', 'bikin', 'tambah'],
+        'penghargaan' => ['reward', 'apresiasi', 'recognition'],
+        'evaluasi' => ['penilaian', 'assessment', 'review'],
+        'kinerja' => ['performa', 'performance', 'prestasi']
     ];
 
-    // Daftar kata yang akan dihapus (stop words)
+    // Stop words yang akan dihapus untuk fokus pada kata kunci utama
     protected $stopWords = [
         'adalah', 'dengan', 'untuk', 'pada', 'dalam', 'dari', 'ke', 'di', 'yang', 
         'ini', 'itu', 'dan', 'atau', 'juga', 'sudah', 'akan', 'dapat', 'bisa',
         'apa', 'siapa', 'dimana', 'kapan', 'mengapa', 'bagaimana', 'apakah',
-        'saya', 'kamu', 'dia', 'kita', 'mereka', 'anda'
+        'saya', 'kamu', 'dia', 'kita', 'mereka', 'anda', 'ya', 'tidak', 'belum',
+        'telah', 'masih', 'harus', 'perlu', 'ingin', 'mau', 'biar', 'agar',
+        'setelah', 'sebelum', 'ketika', 'saat', 'jika', 'kalau'
     ];
 
-    // Keyword responses yang sudah ada
+    // Keyword responses yang sudah disesuaikan dengan dataset
     protected $keywordResponses = [
         'pagi' => 'Selamat pagi! Ada yang bisa saya bantu?',
         'siang' => 'Selamat siang! Ada yang bisa saya bantu?',
@@ -43,10 +58,16 @@ class Chatbot extends Controller
         'halo' => 'Halo! Ada yang bisa saya bantu?',
         'hai' => 'Hai! Ada yang bisa saya bantu hari ini?',
         'hi' => 'Hi! Ada yang bisa saya bantu?',
-        'selamat pagi' => 'Selamat pagi! Ada yang bisa saya bantu?',
-        'selamat siang' => 'Selamat siang! Ada yang bisa saya bantu?',
-        'selamat sore' => 'Selamat sore! Ada yang bisa saya bantu?',
-        'selamat malam' => 'Selamat malam! Ada yang bisa saya bantu?'
+        'selamat pagi' => 'Selamat pagi juga! Ada yang bisa dibantu?',
+        'selamat siang' => 'Selamat siang juga! Ada yang bisa dibantu?',
+        'selamat sore' => 'Selamat sore juga! Ada yang bisa dibantu?',
+        'selamat malam' => 'Selamat malam juga! Ada yang bisa dibantu?',
+        
+        // Tambahan keyword responses untuk pertanyaan umum
+        'cara lihat penilaian' => 'Pegawai dapat mengakses halaman riwayat penilaian untuk melihat lampiran penilaian miliknya sendiri.',
+        'cara melihat penilaian' => 'Pegawai dapat mengakses halaman riwayat penilaian untuk melihat lampiran penilaian miliknya sendiri.',
+        'melihat hasil penilaian' => 'Pegawai akan menerima pemberitahuan mengenai hasil penilaian dan penghargaan atau SP yang diterima.',
+        'riwayat penilaian' => 'Pegawai dapat mengakses halaman riwayat penilaian untuk melihat lampiran penilaian miliknya sendiri.'
     ];
 
     protected $defaultMessage = 'Maaf, saya tidak dapat menemukan jawaban untuk pertanyaan Anda. Pertanyaan ini akan diteruskan ke admin untuk dijawab. Mohon ditunggu, admin akan merespons segera.';
@@ -314,21 +335,28 @@ class Chatbot extends Controller
     // Perbaikan Gemini prompt
     private function buildGeminiPrompt($question, $context)
     {
-        return "Anda adalah asisten chatbot yang membantu menjawab pertanyaan seputar sistem atau aplikasi.
+        return "Anda adalah asisten chatbot untuk sistem manajemen kinerja pegawai.
 
-KONTEKS DATASET:
+KONTEKS SISTEM:
+- Sistem ini mengelola laporan kerja, rencana kerja, evaluasi kinerja, penilaian, dan penghargaan
+- User bisa berperan sebagai pegawai, manajer, direksi, atau admin
+- Setiap role memiliki akses dan fungsi yang berbeda
+
+CONTOH DATA DARI SISTEM:
 {$context}
 
-ATURAN PENTING:
-1. Prioritaskan jawaban yang konsisten dengan data yang ada di dataset
-2. Jika pertanyaan mirip dengan yang ada di dataset, berikan jawaban yang serupa
-3. Gunakan bahasa Indonesia yang natural dan membantu
-4. Jawaban maksimal 150 kata
-5. Jika tidak yakin, katakan akan menghubungkan dengan admin
+ATURAN JAWABAN:
+1. Prioritaskan jawaban berdasarkan data yang ada di sistem
+2. Jika pertanyaan tentang 'cara melihat penilaian', jawab dengan merujuk ke menu 'Riwayat Penilaian'
+3. Jika pertanyaan tentang laporan kerja, jelaskan tentang pembuatan, pengiriman, dan persetujuan
+4. Jika pertanyaan tentang rencana kerja, jelaskan cara membuat dan mengelola
+5. Gunakan bahasa Indonesia yang jelas dan membantu
+6. Jawaban maksimal 100 kata
+7. Sebutkan menu atau fitur spesifik jika relevan
 
-PERTANYAAN USER: {$question}
+PERTANYAAN: {$question}
 
-Berikan jawaban yang tepat dan membantu:";
+Jawaban berdasarkan sistem:";
     }
 
     // Method lainnya tetap sama seperti kode asli...
@@ -348,7 +376,7 @@ Berikan jawaban yang tepat dan membantu:";
                 return $response;
             }
             
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             log_message('error', 'Gemini AI Error: ' . $e->getMessage());
         }
 
@@ -429,12 +457,23 @@ Berikan jawaban yang tepat dan membantu:";
     }
 
     // Method lainnya tetap sama seperti kode asli
+    // Enhanced keyword checking dengan pattern matching yang lebih baik
     private function checkKeywordResponse($input)
     {
+        // Cek exact match dulu
         if (isset($this->keywordResponses[$input])) {
             return $this->keywordResponses[$input];
         }
 
+        // Cek pattern matching untuk pertanyaan penilaian
+        if ($this->containsWords($input, ['cara', 'lihat', 'penilaian']) || 
+            $this->containsWords($input, ['cara', 'melihat', 'penilaian']) ||
+            $this->containsWords($input, ['bagaimana', 'lihat', 'penilaian']) ||
+            $this->containsWords($input, ['bagaimana', 'melihat', 'penilaian'])) {
+            return 'Pegawai dapat mengakses halaman riwayat penilaian untuk melihat lampiran penilaian miliknya sendiri.';
+        }
+
+        // Cek partial match untuk greeting
         foreach ($this->keywordResponses as $keyword => $response) {
             if (strpos($input, $keyword) !== false) {
                 return $response;
@@ -442,6 +481,23 @@ Berikan jawaban yang tepat dan membantu:";
         }
 
         return null;
+    }
+
+    // Helper function untuk mengecek apakah input mengandung kata-kata tertentu
+    private function containsWords($input, $words)
+    {
+        $inputWords = $this->improvedTokenize($input);
+        $matchCount = 0;
+        
+        foreach ($words as $word) {
+            $normalizedWord = $this->normalizeWord($word);
+            if (in_array($normalizedWord, $inputWords) || in_array($word, $inputWords)) {
+                $matchCount++;
+            }
+        }
+        
+        // Minimal 2 dari 3 kata harus match untuk pertanyaan yang lebih kompleks
+        return $matchCount >= min(2, count($words));
     }
 
     private function checkTechnicalAnswer($input)
