@@ -529,4 +529,53 @@ class Chatbot extends Controller
             'selectedTag' => $tag
         ]);
     }
+
+    // Fungsi debugging untuk mengecek dataset
+    public function debugDataset()
+    {
+        $debug = [
+            'dataset_count' => count($this->dataset),
+            'vocab_count' => count($this->vocab),
+            'tags' => array_keys($this->tagCounts),
+            'tag_counts' => $this->tagCounts,
+            'sample_dataset' => array_slice($this->dataset, 0, 10), // 10 data pertama
+            'csv_path' => FCPATH . 'dataset/chatbot_dataset.csv',
+            'csv_exists' => file_exists(FCPATH . 'dataset/chatbot_dataset.csv')
+        ];
+
+        return $this->response->setJSON($debug);
+    }
+
+    // Fungsi untuk test similarity matching
+    public function testSimilarity()
+    {
+        $testQuestion = $this->request->getPost('question') ?? 'test';
+        $testQuestion = strtolower(trim($testQuestion));
+        
+        $results = [];
+        
+        foreach ($this->dataset as $index => $data) {
+            similar_text($testQuestion, $data['question'], $percent);
+            if ($percent > 10) { // Hanya tampilkan yang memiliki similarity > 10%
+                $results[] = [
+                    'index' => $index,
+                    'dataset_question' => $data['question'],
+                    'dataset_answer' => $data['answer'],
+                    'dataset_tag' => $data['tag'],
+                    'similarity' => round($percent, 2)
+                ];
+            }
+        }
+        
+        // Sort berdasarkan similarity tertinggi
+        usort($results, function($a, $b) {
+            return $b['similarity'] <=> $a['similarity'];
+        });
+        
+        return $this->response->setJSON([
+            'test_question' => $testQuestion,
+            'total_matches' => count($results),
+            'matches' => array_slice($results, 0, 20) // Top 20 matches
+        ]);
+    }
 }
