@@ -27,13 +27,14 @@ class Chatbot extends Controller
         'hi' => 'Hi! Ada yang bisa saya bantu?'
     ];
 
-    // Daftar informasi default untuk pertanyaan yang tidak terjawab
-    protected $defaultInformation = [
-        'Saya sedang mencari informasi untuk Anda. Mohon tunggu sebentar...',
-    ];
-
     protected $unansweredQuestionModel;
     protected $answeredQuestionModel;
+
+    // Threshold untuk menentukan kapan menggunakan Gemini AI
+    private $EXACT_MATCH_THRESHOLD = 95;     // Kecocokan hampir sempurna
+    private $SIMILAR_MATCH_THRESHOLD = 75;   // Kecocokan cukup baik
+    private $LOW_CONFIDENCE_THRESHOLD = 50;  // Confidence rendah, gunakan AI
+    private $TAG_CONFIDENCE_THRESHOLD = 0.4; // Minimum confidence untuk prediksi tag
 
     public function __construct()
     {
@@ -89,10 +90,11 @@ class Chatbot extends Controller
             return $this->response->setJSON(['message' => 'Pertanyaan kosong.']);
         }
 
+        log_message('info', 'Input pertanyaan: ' . $input);
+
         // Cek jika ada kecocokan dengan kata kunci tertentu
         foreach ($this->keywordResponses as $keyword => $response) {
             if ($input === $keyword || strpos($input, $keyword) !== false) {
-                // Simpan juga respons kata kunci ke tabel answered_questions
                 $this->saveToAnsweredQuestions($input, $response, 'greeting');
                 return $this->response->setJSON(['message' => $response]);
             }
@@ -101,7 +103,7 @@ class Chatbot extends Controller
         // LANGKAH 1: Cek apakah pertanyaan ini sudah pernah dijawab oleh teknisi
         $technicalAnswer = $this->checkTechnicalAnswer($input);
         if ($technicalAnswer) {
-            // Simpan pertanyaan teknis yang sudah dijawab
+            log_message('info', 'Menggunakan jawaban teknis dari database');
             $this->saveToAnsweredQuestions($input, $technicalAnswer, 'technical');
             return $this->response->setJSON(['message' => $technicalAnswer]);
         }
@@ -109,90 +111,153 @@ class Chatbot extends Controller
         // LANGKAH 2: Cek kecocokan persis di dataset
         $exactMatch = $this->findExactMatch($input);
         if ($exactMatch) {
+            log_message('info', 'Ditemukan kecocokan persis di dataset');
             $tag = $this->findTagFromExactMatch($input);
-            // Simpan pertanyaan yang cocok persis
             $this->saveToAnsweredQuestions($input, $exactMatch, $tag);
             return $this->response->setJSON(['message' => $exactMatch]);
         }
 
-        // LANGKAH 3: Cek kecocokan berdasarkan similar_text dengan improved algorithm
+        // LANGKAH 3: Cek kecocokan berdasarkan similarity dengan algoritma yang diperbaiki
         $similarMatch = $this->findSimilarMatch($input);
-        if ($similarMatch && $similarMatch['score'] > 70) { // Raised threshold from 80 to 70
-            $tag = $similarMatch['tag'];
-            // Simpan pertanyaan yang mirip
-            $this->saveToAnsweredQuestions($input, $similarMatch['answer'], $tag);
+        
+        log_message('info', 'Similarity score: ' . $similarMatch['score']);
+        
+        // Jika skor similarity tinggi, gunakan jawaban dari dataset
+        if ($similarMatch && $similarMatch['score'] >= $this->SIMILAR_MATCH_THRESHOLD) {
+            log_message('info', 'Menggunakan jawaban dari similarity matching');
+            $this->saveToAnsweredQuestions($input, $similarMatch['answer'], $similarMatch['tag']);
             return $this->response->setJSON(['message' => $similarMatch['answer']]);
         }
 
-        // LANGKAH 4: Jika skor kemiripan rendah atau ada konflik konteks, gunakan Gemini AI
-        if (isset($similarMatch) && $similarMatch['score'] < 40) { // Lowered threshold from 50 to 40
-            // Coba gunakan Gemini AI untuk menjawab
+        // LANGKAH 4: Jika similarity rendah, langsung gunakan Gemini AI
+        if (!$similarMatch || $similarMatch['score'] < $this->LOW_CONFIDENCE_THRESHOLD) {
+            log_message('info', 'Similarity score rendah, menggunakan Gemini AI');
             $geminiAnswer = $this->getGeminiResponse($input);
-            if ($geminiAnswer && $geminiAnswer !== 'error') {
-                // Simpan jawaban dari Gemini AI
-                $this->saveToAnsweredQuestions($input, $geminiAnswer, 'ai_generated');
-                return $this->response->setJSON(['message' => $geminiAnswer]);
-            } else {
-                // Jika Gemini AI gagal, simpan ke unanswered questions
-                $this->saveUnansweredQuestion($input);
-                $answer = $this->getInformationForUnknownQuery($input);
-                return $this->response->setJSON(['message' => $answer]);
+            
+            if ($geminiAnswer && $geminiAnswer !== 'error' && !empty(trim($geminiAnswer))) {
+                // Validasi jawaban Gemini sebelum disimpan
+                if ($this->isValidGeminiResponse($geminiAnswer)) {
+                    log_message('info', 'Berhasil mendapat jawaban dari Gemini AI');
+                    $this->saveToAnsweredQuestions($input, $geminiAnswer, 'ai_generated');
+                    return $this->response->setJSON(['message' => $geminiAnswer]);
+                }
             }
+            
+            // Jika Gemini gagal, simpan ke unanswered questions
+            log_message('info', 'Gemini AI gagal, menyimpan ke unanswered questions');
+            $this->saveUnansweredQuestion($input);
+            $defaultResponse = $this->getInformationForUnknownQuery($input);
+            return $this->response->setJSON(['message' => $defaultResponse]);
         }
 
-        // LANGKAH 5: Gunakan Naive Bayes sebagai fallback
+        // LANGKAH 5: Gunakan Naive Bayes sebagai fallback terakhir
         $predictedTag = $this->predictTag($input);
         $tagConfidence = $this->calculateTagConfidence($input, $predictedTag);
 
-        // Jika confidence rendah, gunakan Gemini AI
-        if ($tagConfidence < 0.3) {
-            // Coba gunakan Gemini AI untuk menjawab
+        log_message('info', 'Tag prediction: ' . $predictedTag . ', Confidence: ' . $tagConfidence);
+
+        // Jika confidence tag rendah, gunakan Gemini AI
+        if ($tagConfidence < $this->TAG_CONFIDENCE_THRESHOLD) {
+            log_message('info', 'Tag confidence rendah, menggunakan Gemini AI');
             $geminiAnswer = $this->getGeminiResponse($input);
-            if ($geminiAnswer && $geminiAnswer !== 'error') {
-                // Simpan jawaban dari Gemini AI
-                $this->saveToAnsweredQuestions($input, $geminiAnswer, 'ai_generated');
-                return $this->response->setJSON(['message' => $geminiAnswer]);
-            } else {
-                // Jika Gemini AI gagal, simpan ke unanswered questions
-                $this->saveUnansweredQuestion($input);
-                $answer = $this->getInformationForUnknownQuery($input);
+            
+            if ($geminiAnswer && $geminiAnswer !== 'error' && !empty(trim($geminiAnswer))) {
+                if ($this->isValidGeminiResponse($geminiAnswer)) {
+                    log_message('info', 'Berhasil mendapat jawaban dari Gemini AI (fallback)');
+                    $this->saveToAnsweredQuestions($input, $geminiAnswer, 'ai_generated');
+                    return $this->response->setJSON(['message' => $geminiAnswer]);
+                }
             }
+            
+            // Jika Gemini gagal, simpan ke unanswered questions
+            $this->saveUnansweredQuestion($input);
+            $answer = $this->getInformationForUnknownQuery($input);
         } else {
+            // Gunakan jawaban berdasarkan prediksi tag
             $answer = $this->getAnswerByTag($predictedTag, $input);
-
-            // Tambahkan log untuk debugging
-            log_message('info', 'Jawaban ditemukan: ' . $answer);
-
-            // Setelah mendapatkan jawaban, simpan ke answered_questions
-            $this->saveToAnsweredQuestions($input, $answer, $predictedTag);
-        }
-
-        // Jika jawaban adalah default, coba gunakan Gemini AI
-        if ($answer === "Maaf, saya belum mengerti maksud kamu.") {
-            $geminiAnswer = $this->getGeminiResponse($input);
-            if ($geminiAnswer && $geminiAnswer !== 'error') {
-                // Simpan jawaban dari Gemini AI
-                $this->saveToAnsweredQuestions($input, $geminiAnswer, 'ai_generated');
-                $answer = $geminiAnswer;
+            
+            // Jika jawaban default, coba Gemini AI sekali lagi
+            if ($answer === "Maaf, saya belum mengerti maksud kamu." || 
+                strpos($answer, "Mohon maaf") === 0) {
+                
+                log_message('info', 'Jawaban default detected, mencoba Gemini AI');
+                $geminiAnswer = $this->getGeminiResponse($input);
+                
+                if ($geminiAnswer && $geminiAnswer !== 'error' && !empty(trim($geminiAnswer))) {
+                    if ($this->isValidGeminiResponse($geminiAnswer)) {
+                        log_message('info', 'Berhasil mendapat jawaban dari Gemini AI (replacement)');
+                        $this->saveToAnsweredQuestions($input, $geminiAnswer, 'ai_generated');
+                        $answer = $geminiAnswer;
+                    }
+                } else {
+                    // Jika Gemini gagal, simpan ke unanswered questions
+                    $this->saveUnansweredQuestion($input);
+                }
             } else {
-                // Jika Gemini AI juga gagal, simpan ke unanswered questions
-                $this->saveUnansweredQuestion($input);
-                $answer = $this->getInformationForUnknownQuery($input);
+                // Simpan jawaban dari prediksi tag
+                $this->saveToAnsweredQuestions($input, $answer, $predictedTag);
             }
         }
 
         return $this->response->setJSON(['message' => $answer]);
     }
 
-    // Fungsi baru untuk mendapatkan respons dari Gemini AI
+    // Fungsi untuk memvalidasi respons dari Gemini AI
+    private function isValidGeminiResponse($response)
+    {
+        // Cek apakah respons tidak kosong dan tidak terlalu pendek
+        if (empty($response) || strlen(trim($response)) < 10) {
+            return false;
+        }
+
+        // Cek apakah respons tidak mengandung error message umum
+        $errorPatterns = [
+            'I cannot',
+            'I am unable',
+            'I don\'t understand',
+            'Sorry, I can\'t',
+            'error',
+            'failed',
+            'invalid'
+        ];
+
+        $lowerResponse = strtolower($response);
+        foreach ($errorPatterns as $pattern) {
+            if (strpos($lowerResponse, strtolower($pattern)) !== false) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    // Fungsi yang diperbaiki untuk mendapatkan respons dari Gemini AI
     private function getGeminiResponse($question)
     {
         try {
+            // Validasi API key
+            if ($this->geminiApiKey === 'YOUR_GEMINI_API_KEY_HERE' || empty($this->geminiApiKey)) {
+                log_message('error', 'Gemini API key tidak valid atau kosong');
+                return 'error';
+            }
+
             // URL API Gemini
             $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=" . $this->geminiApiKey;
             
-            // Buat prompt yang lebih spesifik untuk konteks chatbot customer service
-            $prompt = "Anda adalah asisten customer service yang ramah dan membantu. Berikan jawaban yang informatif, sopan, dan dalam bahasa Indonesia untuk pertanyaan berikut: " . $question . ". Jika pertanyaan tidak jelas atau tidak bisa dijawab, berikan respon yang sopan dan tawarkan bantuan alternatif.";
+            // Buat context yang lebih spesifik untuk meningkatkan akurasi
+            $context = $this->buildContextFromDataset();
+            
+            // Buat prompt yang lebih komprehensif
+            $prompt = "Anda adalah asisten customer service yang sangat membantu dan informatif. " .
+                     "Konteks bisnis: $context " .
+                     "Pertanyaan dari pengguna: \"$question\" " .
+                     "Berikan jawaban yang: " .
+                     "1. Akurat dan informatif dalam bahasa Indonesia " .
+                     "2. Sopan dan ramah " .
+                     "3. Langsung to the point " .
+                     "4. Tidak lebih dari 200 kata " .
+                     "5. Jika tidak yakin, berikan saran atau alternatif yang membantu " .
+                     "Hindari menyebutkan bahwa Anda adalah AI atau tidak memiliki akses ke sistem tertentu.";
             
             $data = [
                 'contents' => [
@@ -205,10 +270,21 @@ class Chatbot extends Controller
                     ]
                 ],
                 'generationConfig' => [
-                    'temperature' => 0.7,
-                    'maxOutputTokens' => 200,
+                    'temperature' => 0.3,        // Lebih deterministik
+                    'maxOutputTokens' => 300,    // Lebih panjang untuk jawaban lengkap
                     'topP' => 0.8,
-                    'topK' => 40
+                    'topK' => 40,
+                    'candidateCount' => 1
+                ],
+                'safetySettings' => [
+                    [
+                        'category' => 'HARM_CATEGORY_HARASSMENT',
+                        'threshold' => 'BLOCK_MEDIUM_AND_ABOVE'
+                    ],
+                    [
+                        'category' => 'HARM_CATEGORY_HATE_SPEECH',
+                        'threshold' => 'BLOCK_MEDIUM_AND_ABOVE'
+                    ]
                 ]
             ];
 
@@ -221,10 +297,18 @@ class Chatbot extends Controller
                 'Content-Type: application/json',
             ]);
             curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 
             $response = curl_exec($ch);
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $curlError = curl_error($ch);
             curl_close($ch);
+
+            // Debugging curl errors
+            if ($curlError) {
+                log_message('error', 'Curl error: ' . $curlError);
+                return 'error';
+            }
 
             if ($httpCode !== 200) {
                 log_message('error', 'Gemini API returned HTTP ' . $httpCode . ': ' . $response);
@@ -233,23 +317,68 @@ class Chatbot extends Controller
 
             $result = json_decode($response, true);
             
-            // Ekstrak jawaban dari respons Gemini
+            // Debug response structure
+            log_message('debug', 'Gemini API raw response: ' . $response);
+            
+            // Ekstrak jawaban dari respons Gemini dengan error handling yang lebih baik
             if (isset($result['candidates'][0]['content']['parts'][0]['text'])) {
                 $answer = trim($result['candidates'][0]['content']['parts'][0]['text']);
                 
-                // Log jawaban untuk debugging
-                log_message('info', 'Gemini AI response: ' . $answer);
+                // Bersihkan jawaban dari karakter yang tidak diinginkan
+                $answer = $this->cleanGeminiResponse($answer);
+                
+                log_message('info', 'Gemini AI response berhasil: ' . substr($answer, 0, 100) . '...');
                 
                 return $answer;
             } else {
-                log_message('error', 'Unexpected Gemini API response format: ' . $response);
+                // Cek apakah ada error dalam response
+                if (isset($result['error'])) {
+                    log_message('error', 'Gemini API error: ' . json_encode($result['error']));
+                } else {
+                    log_message('error', 'Unexpected Gemini API response format: ' . $response);
+                }
                 return 'error';
             }
 
         } catch (Exception $e) {
-            log_message('error', 'Error calling Gemini API: ' . $e->getMessage());
+            log_message('error', 'Exception calling Gemini API: ' . $e->getMessage());
             return 'error';
         }
+    }
+
+    // Fungsi untuk membersihkan respons Gemini AI
+    private function cleanGeminiResponse($response)
+    {
+        // Hilangkan markdown formatting jika ada
+        $response = preg_replace('/\*\*(.*?)\*\*/', '$1', $response);
+        $response = preg_replace('/\*(.*?)\*/', '$1', $response);
+        
+        // Hilangkan line breaks berlebihan
+        $response = preg_replace('/\n+/', ' ', $response);
+        
+        // Trim whitespace
+        $response = trim($response);
+        
+        return $response;
+    }
+
+    // Fungsi untuk membangun context dari dataset yang ada
+    private function buildContextFromDataset()
+    {
+        $tags = array_keys($this->tagCounts);
+        $context = "Sistem ini menangani pertanyaan tentang: " . implode(', ', $tags);
+        
+        // Ambil beberapa contoh pertanyaan untuk memberikan context yang lebih baik
+        $sampleQuestions = [];
+        foreach (array_slice($this->dataset, 0, 5) as $data) {
+            $sampleQuestions[] = $data['question'];
+        }
+        
+        if (!empty($sampleQuestions)) {
+            $context .= ". Contoh pertanyaan yang bisa dijawab: " . implode(', ', $sampleQuestions);
+        }
+        
+        return $context;
     }
 
     // Fungsi untuk memeriksa apakah pertanyaan sudah pernah dijawab oleh teknisi
@@ -257,7 +386,7 @@ class Chatbot extends Controller
     {
         $result = $this->unansweredQuestionModel->findSimilarQuestion($input);
         
-        if ($result['match'] && $result['score'] > 70) {
+        if ($result['match'] && $result['score'] > 80) { // Naikkan threshold
             return $result['match']['answer'];
         }
         
@@ -319,7 +448,7 @@ class Chatbot extends Controller
         return 'unknown';
     }
 
-    // Fungsi mencari kecocokan mirip dengan menggunakan similar_text + keyword matching
+    // Fungsi mencari kecocokan mirip dengan algoritma yang diperbaiki
     private function findSimilarMatch($input)
     {
         $bestScore = 0;
@@ -327,48 +456,41 @@ class Chatbot extends Controller
         $bestTag = 'unknown';
         
         // Extract key words from input
-        $inputWords = preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', strtolower($input)));
+        $inputWords = array_filter(preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', strtolower($input))), function($word) {
+            return strlen($word) > 2; // Filter kata pendek
+        });
 
         foreach ($this->dataset as $data) {
-            $questionWords = preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', strtolower($data['question'])));
+            $questionWords = array_filter(preg_split('/\s+/', preg_replace('/[^a-z0-9 ]/', '', strtolower($data['question']))), function($word) {
+                return strlen($word) > 2; // Filter kata pendek
+            });
+            
+            // Calculate Levenshtein distance untuk similarity yang lebih baik
+            $levenshtein = levenshtein(strtolower($input), strtolower($data['question']));
+            $maxLength = max(strlen($input), strlen($data['question']));
+            $levenshteinPercent = (1 - $levenshtein / $maxLength) * 100;
             
             // Calculate similar_text score
-            similar_text(strtolower($input), strtolower($data['question']), $percent);
+            similar_text(strtolower($input), strtolower($data['question']), $similarPercent);
+            
+            // Kombinasi kedua metode
+            $combinedScore = ($levenshteinPercent + $similarPercent) / 2;
             
             // Bonus score for exact keyword matches
             $keywordBonus = 0;
             $commonWords = array_intersect($inputWords, $questionWords);
             
-            // Give higher weight to important keywords
             foreach ($commonWords as $word) {
-                if (strlen($word) > 3) { // Skip short words like "dan", "atau", etc.
-                    $keywordBonus += 10; // 10% bonus per matching significant word
+                if (strlen($word) > 3) {
+                    $keywordBonus += 15; // Bonus per kata penting yang cocok
                 }
             }
             
-            // Penalty for conflicting keywords
-            $conflictPenalty = 0;
-            $conflictWords = [
-                'rencana' => ['laporan', 'report'],
-                'laporan' => ['rencana', 'plan', 'planning'],
-                'edit' => ['buat', 'create', 'new'],
-                'buat' => ['edit', 'ubah', 'update'],
-                'login' => ['logout', 'keluar'],
-                'masuk' => ['keluar', 'logout']
-            ];
-            
-            foreach ($conflictWords as $inputKey => $conflicts) {
-                if (in_array($inputKey, $inputWords)) {
-                    foreach ($conflicts as $conflict) {
-                        if (in_array($conflict, $questionWords)) {
-                            $conflictPenalty += 30; // Heavy penalty for conflicting context
-                        }
-                    }
-                }
-            }
+            // Context penalty untuk kata yang bertentangan
+            $contextPenalty = $this->calculateContextPenalty($inputWords, $questionWords);
             
             // Final score calculation
-            $finalScore = $percent + $keywordBonus - $conflictPenalty;
+            $finalScore = $combinedScore + $keywordBonus - $contextPenalty;
             
             if ($finalScore > $bestScore) {
                 $bestScore = $finalScore;
@@ -382,6 +504,35 @@ class Chatbot extends Controller
             'answer' => $bestAnswer,
             'tag' => $bestTag
         ];
+    }
+
+    // Fungsi untuk menghitung penalty berdasarkan konteks yang bertentangan
+    private function calculateContextPenalty($inputWords, $questionWords)
+    {
+        $penalty = 0;
+        
+        // Definisi kata-kata yang bertentangan
+        $conflictWords = [
+            'buat' => ['edit', 'ubah', 'update', 'hapus', 'delete'],
+            'edit' => ['buat', 'create', 'new', 'tambah'],
+            'hapus' => ['buat', 'create', 'tambah', 'edit'],
+            'login' => ['logout', 'keluar', 'exit'],
+            'masuk' => ['keluar', 'logout', 'exit'],
+            'upload' => ['download', 'unduh'],
+            'simpan' => ['hapus', 'delete', 'batalkan']
+        ];
+        
+        foreach ($inputWords as $inputWord) {
+            if (isset($conflictWords[$inputWord])) {
+                foreach ($conflictWords[$inputWord] as $conflictWord) {
+                    if (in_array($conflictWord, $questionWords)) {
+                        $penalty += 25; // Penalty berat untuk konteks bertentangan
+                    }
+                }
+            }
+        }
+        
+        return $penalty;
     }
 
     // Fungsi untuk memprediksi tag dari pertanyaan
@@ -400,7 +551,7 @@ class Chatbot extends Controller
                 if ($word === '') continue;
 
                 $wordCount = $this->wordTagCounts[$tag][$word] ?? 0;
-                $totalWordsInTag = array_sum($this->wordTagCounts[$tag]);
+                $totalWordsInTag = array_sum($this->wordTagCounts[$tag] ?? []);
 
                 // Laplace smoothing
                 $logProb += log(($wordCount + 1) / ($totalWordsInTag + $vocabSize));
@@ -439,7 +590,7 @@ class Chatbot extends Controller
             }
         }
 
-        $answer = ($bestScore > 30) ? $bestAnswer : $defaultAnswer;
+        $answer = ($bestScore > 40) ? $bestAnswer : $defaultAnswer; // Naikkan threshold
 
         if (empty($answer)) {
             return $this->getInformationForUnknownQuery($input);
@@ -451,8 +602,7 @@ class Chatbot extends Controller
     // Fungsi untuk menangani pertanyaan yang tidak ada dalam database
     private function getInformationForUnknownQuery($input)
     {
-        $randomInfo = $this->defaultInformation[array_rand($this->defaultInformation)];
-        return "Mohon maaf, " . $randomInfo;
+        return "Mohon maaf, saya belum memiliki informasi yang tepat untuk pertanyaan Anda. Tim kami akan meninjau pertanyaan ini untuk memberikan jawaban yang lebih baik di masa depan. Apakah ada hal lain yang bisa saya bantu?";
     }
 
     // Fungsi untuk menyimpan pertanyaan yang tidak terjawab ke database
@@ -485,7 +635,6 @@ class Chatbot extends Controller
             
         // Prioritaskan tag dari unanswered_questions jika sudah ditentukan oleh admin
         if ($unansweredQuestion && !empty($unansweredQuestion['tag'])) {
-            // Gunakan tag yang sudah ditetapkan admin
             $tag = $unansweredQuestion['tag'];
         }
         
@@ -500,15 +649,15 @@ class Chatbot extends Controller
             ->first();
             
         if ($existingQuestion) {
-            // Update pertanyaan yang sudah ada, termasuk tag
+            // Update pertanyaan yang sudah ada
             $this->answeredQuestionModel->update($existingQuestion['id'], [
                 'answer' => $answer,
-                'tag' => $tag, // Update tag berdasarkan unanswered_questions
+                'tag' => $tag,
                 'frequency' => $existingQuestion['frequency'] + 1,
                 'last_asked_at' => date('Y-m-d H:i:s')
             ]);
         } else {
-            // Simpan pertanyaan baru dengan tag dari unanswered_questions
+            // Simpan pertanyaan baru
             $this->answeredQuestionModel->save([
                 'question' => $question,
                 'answer' => $answer,
@@ -528,18 +677,10 @@ class Chatbot extends Controller
         }
     }
 
-    // Fungsi lama yang tidak digunakan lagi - bisa dihapus atau dipertahankan untuk kompatibilitas
-    public function moveAnsweredQuestionToAnotherTable($question, $answer, $tag)
-    {
-        // Arahkan ke fungsi baru
-        return $this->saveToAnsweredQuestions($question, $answer, $tag);
-    }
-
     public function showFrequentQuestions($tag = null)
     {
         $frequentQuestions = $this->answeredQuestionModel->getQuestionsByTag($tag);
 
-        // Kirim data ke view
         return view('frequent_questions', [
             'frequentQuestions' => $frequentQuestions,
             'selectedTag' => $tag
