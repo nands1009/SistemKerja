@@ -117,7 +117,7 @@ class Chatbot extends Controller
 
         // LANGKAH 3: Cek kecocokan berdasarkan similar_text
         $similarMatch = $this->findSimilarMatch($input);
-        if ($similarMatch && $similarMatch['score'] > 80) {
+        if ($similarMatch && $similarMatch['score'] > 90) {
             $tag = $similarMatch['tag']; // Tambahkan tag ke hasil similar_text
             // Simpan pertanyaan yang mirip
             $this->saveToAnsweredQuestions($input, $similarMatch['answer'], $tag);
@@ -125,7 +125,7 @@ class Chatbot extends Controller
         }
 
         // LANGKAH 4: Jika skor kemiripan rendah, gunakan Gemini AI
-        if (isset($similarMatch) && $similarMatch['score'] < 50) {
+        if (isset($similarMatch) && $similarMatch['score'] < 80) {
             // Coba gunakan Gemini AI untuk menjawab
             $geminiAnswer = $this->getGeminiResponse($input);
             if ($geminiAnswer && $geminiAnswer !== 'error') {
